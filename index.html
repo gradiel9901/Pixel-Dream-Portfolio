@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel Dream</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="clouds-container">
+        <div class="cloud c1"></div>
+        <div class="cloud c2"></div>
+        <div class="cloud c3"></div>
+        <div class="cloud c4"></div>
+    </div>
+    <div class="scanlines"></div>
+
+    <header>
+      <div class="container navbar">
+        <div class="logo">PixelDream</div>
+        <nav>
+          <ul>
+            <li><a href="#hero">Start</a></li>
+            <li><a href="#about">Stats</a></li>
+            <li><a href="Dimension3D.html">3D Dimension</a></li>
+            <li><a href="SkillVFX.html">Skill VFX</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Success Notification -->
+        <div id="mission-notification" class="pixel-notification">
+            MISSION DATA TRANSMITTED!
+        </div>
+
+      <section id="hero" class="hero-section">
+        <div class="container hero-content">
+          <div class="hero-text">
+            <!-- Canvas for Text Particle Effect -->
+            <canvas id="text-canvas"></canvas>
+            <p class="subtitle">
+                Game Development Student & Freelancer.<br>
+                Global Game Jam Winner involved in Gameplay Programming & Asset Creation.
+            </p>
+            <a href="#projects" class="btn pixel-btn">Start Game</a>
+        </div>
+        
+        <div class="hero-visual">
+            <!-- Canvas for 3D Cube / Platformer -->
+            <canvas id="hero-game-canvas"></canvas>
+        </div>
+
+        </div>
+      </section>
+
+      <section id="about" class="about-section">
+        <div class="container">
+          <h2 class="section-title">Player Stats</h2>
+          <div class="about-container nes-container is-dark">
+            <div class="avatar-container">
+              <img src="assets/images/Avatar.png" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="stats-container">
+              <h3>Name: John Mervic Bangoy Bautista</h3>
+              <p>Class: Game Developer</p>
+              <p>Level: 20</p>
+              
+              <div class="xp-bar-container">
+                <span>XP:</span>
+                <div class="xp-bar">
+                  <div class="xp-fill" style="width: 85%"></div>
+                </div>
+              </div>
+
+              <div class="class-description" style="margin-bottom: 20px; font-size: 0.6rem; line-height: 1.6; font-family: 'Press Start 2P', cursive;">
+                <p style="color: var(--dirt-side); margin-bottom: 5px;">JOB DESCRIPTION:</p>
+                <p>
+                    Game Development student and freelancer experienced in gameplay programming and asset creation. 
+                    Proven track record in rapid prototyping, evidenced by a 2nd Place Global Game Jam win. 
+                    Skilled in C#, Unity, and translating cultural narratives into interactive mechanics.
+                </p>
+              </div>
+
+              <h4>Skill Tree:</h4>
+              
+              <p style="margin-top: 10px; color: var(--dirt-side); font-size: 0.7rem;">[TECHNICAL]</p>
+              <ul class="skill-list">
+                <li><span class="skill-name">C#</span> <span class="skill-level">★★★★★</span></li>
+                <li><span class="skill-name">Unity 2D/3D</span> <span class="skill-level">★★★★★</span></li>
+                <li><span class="skill-name">Gameplay Mech.</span> <span class="skill-level">★★★★★</span></li>
+                <li><span class="skill-name">Python</span> <span class="skill-level">★★★<span class="star-empty">★★</span></span></li>
+                <li><span class="skill-name">C++</span> <span class="skill-level">★★★<span class="star-empty">★★</span></span></li>
+              </ul>
+
+              <p style="margin-top: 10px; color: var(--dirt-side); font-size: 0.7rem;">[TOOLS]</p>
+              <ul class="skill-list">
+                <li><span class="skill-name">Git / GitHub</span> <span class="skill-level">★★★★<span class="star-empty">★</span></span></li>
+                <li><span class="skill-name">Visual Studio</span> <span class="skill-level">★★★★★</span></li>
+                <li><span class="skill-name">Unreal Engine</span> <span class="skill-level">★★★<span class="star-empty">★★</span></span></li>
+                <li><span class="skill-name">Photoshop</span> <span class="skill-level">★★★★<span class="star-empty">★</span></span></li>
+                <li><span class="skill-name">Blender</span> <span class="skill-level">★★★★<span class="star-empty">★</span></span></li>
+                <li><span class="skill-name">Adobe Premier</span> <span class="skill-level">★★★★<span class="star-empty">★</span></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="projects-section">
+        <div class="container">
+          <h2 class="section-title">Select Level</h2>
+          <div class="projects-grid">
+            <!-- Category 1 -->
+            <div class="project-card nes-container is-rounded is-dark nether-theme">
+              <div class="project-cover game-hub-cover"></div>
+              <div class="project-info">
+                <h3>Game Hub</h3>
+                <p>A collection of my interactive game projects.</p>
+                <a href="GameHub.html" class="btn pixel-btn sm">Enter</a>
+              </div>
+            </div>
+            <!-- Category 2 -->
+            <div class="project-card nes-container is-rounded is-dark ender-theme">
+              <div class="project-cover dimension-3d-cover"></div>
+              <div class="project-info">
+                <h3>3D Dimension</h3>
+                <p>3D Models, Environments, Assets, and Animations.</p>
+                <a href="Dimension3D.html" class="btn pixel-btn sm">Enter</a>
+              </div>
+            </div>
+            <!-- Category 3 -->
+            <div class="project-card nes-container is-rounded is-dark ancient-city-theme">
+              <div class="project-cover skill-vfx-cover"></div>
+              <div class="project-info">
+                <h3>Skill VFX</h3>
+                <p>Particle Systems, Shaders, and Visual Effects.</p>
+                <a href="SkillVFX.html" class="btn pixel-btn sm">Enter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section">
+        <div class="container">
+          <h2 class="section-title">Game Over?</h2>
+          <p class="contact-intro">
+            Continue? Insert Coin or Send Message to Respawn.
+          </p>
+          <form id="contact-form" class="pixel-form nes-container is-dark" action="https://formspree.io/f/mqedkdlg" method="POST">
+            <div class="form-group">
+              <label for="name">ID:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter Name..."
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Comms:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter Email..."
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="message">Mission Data:</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Enter Message..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn pixel-btn">Transmit</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-content">
+        <p>&copy; 2026 PixelDream. All rights reserved.</p>
+        <div class="social-links">
+          <a href="https://gradiel.itch.io/" target="_blank">[ITCH]</a>
+          <a href="https://github.com/gradiel9901" target="_blank">[GH]</a>
+          <a href="https://www.linkedin.com/in/jmbangoybautista/" target="_blank">[LI]</a>
+        </div>
+          <a href="#">[GH]</a>
+          <a href="#">[LI]</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
