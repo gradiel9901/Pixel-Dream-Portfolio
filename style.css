@@ -773,15 +773,16 @@ body.nether-theme nav a:hover {
 /* Game Cards */
 .games-grid {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 20px;
 }
 
 .game-card {
-  display: block;
-  width: 220px;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
   background: #2d0e0e; /* Darker bg */
   border: 4px solid #000;
   box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.5);
@@ -789,8 +790,9 @@ body.nether-theme nav a:hover {
   transition:
     transform 0.2s,
     box-shadow 0.2s;
-  padding-bottom: 10px;
+  padding-bottom: 0;
   overflow: hidden;
+  text-decoration: none;
 }
 
 .game-card:hover {
@@ -813,6 +815,32 @@ body.nether-theme nav a:hover {
   font-size: 0.8rem;
   color: #ffd700;
   text-shadow: 2px 2px 0 #000;
+}
+
+.game-details {
+  font-family: var(--body-font);
+  font-size: 0.7rem;
+  color: #fff;
+  text-align: left;
+  padding: 5px 15px 15px 15px;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.game-details p {
+  margin-bottom: 8px;
+}
+
+.game-details p:last-child {
+  margin-bottom: 0;
+}
+
+.game-details span {
+  color: #f1c40f;
+  font-family: var(--pixel-font);
+  font-size: 0.55rem;
+  display: block;
+  margin-bottom: 2px;
 }
 .ghasts-container {
   position: absolute;
@@ -2397,4 +2425,101 @@ body.nether-theme .game-card h3 {
 body.nether-theme .game-card:hover {
   background: rgba(241, 196, 15, 0.2); /* Gold tint on hover */
   border-color: #fff;
+}
+
+/* =========================================
+   Fullscreen Media Modal (Lightbox)
+   ========================================= */
+
+.zoomable {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.zoomable:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(211, 166, 255, 0.5); /* Purple glow for End Theme */
+}
+
+.modal-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* Deep black background */
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content-container {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy pop-in */
+}
+
+.modal-overlay.show .modal-content-container {
+  transform: scale(1);
+}
+
+.modal-content-container img,
+.modal-content-container video {
+  max-width: 100%;
+  max-height: 90vh;
+  border: 4px solid #d3a6ff; /* Match end theme */
+  box-shadow: 0 0 30px rgba(106, 13, 173, 0.8);
+  border-radius: 4px; /* Slight rounding */
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 40px;
+  font-family: var(--body-font);
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+  transition: color 0.2s, transform 0.2s;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: #d3a6ff; /* Purple hover */
+  text-decoration: none;
+  transform: scale(1.2);
+}
+
+/* Theme overrides for modal */
+body.ancient-city-theme .zoomable:hover {
+  box-shadow: 0 0 15px rgba(77, 240, 255, 0.5); /* Sculk Cyan glow */
+}
+
+body.ancient-city-theme .modal-content-container img,
+body.ancient-city-theme .modal-content-container video {
+  border-color: #4df0ff;
+  box-shadow: 0 0 30px rgba(0, 77, 77, 0.8);
+}
+
+body.ancient-city-theme .modal-close:hover,
+body.ancient-city-theme .modal-close:focus {
+  color: #4df0ff; /* Sculk Cyan hover */
 }

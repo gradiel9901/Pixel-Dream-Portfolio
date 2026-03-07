@@ -92,7 +92,7 @@
 
     <header>
       <div class="container navbar">
-        <div class="logo">PixelDream 3D</div>
+        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">PixelDream 3D</a></div>
         <nav>
           <ul>
             <li><a href="index.html">Home</a></li>
@@ -115,23 +115,23 @@
                     <h2 style="text-align: center; color: #d3a6ff; margin-bottom: 20px; text-shadow: 2px 2px 0 #4b0082;">3D Renders</h2>
                     <div class="gallery-list">
                         <div class="gallery-item">
-                            <img src="assets/3D Dimension/Images/Gemini.png" alt="Gemini">
+                            <img class="zoomable" src="assets/3D Dimension/Images/Gemini.png" alt="Gemini">
                             <h3>Gemini</h3>
                         </div>
                         <div class="gallery-item">
-                            <img src="assets/3D Dimension/Images/King.png" alt="King">
+                            <img class="zoomable" src="assets/3D Dimension/Images/King.png" alt="King">
                             <h3>King</h3>
                         </div>
                         <div class="gallery-item">
-                            <img src="assets/3D Dimension/Images/Second coming of Greed.png" alt="Second Coming of Greed">
+                            <img class="zoomable" src="assets/3D Dimension/Images/Second coming of Greed.png" alt="Second Coming of Greed">
                             <h3>Second Coming of Greed</h3>
                         </div>
                         <div class="gallery-item">
-                            <img src="assets/3D Dimension/Images/The Forest.jpg" alt="The Forest">
+                            <img class="zoomable" src="assets/3D Dimension/Images/The Forest.jpg" alt="The Forest">
                             <h3>The Forest</h3>
                         </div>
                         <div class="gallery-item">
-                            <img src="assets/3D Dimension/Images/Tree of Life.png" alt="Tree of Life">
+                            <img class="zoomable" src="assets/3D Dimension/Images/Tree of Life.png" alt="Tree of Life">
                             <h3>Tree of Life</h3>
                         </div>
                     </div>
@@ -142,23 +142,23 @@
                     <h2 style="text-align: center; color: #d3a6ff; margin-bottom: 20px; text-shadow: 2px 2px 0 #4b0082;">3D Animations</h2>
                     <div class="gallery-list">
                         <div class="gallery-item">
-                            <video src="assets/3D Dimension/Videos/Apollo's Arrow.mp4" controls loop muted></video>
+                            <video class="zoomable" src="assets/3D Dimension/Videos/Apollos Arrow.mp4" controls loop muted></video>
                             <h3>Apollo's Arrow</h3>
                         </div>
                         <div class="gallery-item">
-                            <video src="assets/3D Dimension/Videos/Destruction.mp4" controls loop muted></video>
+                            <video class="zoomable" src="assets/3D Dimension/Videos/Destruction.mp4" controls loop muted></video>
                             <h3>Destruction</h3>
                         </div>
                         <div class="gallery-item">
-                            <video src="assets/3D Dimension/Videos/Fallen City.mp4" controls loop muted></video>
+                            <video class="zoomable" src="assets/3D Dimension/Videos/Fallen City.mp4" controls loop muted></video>
                             <h3>Fallen City</h3>
                         </div>
                         <div class="gallery-item">
-                            <video src="assets/3D Dimension/Videos/Gemini.mp4" controls loop muted></video>
+                            <video class="zoomable" src="assets/3D Dimension/Videos/Gemini.mp4" controls loop muted></video>
                             <h3>Gemini (Anim)</h3>
                         </div>
                         <div class="gallery-item">
-                            <video src="assets/3D Dimension/Videos/The King.mp4" controls loop muted></video>
+                            <video class="zoomable" src="assets/3D Dimension/Videos/The King.mp4" controls loop muted></video>
                             <h3>The King</h3>
                         </div>
                     </div>
@@ -168,6 +168,14 @@
 
             <div style="text-align: center; margin-top: 50px;">
                 <a href="index.html" class="btn pixel-btn void-btn">Return to Overworld</a>
+            </div>
+        </div>
+
+        <!-- Fullscreen Media Modal -->
+        <div id="media-modal" class="modal-overlay">
+            <span class="modal-close">&times;</span>
+            <div class="modal-content-container">
+                <!-- Media content will be injected here via JS -->
             </div>
         </div>
       </section>

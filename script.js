@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   try { initSmoothScroll(); } catch(e) { console.error('Smooth scroll error:', e); }
   try { initFormHandler(); } catch(e) { console.error('Form handler error:', e); }
   try { initMobileMenu(); } catch(e) { console.error('Mobile menu error:', e); }
+  try { initMediaLightbox(); } catch(e) { console.error('Lightbox error:', e); }
 });
 
 function initMobileMenu() {
@@ -875,5 +876,78 @@ function integrate() {
       }
     }
     animateEntrance();
+  });
+}
+
+// ==========================================
+// PART 6: MEDIA LIGHTBOX (NEW)
+// ==========================================
+function initMediaLightbox() {
+  const modal = document.getElementById("media-modal");
+  if (!modal) return;
+
+  const modalContentContainer = modal.querySelector(".modal-content-container");
+  const closeBtn = modal.querySelector(".modal-close");
+  const zoomableItems = document.querySelectorAll(".zoomable");
+
+  function openModal(element) {
+    // Clear previous content
+    modalContentContainer.innerHTML = "";
+
+    // Clone the element to put inside modal
+    const clone = element.cloneNode(true);
+    // Remove the zoomable class so it doesn't have cursor effects in modal
+    clone.classList.remove("zoomable");
+
+    // If it's a video, ensure controls are present, play it, and disable muting potentially
+    if (clone.tagName.toLowerCase() === "video") {
+      clone.controls = true;
+      clone.autoplay = true;
+      // Unmute so audio plays
+      clone.muted = false; 
+    }
+
+    modalContentContainer.appendChild(clone);
+    
+    // Smooth transition hack: display the container first, then add the show class a frame later
+    modal.style.display = "flex";
+    setTimeout(() => {
+        modal.classList.add("show");
+    }, 10);
+  }
+
+  function closeModal() {
+    modal.classList.remove("show");
+    
+    // Stop any video from playing after close and hide modal fully
+    setTimeout(() => {
+        modalContentContainer.innerHTML = "";
+        modal.style.display = "none";
+    }, 300); // 300ms matches CSS transition time
+  }
+
+  // Add click events to all items
+  zoomableItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      openModal(item);
+    });
+  });
+
+  // Close on X click
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close on background click (clicking outside the media element)
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal || e.target === modalContentContainer) {
+      closeModal();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("show")) {
+      closeModal();
+    }
   });
 }

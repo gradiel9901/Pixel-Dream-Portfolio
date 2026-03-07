@@ -55,7 +55,7 @@
 
     <header>
       <div class="container navbar">
-        <div class="logo">PixelDream VFX</div>
+        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">PixelDream VFX</a></div>
         <nav>
           <ul>
             <li><a href="index.html">Home</a></li>
@@ -78,18 +78,30 @@
                 <div class="gallery-list" style="justify-content: center;">
                     
                     <div class="gallery-item" style="width: 30%; min-width: 300px;">
-                        <video src="assets/Skill VFX/Mage_EyeOfTheStorm.mp4" controls loop muted></video>
+                        <video class="zoomable" src="assets/Skill VFX/Mage_EyeOfTheStorm.mp4" controls loop muted></video>
                         <h3>Mage: Eye of the Storm</h3>
+                        <div class="game-details" style="margin-top: 10px;">
+                            <p style="font-size: 0.7rem; color: #4df0ff;">Created in Unity 6 Engine</p>
+                            <p style="font-size: 0.6rem; color: #ccc;">Used HLSL, Particle System, and Visual Effect Graph</p>
+                        </div>
                     </div>
 
                     <div class="gallery-item" style="width: 30%; min-width: 300px;">
-                        <video src="assets/Skill VFX/Mage_FlameTornado.mp4" controls loop muted></video>
+                        <video class="zoomable" src="assets/Skill VFX/Mage_FlameTornado.mp4" controls loop muted></video>
                         <h3>Mage: Flame Tornado</h3>
+                        <div class="game-details" style="margin-top: 10px;">
+                            <p style="font-size: 0.7rem; color: #4df0ff;">Created in Unity 6 Engine</p>
+                            <p style="font-size: 0.6rem; color: #ccc;">Used HLSL, Particle System, and Visual Effect Graph</p>
+                        </div>
                     </div>
 
                     <div class="gallery-item" style="width: 30%; min-width: 300px;">
-                        <video src="assets/Skill VFX/Mage_FrostVortex.mp4" controls loop muted></video>
+                        <video class="zoomable" src="assets/Skill VFX/Mage_FrostVortex.mp4" controls loop muted></video>
                         <h3>Mage: Frost Vortex</h3>
+                        <div class="game-details" style="margin-top: 10px;">
+                            <p style="font-size: 0.7rem; color: #4df0ff;">Created in Unity 6 Engine</p>
+                            <p style="font-size: 0.6rem; color: #ccc;">Used HLSL, Particle System, and Visual Effect Graph</p>
+                        </div>
                     </div>
 
                 </div>
@@ -97,6 +109,14 @@
 
             <div style="text-align: center; margin-top: 50px;">
                 <a href="index.html" class="btn pixel-btn void-btn">Return to Overworld</a>
+            </div>
+        </div>
+
+        <!-- Fullscreen Media Modal -->
+        <div id="media-modal" class="modal-overlay">
+            <span class="modal-close">&times;</span>
+            <div class="modal-content-container">
+                <!-- Media content will be injected here via JS -->
             </div>
         </div>
       </section>
