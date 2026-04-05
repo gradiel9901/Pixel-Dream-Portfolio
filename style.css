@@ -2523,3 +2523,204 @@ body.ancient-city-theme .modal-close:hover,
 body.ancient-city-theme .modal-close:focus {
   color: #4df0ff; /* Sculk Cyan hover */
 }
+
+/* =========================================
+   DESERT THEME (Web Development)
+   ========================================= */
+body.desert-theme {
+  background: linear-gradient(to bottom, #a5f3fc, #d9f99d); /* Bright Desert Sky */
+  color: #78350f; /* Dark Wood/Brown text */
+}
+
+body.desert-theme header {
+  background-color: rgba(253, 230, 138, 0.95); /* Sandy Header */
+  border-bottom: 4px solid #d97706; /* Terra Cotta Border */
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+body.desert-theme .logo {
+  color: #b45309;
+  text-shadow: 2px 2px 0 #fde68a;
+}
+
+body.desert-theme nav a {
+  background: #fef3c7; /* Light Sand */
+  color: #92400e;
+  border: 2px solid #d97706;
+  box-shadow: 2px 2px 0 #000;
+}
+
+body.desert-theme nav a:hover {
+  background: #fcd34d;
+  color: #78350f;
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 0 #000;
+}
+
+/* Desert Ground (Sand Blocks) */
+.desert-ground {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background-color: #ecd98f; /* Sand Color */
+  background-image: 
+    linear-gradient(45deg, #e5cf7d 25%, transparent 25%, transparent 75%, #e5cf7d 75%, #e5cf7d),
+    linear-gradient(45deg, #e5cf7d 25%, transparent 25%, transparent 75%, #e5cf7d 75%, #e5cf7d);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  border-top: 4px solid #d97706;
+  z-index: -1;
+}
+
+/* Desert Biome Environment */
+.desert-environment {
+  position: fixed;
+  bottom: 120px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Desert Temple (Pyramid) */
+.desert-temple {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 200px;
+  height: 150px;
+  background: #ecd98f;
+  border: 4px solid #d97706;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 16px, #d97706 16px, #d97706 20px);
+}
+
+.temple-entrance {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 40px;
+  background: #78350f;
+  border: 2px solid #000;
+}
+
+/* Desert Village Houses */
+.village-house {
+  position: absolute;
+  bottom: 0;
+  background: #fef3c7;
+  border: 4px solid #78350f;
+}
+
+.vh1 {
+  right: 15%;
+  width: 80px;
+  height: 60px;
+}
+
+.vh1::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -4px;
+  right: -4px;
+  height: 10px;
+  background: #78350f; /* Flat Wooden Roof */
+}
+
+.vh2 {
+  right: 5%;
+  width: 60px;
+  height: 100px;
+}
+
+/* Cactus */
+.cactus {
+  position: absolute;
+  bottom: 0;
+  width: 20px;
+  height: 60px;
+  background: #22c55e;
+  border: 3px solid #14532d;
+}
+
+.c1 { left: 35%; height: 40px; }
+.c2 { left: 60%; height: 80px; }
+
+.cactus::before, .cactus::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  background: #22c55e;
+  border: 3px solid #14532d;
+}
+
+.cactus::before { top: 10px; left: -10px; border-right: none; }
+.cactus::after { top: 20px; right: -10px; border-left: none; }
+
+/* Sand Particles */
+.sand-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sand-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #fcd34d;
+  opacity: 0.6;
+  animation: blowSand 10s linear infinite;
+}
+
+@keyframes blowSand {
+  0% { transform: translate(0, 0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translate(200px, 50px); opacity: 0; }
+}
+
+/* Web Development Cover for Project Card */
+.web-development-cover {
+  background-image: url("assets/GIF/Web%20Development.gif");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Project Card Override for Desert Theme */
+.project-card.desert-theme {
+  background-color: #fef3c7 !important;
+  border-color: #d97706 !important;
+  color: #78350f !important;
+}
+
+.project-card.desert-theme .project-info h3 {
+  color: #b45309 !important;
+}
+
+.project-card.desert-theme .project-info p {
+  color: #92400e !important;
+}
+
+.project-card.desert-theme .btn {
+  background-color: #f59e0b !important;
+  color: #fff !important;
+  box-shadow: inset -4px -4px 0px 0px #d97706 !important;
+}
+
+.project-card.desert-theme .btn:hover {
+  background-color: #d97706 !important;
+  box-shadow: inset -4px -4px 0px 0px #b45309 !important;
+}
+
