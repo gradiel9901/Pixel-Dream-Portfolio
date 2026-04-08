@@ -1,225 +1,2428 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pixel Dream</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="clouds-container">
-        <div class="cloud c1"></div>
-        <div class="cloud c2"></div>
-        <div class="cloud c3"></div>
-        <div class="cloud c4"></div>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JM Bautista — Inkborne</title>
+<meta name="description" content="JM Bautista — Game Developer, 3D Artist & Digital Craftsman. A living manuscript of worlds built, dimensions carved, and stories inscribed in code.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' fill='none' stroke='%23c4342d' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 25 15 C 35 15, 40 20, 35 30 C 30 40, 15 40, 10 30 C 5 20, 15 15, 25 15' stroke-width='1.2' stroke-dasharray='3 3'/%3E%3Ccircle cx='10' cy='30' r='1.5' fill='%23c4342d'/%3E%3Ccircle cx='35' cy='30' r='2.5' fill='%23c4342d'/%3E%3Cpath d='M 40 5 C 38 7, 30 15, 23 25 C 20 29, 21 34, 21 34 L 20 35 L 18 30 C 18 30, 22 25, 26 18 C 30 11, 40 5, 40 5 Z' fill='rgba(196,52,45,0.1)'/%3E%3Cpath d='M 26 18 L 30 20 M 30 14 L 34 16 M 34 10 L 37 12'/%3E%3Cpath d='M 20 38 C 20 40, 21 42, 23 42 C 25 42, 26 40, 26 38 C 26 36, 23 34, 23 34 C 23 34, 20 36, 20 38 Z' fill='%23c4342d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══ INKBORNE DESIGN TOKENS ═══ */
+:root {
+  --ink-void: #0d0505;
+  --ink-deep: #1a0808;
+  --ink-maroon: #2a0e0e;
+  --ink-warm: #1a1518;
+  --parchment: #f4e8d1;
+  --parchment-dim: #d4c8b1;
+  --parchment-ghost: rgba(244,232,209,0.06);
+  --parchment-line: rgba(244,232,209,0.12);
+  --parchment-muted: rgba(244,232,209,0.75);
+  --sumi: #1a1a2e;
+  --vermillion: #c4342d;
+  --vermillion-glow: rgba(196,52,45,0.25);
+  --vermillion-dim: rgba(196,52,45,0.12);
+  --gold: #b8960c;
+  --gold-bright: #d4af37;
+  --gold-glow: rgba(184,150,12,0.2);
+  --gold-dim: rgba(184,150,12,0.08);
+  --indigo: #2d3a5c;
+  --indigo-dim: rgba(45,58,92,0.3);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Serif 4', 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --ease-brush: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-ink: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Surfaces */
+  --surface-bg: rgba(26, 14, 14, 0.5);
+  --surface-fade: linear-gradient(to top, rgba(13, 5, 5, 0.98), rgba(26, 14, 14, 0.9));
+  --surface-fade-clear: linear-gradient(to top, rgba(13, 5, 5, 0.95), transparent);
+  --tooltip-bg: rgba(13, 5, 5, 0.92);
+}
+
+:root.light-mode {
+  --ink-void: #f4e8d1;
+  --ink-deep: #e8dcc4;
+  --ink-maroon: #d4c8b1;
+  --ink-warm: #eee0c8;
+  --parchment: #0d0505;
+  --parchment-dim: #1a0808;
+  --parchment-ghost: rgba(13,5,5,0.06);
+  --parchment-line: rgba(13,5,5,0.22);
+  --parchment-muted: rgba(13,5,5,0.65);
+  --sumi: #d4c8b1;
+  --vermillion: #b02a24;
+  --gold: #9a7d0a;
+  --gold-bright: #ad8f2d;
+  /* Surfaces */
+  --surface-bg: rgba(255, 255, 255, 0.4);
+  --surface-fade: linear-gradient(to top, rgba(244, 232, 209, 0.98), rgba(244, 232, 209, 0.9));
+  --surface-fade-clear: linear-gradient(to top, rgba(244, 232, 209, 0.95), transparent);
+  --tooltip-bg: rgba(244, 232, 209, 0.92);
+}
+/* Transitions for smoothly morphing themes */
+body, #nav, .work-card, .skill-card, .portal-card, .video-card, .btn-seal, .btn-ghost, .nav-logo-text, .header-title {
+  transition: background 1.5s var(--ease-ink), color 1.5s var(--ease-ink), border-color 1.5s var(--ease-ink), background-color 1.5s var(--ease-ink);
+}
+
+/* ═══ RESET ═══ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--ink-void);color:var(--parchment);font-family:var(--font-body);font-weight:400;overflow-x:hidden;min-height:100vh;cursor:none}
+img,video{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit}
+
+/* ═══ CUSTOM CURSOR ═══ */
+#brush-cursor{position:fixed;width:6px;height:6px;background:var(--vermillion);border-radius:50%;pointer-events:none;z-index:11000;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:transform .1s,background .3s}
+#brush-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(196,52,45,0.5);border-radius:50%;pointer-events:none;z-index:10999;transform:translate(-50%,-50%);transition:transform .15s ease,width .3s,height .3s,border-color .3s}
+
+/* ═══ WEBGL CANVAS ═══ */
+#ink-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+/* ═══ BACKGROUND LAYERS ═══ */
+#bg-grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size:200px 200px}
+.bg-wash{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:1;opacity:0;transition:opacity 2s ease}
+.bg-wash.visible{opacity:1}
+.bg-wash-1{width:600px;height:600px;background:radial-gradient(circle,rgba(42,14,14,0.7),transparent 70%);top:-200px;left:-100px}
+.bg-wash-2{width:400px;height:400px;background:radial-gradient(circle,rgba(196,52,45,0.08),transparent 70%);top:40%;right:-80px}
+.bg-wash-3{width:500px;height:500px;background:radial-gradient(circle,rgba(184,150,12,0.06),transparent 70%);bottom:-150px;left:30%}
+
+/* ═══ INK DIFFUSION TRANSITION CANVAS ═══ */
+#ink-transition{position:fixed;inset:0;z-index:500;pointer-events:none}
+
+/* ═══ NAVIGATION ═══ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:150;display:flex;align-items:center;justify-content:space-between;padding:28px 60px;transition:background .5s,padding .4s,border-color .4s;border-bottom:1px solid transparent;pointer-events:none}
+#nav.scrolled{background:rgba(13,5,5,0.92);backdrop-filter:blur(20px);padding:18px 60px;border-bottom-color:var(--parchment-line);pointer-events:auto}
+.nav-logo{display:flex;align-items:center;gap:12px;cursor:pointer;pointer-events:auto}
+.nav-logo svg{width:36px;height:36px;transition:transform .4s}
+.nav-logo:hover svg{transform:rotate(-8deg) scale(1.08)}
+.nav-logo-text{font-family:var(--font-display);font-size:1.2rem;font-weight:500;letter-spacing:.08em;color:var(--parchment)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links li a{font-family:var(--font-mono);font-weight:400;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--parchment-muted);position:relative;cursor:pointer;transition:color .3s;padding-bottom:6px}
+.nav-links li a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--vermillion);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease-brush)}
+.nav-links li a:hover,.nav-links li a.active{color:var(--parchment)}
+.nav-links li a:hover::after,.nav-links li a.active::after{transform:scaleX(1)}
+.nav-seal{width:14px;height:14px;margin-right:6px;vertical-align:-1px;opacity:.6;transition:opacity .3s}
+.nav-links li a:hover .nav-seal,.nav-links li a.active .nav-seal{opacity:1}
+
+/* Hamburger */
+.burger{display:none;background:none;border:none;cursor:pointer;padding:4px;z-index:110}
+.burger span{display:block;width:24px;height:1.5px;background:var(--parchment);margin:5px 0;transition:transform .3s,opacity .3s}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(4px,5px)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px)}
+.mobile-menu{position:fixed;inset:0;z-index:99;background:rgba(13,5,5,0.97);backdrop-filter:blur(30px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .4s}
+.mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu a{font-family:var(--font-display);font-size:1.8rem;color:var(--parchment-muted);transition:color .3s;letter-spacing:.05em}
+.mobile-menu a:hover{color:var(--vermillion)}
+
+/* ═══ PAGE SYSTEM ═══ */
+.page{position:fixed;inset:0;z-index:10;overflow-y:auto;overflow-x:hidden;opacity:0;pointer-events:none;visibility:hidden;transition:opacity 0s;will-change:opacity}
+.page.active{opacity:1;pointer-events:auto;visibility:visible;transition:opacity .7s var(--ease-ink)}
+.page::-webkit-scrollbar{width:4px}
+.page::-webkit-scrollbar-track{background:transparent}
+.page::-webkit-scrollbar-thumb{background:var(--vermillion-dim);border-radius:2px}
+
+/* ═══ HOME — HERO ═══ */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 10vw;overflow:hidden}
+.hero-eyebrow{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.3em;color:var(--vermillion);margin-bottom:28px;opacity:0;transform:translateY(20px);animation:inkReveal 1s ease forwards .3s}
+.hero-name{font-family:var(--font-display);font-size:clamp(3.5rem,9vw,8rem);font-weight:400;line-height:.95;letter-spacing:-.01em;margin-bottom:20px;opacity:0;transform:translateY(30px);animation:inkReveal 1.1s ease forwards .6s}
+.hero-name em{font-style:italic;color:var(--gold-bright);display:block}
+.hero-title{font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.8rem);font-weight:400;font-style:italic;color:var(--parchment-muted);margin-bottom:48px;opacity:0;transform:translateY(20px);animation:inkReveal 1s ease forwards .9s}
+.hero-desc{font-weight:400;font-size:1.05rem;line-height:1.9;color:var(--parchment-muted);max-width:460px;margin-bottom:56px;opacity:0;transform:translateY(20px);animation:inkReveal 1s ease forwards 1.1s}
+.hero-cta{display:flex;gap:20px;flex-wrap:wrap;opacity:0;animation:inkReveal 1s ease forwards 1.3s;position:relative;z-index:20}
+.hero-constellation{position:absolute;right:6vw;top:50%;transform:translateY(-50%);opacity:0;animation:fadeIn 2s ease forwards 1.6s;pointer-events:none}
+
+/* Buttons */
+.btn-seal{font-family:var(--font-mono);font-weight:500;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--parchment);background:var(--vermillion);border:none;padding:16px 36px;cursor:pointer;position:relative;overflow:hidden;transition:background .3s,transform .2s}
+.btn-seal::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 60%);opacity:0;transition:opacity .3s}
+.btn-seal:hover{background:#d63c35;transform:translateY(-2px)}
+.btn-seal:hover::before{opacity:1}
+.btn-ghost{font-family:var(--font-mono);font-weight:300;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--parchment-muted);background:transparent;border:1px solid var(--parchment-line);padding:16px 36px;cursor:pointer;transition:border-color .3s,color .3s,transform .2s}
+.btn-ghost:hover{border-color:var(--vermillion);color:var(--vermillion);transform:translateY(-2px)}
+
+/* Scroll hint */
+.scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s ease forwards 2s}
+.scroll-hint span{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.25em;color:var(--parchment-muted);text-transform:uppercase}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--vermillion),transparent);animation:scrollPulse 2.5s ease infinite}
+
+/* ═══ SECTIONS ═══ */
+.section-label{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.35em;color:var(--vermillion);text-transform:uppercase;margin-bottom:20px}
+
+/* Brush stroke divider */
+.brush-divider{width:100%;height:20px;margin:0 0 60px;opacity:.3}
+.brush-divider path{stroke:var(--vermillion);fill:none;stroke-linecap:round}
+
+/* ═══ STORY ═══ */
+.story-section{padding:140px 10vw}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.story-text h2{font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3.4rem);font-weight:400;line-height:1.15;margin-bottom:32px}
+.story-text h2 em{font-style:italic;color:var(--vermillion)}
+.story-text p{font-size:1rem;line-height:1.9;color:var(--parchment-muted);margin-bottom:18px}
+.seal-diagram{width:280px;height:280px;position:relative;margin:0 auto}
+.seal-ring{position:absolute;border-radius:50%;border:1px solid}
+.seal-ring-1{inset:0;border-color:rgba(196,52,45,.2);animation:slowSpin 50s linear infinite}
+.seal-ring-2{inset:25px;border-color:rgba(184,150,12,.15);animation:slowSpin 35s linear infinite reverse}
+.seal-ring-3{inset:55px;border-color:rgba(196,52,45,.12);animation:slowSpin 20s linear infinite}
+.seal-center{position:absolute;inset:50%;transform:translate(-50%,-50%);width:50px;height:50px;background:radial-gradient(circle,var(--vermillion),rgba(196,52,45,.3) 50%,transparent 70%);border-radius:50%;box-shadow:0 0 40px rgba(196,52,45,.3),0 0 80px rgba(196,52,45,.15);animation:pulse 3.5s ease infinite}
+.seal-dot{position:absolute;width:7px;height:7px;border-radius:50%;transform:translate(-50%,-50%)}
+.sd1{background:var(--vermillion);top:2px;left:50%;box-shadow:0 0 10px rgba(196,52,45,.6)}
+.sd2{background:var(--gold-bright);top:50%;right:2px;box-shadow:0 0 10px rgba(184,150,12,.6)}
+.sd3{background:var(--parchment-dim);bottom:20%;left:12%;box-shadow:0 0 10px rgba(244,232,209,.4)}
+
+/* ═══ SKILLS ═══ */
+.skills-section{padding:80px 10vw 140px}
+.skills-section h2{font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3rem);font-weight:400;margin-bottom:14px}
+.skills-section h2 em{font-style:italic;color:var(--gold-bright)}
+.skills-intro{font-size:.95rem;color:var(--parchment-muted);max-width:500px;line-height:1.8;margin-bottom:64px}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px}
+.skill-card{background:var(--surface-bg);border:1px solid var(--parchment-line);padding:36px 32px;position:relative;overflow:hidden;transition:border-color .4s,background .4s,transform .3s;cursor:default}
+.skill-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--vermillion-dim),transparent 60%);opacity:0;transition:opacity .4s}
+.skill-card:hover{border-color:rgba(196,52,45,.3);transform:translateY(-4px)}
+.skill-card:hover::before{opacity:1}
+.skill-card-icon{width:32px;height:32px;margin-bottom:18px}
+.skill-card-label{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.28em;color:var(--vermillion);text-transform:uppercase;margin-bottom:10px}
+.skill-card-name{font-family:var(--font-display);font-size:1.4rem;font-weight:500;margin-bottom:18px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+.skill-tag{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.08em;padding:4px 10px;border-radius:2px;border:1px solid}
+.tag-vermillion{color:var(--vermillion);border-color:rgba(196,52,45,.3)}
+.tag-gold{color:var(--gold-bright);border-color:rgba(184,150,12,.3)}
+.tag-parchment{color:var(--parchment-dim);border-color:rgba(244,232,209,.2)}
+.tag-indigo{color:#7b8fc4;border-color:rgba(45,58,92,.5)}
+
+/* ═══ GALAXY MAP ═══ */
+.galaxy-viewport{position:absolute;right:0;top:0;width:55%;height:100%;min-height:600px;overflow:hidden;z-index:2}
+.galaxy-viewport.inner-mode{width:45vw;max-width:500px;height:450px;min-height:auto;top:50%;transform:translateY(-50%);right:5vw;mask-image:radial-gradient(circle at center, black 40%, transparent 70%);-webkit-mask-image:radial-gradient(circle at center, black 40%, transparent 70%)}
+.galaxy-viewport.inner-mode .galaxy-instruction-overlay{display:none}
+#galaxy-canvas{display:block;width:100%;height:100%}
+.galaxy-tooltip{position:absolute;pointer-events:none;opacity:0;transition:opacity .25s;z-index:10;transform:translate(-50%,-120%)}
+.galaxy-tooltip.visible{opacity:1}
+.galaxy-tooltip-inner{background:var(--tooltip-bg);border:1px solid var(--vermillion);backdrop-filter:blur(12px);padding:12px 20px;text-align:center;white-space:nowrap}
+.galaxy-tooltip-name{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--parchment);margin-bottom:4px}
+.galaxy-tooltip-desc{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.2em;color:var(--vermillion);text-transform:uppercase}
+.galaxy-click-hint{font-family:var(--font-mono);font-size:.5rem;letter-spacing:.15em;color:var(--parchment-muted);text-transform:uppercase;margin-top:6px}
+.galaxy-instruction-overlay{position:absolute;top:50%;left:10%;transform:translateY(-50%);display:flex;align-items:center;gap:12px;opacity:0;animation:fadeIn 1.5s ease forwards 2.5s;pointer-events:none;z-index:5}
+.galaxy-instruction-overlay p{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;color:var(--parchment-muted);text-transform:uppercase}
+.galaxy-instruction-overlay svg{width:24px;height:24px;animation:pointArrow 1.5s infinite alternate}
+@keyframes pointArrow{from{transform:translateX(0)}to{transform:translateX(8px)}}
+
+/* ═══ CONTACT ═══ */
+.contact-section{border-top:1px solid var(--parchment-line);padding:80px 10vw;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.contact-left h3{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.6rem);font-weight:400;margin-bottom:14px}
+.contact-left h3 em{font-style:italic;color:var(--vermillion)}
+.contact-left p{font-size:.95rem;color:var(--parchment-muted);line-height:1.7;max-width:400px}
+.contact-form{display:flex;flex-direction:column;gap:20px}
+.form-field{position:relative}
+.form-field input,.form-field textarea{width:100%;background:var(--surface-bg);border:1px solid var(--parchment-line);color:var(--parchment);font-family:var(--font-body);font-size:.9rem;padding:14px 16px;transition:border-color .3s, background-color 1.5s var(--ease-ink), color 1.5s var(--ease-ink);outline:none}
+.form-field textarea{resize:vertical;min-height:120px}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--vermillion)}
+.form-field label{position:absolute;top:-8px;left:12px;font-family:var(--font-mono);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--vermillion);background:var(--ink-void);padding:0 6px}
+
+/* ═══ INNER PAGES ═══ */
+.inner-hero{min-height:35vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 10vw 50px;position:relative}
+.inner-eyebrow{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.3em;color:var(--vermillion);text-transform:uppercase;margin-bottom:14px}
+.inner-title{font-family:var(--font-display);font-size:clamp(2.8rem,7vw,6rem);font-weight:400;line-height:1;margin-bottom:20px}
+.inner-title em{font-style:italic}
+.inner-sub{font-size:1rem;color:var(--parchment-muted);max-width:500px;line-height:1.8}
+.back-btn{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.22em;color:var(--parchment-muted);background:none;border:none;cursor:pointer;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:color .3s;padding:0;margin-bottom:40px}
+.back-btn:hover{color:var(--vermillion)}
+.back-btn svg{transition:transform .3s}
+.back-btn:hover svg{transform:translateX(-4px)}
+
+/* ═══ WORK GRID ═══ */
+.work-section{padding:0 10vw 120px}
+.work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.work-card{position:relative;overflow:hidden;border:1px solid var(--parchment-line);transition:border-color .4s,transform .3s;cursor:pointer;pointer-events:auto;z-index:5;display:flex;flex-direction:column;height:100%}
+.work-card:hover{border-color:rgba(196,52,45,.3);transform:translateY(-4px)}
+.work-card-media{width:100%;height:240px;overflow:hidden;background:var(--ink-deep);flex-shrink:0}
+.work-card-media img,.work-card-media video{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.work-card:hover .work-card-media img,.work-card:hover .work-card-media video{transform:scale(1.05)}
+.work-card-body{padding:24px 24px 28px;background:var(--surface-fade);flex-grow:1}
+.work-card-tag{font-family:var(--font-mono);font-size:.52rem;letter-spacing:.22em;color:var(--vermillion);text-transform:uppercase;margin-bottom:6px}
+.work-card-title{font-family:var(--font-display);font-size:1.3rem;font-weight:500;margin-bottom:6px}
+.work-card-sub{font-size:.82rem;color:var(--parchment-muted);line-height:1.5}
+
+/* ═══ VIDEO CARD ═══ */
+.video-card{position:relative;overflow:hidden;border:1px solid var(--parchment-line);transition:border-color .4s;aspect-ratio:16/9}
+.video-card:hover{border-color:rgba(196,52,45,.3)}
+.video-card video{width:100%;height:100%;object-fit:cover}
+.video-card-info{position:absolute;bottom:0;left:0;right:0;padding:24px;background:var(--surface-fade-clear)}
+.video-card-info .work-card-tag{margin-bottom:4px}
+.video-card-info .work-card-title{font-size:1.2rem}
+
+/* ═══ FOOTER ═══ */
+.footer{border-top:1px solid var(--parchment-line);padding:40px 10vw;display:flex;justify-content:space-between;align-items:center}
+
+/* ═══ PROJECT POPUP MODALS ═══ */
+#game-modal, #art-modal {
+  position: fixed; inset: 0; z-index: 10000;
+  background: rgba(13, 5, 5, 0.85); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.4s var(--ease-ink);
+  will-change: opacity;
+}
+#game-modal.visible, #art-modal.visible { opacity: 1; pointer-events: auto; }
+.game-modal-content {
+  background: var(--surface-bg); border: 1px solid var(--parchment-line);
+  width: 90%; max-width: 800px; max-height: 90vh;
+  overflow-y: auto; position: relative;
+  transform: translateY(20px); transition: transform 0.4s var(--ease-brush);
+}
+#game-modal.visible .game-modal-content, #art-modal.visible .game-modal-content { transform: translateY(0); }
+.game-modal-close {
+  position: absolute; top: 16px; right: 16px;
+  background: rgba(13, 5, 5, 0.7); border: 1px solid var(--vermillion);
+  color: var(--vermillion); width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 10; transition: background 0.3s, color 0.3s;
+}
+.game-modal-close:hover { background: var(--vermillion); color: var(--parchment); }
+.game-modal-video { width: 100%; min-height: 200px; display: flex; align-items: center; justify-content: center; background: #000; }
+.game-modal-video video, .game-modal-video img { width: 100%; height: auto; max-height: 70vh; object-fit: contain; display: block; }
+.game-modal-body { padding: 32px; }
+.game-modal-title { font-family: var(--font-display); font-size: 2rem; color: var(--vermillion); margin-bottom: 8px; }
+.game-modal-tags {
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.15em;
+  color: var(--parchment-muted); text-transform: uppercase; margin-bottom: 24px;
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.game-modal-tags span { background: var(--ink-void); padding: 4px 8px; border: 1px solid var(--parchment-line); }
+.game-modal-award {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(184,150,12,0.1); border: 1px solid var(--gold);
+  padding: 12px 16px; margin-bottom: 24px; color: var(--gold-bright);
+  font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em;
+}
+.game-modal-award svg { width: 14px; height: 14px; color: var(--gold-bright); }
+.game-modal-info-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;
+}
+.info-col-label { font-family: var(--font-mono); font-size: 0.55rem; color: var(--vermillion); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 8px; }
+.info-col-list { font-size: 0.85rem; color: var(--parchment); line-height: 1.6; }
+.game-modal-desc { font-size: 0.95rem; line-height: 1.8; color: var(--parchment); margin-bottom: 32px; border-bottom: 1px solid var(--parchment-line); padding-bottom: 32px; }
+.btn-itch {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--vermillion); color: var(--parchment);
+  padding: 12px 24px; font-family: var(--font-mono); font-size: 0.7rem;
+  letter-spacing: 0.15em; text-transform: uppercase; border: none; cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+}
+.btn-itch:hover { background: var(--vermillion-dim); transform: translateY(-2px); }
+
+/* Screenshots Gallery */
+.modal-gallery-label { font-family: var(--font-mono); font-size: 0.55rem; color: var(--vermillion); text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.2em; }
+.modal-gallery {
+  display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px;
+  cursor: grab; scrollbar-width: thin; scrollbar-color: var(--vermillion-dim) transparent;
+}
+.modal-gallery::-webkit-scrollbar { height: 4px; }
+.modal-gallery::-webkit-scrollbar-thumb { background: var(--vermillion-dim); border-radius: 2px; }
+.gallery-img-wrapper { flex: 0 0 auto; height: 160px; border: 1px solid var(--parchment-line); overflow: hidden; }
+.gallery-img-wrapper img { height: 100%; width: auto; transition: transform 0.4s var(--ease-brush); }
+.gallery-img-wrapper:hover img { transform: scale(1.05); }
+
+.footer-left{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;color:var(--parchment-muted)}
+.footer-mark{font-family:var(--font-display);font-size:.9rem;color:var(--vermillion);font-style:italic}
+
+/* ═══ BGM CONTROL ═══ */
+#bgm-btn {
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+  z-index: 200;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(13,5,5,0.88);
+  border: 1px solid var(--parchment-line);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color .4s, background .3s, transform .25s;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  outline: none;
+}
+#bgm-btn:hover {
+  border-color: rgba(196,52,45,.5);
+  transform: scale(1.08);
+  background: rgba(26,8,8,0.95);
+}
+#bgm-btn.playing {
+  border-color: rgba(196,52,45,.45);
+  box-shadow: 0 0 20px rgba(196,52,45,.1);
+}
+/* Ripple rings when playing */
+#bgm-btn.playing::before,
+#bgm-btn.playing::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(196,52,45,.3);
+  pointer-events: none;
+}
+#bgm-btn.playing::before {
+  inset: -8px;
+  animation: bgmRipple 2.4s ease-out infinite;
+}
+#bgm-btn.playing::after {
+  inset: -16px;
+  animation: bgmRipple 2.4s ease-out infinite .7s;
+}
+/* Icon & bars */
+.bgm-icon { display:flex; align-items:center; justify-content:center; }
+.bgm-bars { display:none; align-items:flex-end; gap:2.5px; height:18px; }
+#bgm-btn.playing .bgm-icon { display:none; }
+#bgm-btn.playing .bgm-bars { display:flex; }
+.bgm-bar {
+  width: 3px;
+  background: var(--vermillion);
+  border-radius: 2px 2px 0 0;
+  transform-origin: bottom;
+}
+.bgm-bar:nth-child(1){ height:7px;  animation: bgmBeat .75s ease infinite alternate 0s; }
+.bgm-bar:nth-child(2){ height:13px; animation: bgmBeat .75s ease infinite alternate .12s; }
+.bgm-bar:nth-child(3){ height:18px; animation: bgmBeat .75s ease infinite alternate .24s; }
+.bgm-bar:nth-child(4){ height:11px; animation: bgmBeat .75s ease infinite alternate .36s; }
+.bgm-bar:nth-child(5){ height:8px;  animation: bgmBeat .75s ease infinite alternate .48s; }
+/* Tooltip label */
+#bgm-label {
+  position: absolute;
+  left: 58px;
+  font-family: var(--font-mono);
+  font-size: .55rem;
+  letter-spacing: .2em;
+  color: var(--parchment-muted);
+  white-space: nowrap;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity .3s, transform .3s;
+  pointer-events: none;
+  background: rgba(13,5,5,.85);
+  padding: 5px 10px;
+  border: 1px solid var(--parchment-line);
+  backdrop-filter: blur(8px);
+}
+#bgm-btn:hover #bgm-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+/* Volume slider */
+#bgm-volume-wrap {
+  position: fixed;
+  bottom: 92px;
+  left: 22px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .35s, transform .35s;
+  pointer-events: none;
+}
+#bgm-volume-wrap.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+#bgm-volume-label {
+  font-family: var(--font-mono);
+  font-size: .48rem;
+  letter-spacing: .2em;
+  color: var(--parchment-muted);
+  text-transform: uppercase;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  margin-bottom: 4px;
+}
+#bgm-volume {
+  -webkit-appearance: none;
+  appearance: none;
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 4px;
+  height: 60px;
+  background: var(--parchment-line);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+#bgm-volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--vermillion);
+  box-shadow: 0 0 8px rgba(196,52,45,.5);
+  cursor: pointer;
+}
+#bgm-volume::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--vermillion);
+  border: none;
+  cursor: pointer;
+}
+
+/* ═══ KEYFRAMES ═══ */
+@keyframes inkReveal{to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes scrollPulse{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes slowSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 40px rgba(196,52,45,.3),0 0 80px rgba(196,52,45,.15)}50%{box-shadow:0 0 60px rgba(196,52,45,.5),0 0 120px rgba(196,52,45,.2)}}
+@keyframes floatDrift{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:.6}90%{opacity:.4}100%{transform:translateY(-100vh) translateX(var(--drift));opacity:0}}
+.float-particle{position:fixed;width:2px;height:2px;background:var(--vermillion);border-radius:50%;pointer-events:none;z-index:2;animation:floatDrift linear infinite;opacity:0}
+@keyframes bgmRipple {
+  0%   { transform:scale(1); opacity:.6; }
+  100% { transform:scale(1.8); opacity:0; }
+}
+@keyframes bgmBeat {
+  from { transform: scaleY(0.35); }
+  to   { transform: scaleY(1.15); }
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:900px){
+  body{cursor:auto}
+  #brush-cursor,#brush-ring{display:none}
+  #nav{padding:20px 24px}
+  #nav.scrolled{padding:14px 24px}
+  .nav-links{display:none}
+  .burger{display:block}
+  .hero-name{font-size:clamp(3rem,8vw,5rem)}
+  .galaxy-viewport{position:relative;width:100%;height:60vh;min-height:400px;margin-top:40px}
+  .galaxy-viewport.inner-mode{display:none}
+  .story-grid{grid-template-columns:1fr;gap:50px}
+  .seal-diagram{display:none}
+  .portals-grid{grid-template-columns:1fr}
+  .work-grid{grid-template-columns:1fr}
+  .contact-section{grid-template-columns:1fr;padding:60px 24px;gap:40px}
+  .inner-hero{padding:0 24px 50px;min-height:45vh}
+  .work-section{padding:0 24px 80px}
+  .story-section,.skills-section,.portals-section{padding-left:24px;padding-right:24px}
+  .footer{padding:30px 24px;flex-direction:column;gap:12px;text-align:center}
+  #bgm-btn{bottom:20px;left:20px;width:42px;height:42px}
+  #bgm-volume-wrap{bottom:74px;left:14px}
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="brush-cursor"></div>
+<div id="brush-ring"></div>
+
+<!-- Ink diffusion transition -->
+<canvas id="ink-transition"></canvas>
+
+<!-- WebGL canvas -->
+<canvas id="ink-canvas"></canvas>
+
+<!-- Background -->
+<div id="bg-grain"></div>
+<div class="bg-wash bg-wash-1"></div>
+<div class="bg-wash bg-wash-2"></div>
+<div class="bg-wash bg-wash-3"></div>
+
+<!-- Navigation -->
+<nav id="nav">
+  <div class="nav-logo" onclick="navigate('home')">
+    <svg viewBox="0 0 50 50" fill="none" stroke="var(--vermillion)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 25 15 C 35 15, 40 20, 35 30 C 30 40, 15 40, 10 30 C 5 20, 15 15, 25 15" stroke-width="1.2" stroke-dasharray="3 3"/>
+      <circle cx="10" cy="30" r="1.5" fill="var(--vermillion)"/>
+      <circle cx="35" cy="30" r="2.5" fill="var(--vermillion)"/>
+      <path d="M 40 5 C 38 7, 30 15, 23 25 C 20 29, 21 34, 21 34 L 20 35 L 18 30 C 18 30, 22 25, 26 18 C 30 11, 40 5, 40 5 Z" fill="rgba(196,52,45,0.1)"/>
+      <path d="M 26 18 L 30 20 M 30 14 L 34 16 M 34 10 L 37 12"/>
+      <path d="M 20 38 C 20 40, 21 42, 23 42 C 25 42, 26 40, 26 38 C 26 36, 23 34, 23 34 C 23 34, 20 36, 20 38 Z" fill="var(--vermillion)"/>
+    </svg>
+    <span class="nav-logo-text">Inkborne</span>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HOME — THE FIRST STROKE
+═══════════════════════════════════════ -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <p class="hero-eyebrow">// manuscript entry no. 001 — the beginning</p>
+    <h1 class="hero-name">JM<br><em>Bautista</em></h1>
+    <p class="hero-title">Game Developer &amp; Digital Craftsman</p>
+    <p class="hero-desc">I inscribe worlds into existence — building immersive games, sculpting dimensions, and weaving code into living experiences that leave their mark long after the screen fades.</p>
+    <div class="hero-cta">
+      <button class="btn-ghost" onclick="scrollToStory()">Read the Journey</button>
     </div>
-    <div class="scanlines"></div>
 
-    <header>
-      <div class="container navbar">
-        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">PixelDream</a></div>
-        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav>
-          <ul>
-            <li><a href="#hero">Start</a></li>
-            <li><a href="#about">Stats</a></li>
-            <li><a href="Dimension3D.html">3D Dimension</a></li>
-            <li><a href="SkillVFX.html">Skill VFX</a></li>
-            <li><a href="SkillWebDev.html">Web Development</a></li>
-          </ul>
-        </nav>
+    <!-- GALAXY MAP (HERO) -->
+    <div class="galaxy-viewport">
+      <canvas id="galaxy-canvas"></canvas>
+      <div class="galaxy-instruction-overlay">
+        <p>Explore the map to navigate</p>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--vermillion)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
       </div>
-    </header>
-
-    <main>
-        <!-- Success Notification -->
-        <div id="mission-notification" class="pixel-notification">
-            MISSION DATA TRANSMITTED!
-        </div>
-
-      <section id="hero" class="hero-section">
-        <div class="container hero-content">
-          <div class="hero-text">
-            <!-- Canvas for Text Particle Effect -->
-            <canvas id="text-canvas"></canvas>
-            <p class="subtitle">
-                Game Development Student & Freelancer.<br>
-                Global Game Jam Winner involved in Gameplay Programming & Asset Creation.
-            </p>
-            <a href="#projects" class="btn pixel-btn">Start Game</a>
-        </div>
-        
-        <div class="hero-visual">
-            <!-- Canvas for 3D Cube / Platformer -->
-            <canvas id="hero-game-canvas"></canvas>
-        </div>
-
-        </div>
-      </section>
-
-      <section id="about" class="about-section">
-        <div class="container">
-          <h2 class="section-title">Player Stats</h2>
-          <div class="about-container nes-container is-dark">
-            <div class="avatar-container">
-              <img src="assets/images/Avatar.png" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="stats-container">
-              <h3>Name: John Mervic Bangoy Bautista</h3>
-              <p>Class: Game Developer</p>
-              <p>Level: 20</p>
-              
-              <div class="xp-bar-container">
-                <span>XP:</span>
-                <div class="xp-bar">
-                  <div class="xp-fill" style="width: 85%"></div>
-                </div>
-              </div>
-
-              <div class="class-description" style="margin-bottom: 20px; font-size: 0.6rem; line-height: 1.6; font-family: 'Press Start 2P', cursive;">
-                <p style="color: var(--dirt-side); margin-bottom: 5px;">JOB DESCRIPTION:</p>
-                <p>
-                    Game Development student and freelancer experienced in gameplay programming and asset creation. 
-                    Proven track record in rapid prototyping, evidenced by a 2nd Place Global Game Jam win. 
-                    Skilled in C#, Unity, and translating cultural narratives into interactive mechanics.
-                </p>
-              </div>
-
-              <h4>Skill Tree:</h4>
-              
-              <p style="margin-top: 10px; color: var(--dirt-side); font-size: 0.7rem;">[TECHNICAL]</p>
-              <ul class="skill-list">
-                <li><span class="skill-name">C#</span> <span class="skill-level">★★★★★</span></li>
-                <li><span class="skill-name">Unity 2D/3D</span> <span class="skill-level">★★★★★</span></li>
-                <li><span class="skill-name">Gameplay Mech.</span> <span class="skill-level">★★★★★</span></li>
-                <li><span class="skill-name">Python</span> <span class="skill-level">★★★<span class="star-empty">★★</span></span></li>
-                <li><span class="skill-name">C++</span> <span class="skill-level">★★★<span class="star-empty">★★</span></span></li>
-              </ul>
-
-              <p style="margin-top: 10px; color: var(--dirt-side); font-size: 0.7rem;">[TOOLS]</p>
-              <ul class="skill-list">
-                <li><span class="skill-name">Git / GitHub</span> <span class="skill-level">★★★★<span class="star-empty">★</span></span></li>
-                <li><span class="skill-name">Visual Studio</span> <span class="skill-level">★★★★★</span></li>
-                <li><span class="skill-name">Unreal Engine</span> <span class="skill-level">★★★<span class="star-empty">★★</span></span></li>
-                <li><span class="skill-name">Photoshop</span> <span class="skill-level">★★★★<span class="star-empty">★</span></span></li>
-                <li><span class="skill-name">Blender</span> <span class="skill-level">★★★★<span class="star-empty">★</span></span></li>
-                <li><span class="skill-name">Adobe Premier</span> <span class="skill-level">★★★★<span class="star-empty">★</span></span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="projects-section">
-        <div class="container">
-          <h2 class="section-title">Select Level</h2>
-          <div class="projects-grid">
-            <!-- Category 1 -->
-            <div class="project-card nes-container is-rounded is-dark nether-theme">
-              <div class="project-cover game-hub-cover"></div>
-              <div class="project-info">
-                <h3>Game Hub</h3>
-                <p>A collection of my interactive game projects.</p>
-                <a href="GameHub.html" class="btn pixel-btn sm">Enter</a>
-              </div>
-            </div>
-            <!-- Category 2 -->
-            <div class="project-card nes-container is-rounded is-dark ender-theme">
-              <div class="project-cover dimension-3d-cover"></div>
-              <div class="project-info">
-                <h3>3D Dimension</h3>
-                <p>3D Models, Environments, Assets, and Animations.</p>
-                <a href="Dimension3D.html" class="btn pixel-btn sm">Enter</a>
-              </div>
-            </div>
-            <!-- Category 3 -->
-            <div class="project-card nes-container is-rounded is-dark ancient-city-theme">
-              <div class="project-cover skill-vfx-cover"></div>
-              <div class="project-info">
-                <h3>Skill VFX</h3>
-                <p>Particle Systems, Shaders, and Visual Effects.</p>
-                <a href="SkillVFX.html" class="btn pixel-btn sm">Enter</a>
-              </div>
-            </div>
-            <!-- Category 4 -->
-            <div class="project-card nes-container is-rounded is-dark desert-theme">
-              <div class="project-cover web-development-cover"></div>
-              <div class="project-info">
-                <h3>Web Development</h3>
-                <p>HTML, CSS, JS, PHP, SQL and JSON.</p>
-                <a href="SkillWebDev.html" class="btn pixel-btn sm">Enter</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="contact-section">
-        <div class="container">
-          <h2 class="section-title">Game Over?</h2>
-          <p class="contact-intro">
-            Continue? Insert Coin or Send Message to Respawn.
-          </p>
-          <form id="contact-form" class="pixel-form nes-container is-dark" action="https://formspree.io/f/mqedkdlg" method="POST">
-            <div class="form-group">
-              <label for="name">ID:</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Enter Name..."
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="email">Comms:</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter Email..."
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="message">Mission Data:</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                placeholder="Enter Message..."
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="btn pixel-btn">Transmit</button>
-          </form>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container footer-content">
-        <p>&copy; 2026 PixelDream. All rights reserved.</p>
-        <div class="social-links">
-          <a href="https://gradiel.itch.io/" target="_blank">[ITCH]</a>
-          <a href="https://github.com/gradiel9901" target="_blank">[GH]</a>
-          <a href="https://www.linkedin.com/in/jmbangoybautista/" target="_blank">[LI]</a>
-        </div>
+      <div id="galaxy-tooltip" class="galaxy-tooltip">
+        <div class="galaxy-tooltip-inner">
+          <div class="galaxy-tooltip-name" id="gtt-name"></div>
+          <div class="galaxy-tooltip-desc" id="gtt-desc"></div>
+          <div class="galaxy-click-hint">click to enter</div>
         </div>
       </div>
-    </footer>
+    </div>
 
-    <script src="script.js"></script>
-  </body>
+    <div class="scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story-section" id="story-anchor">
+    <p class="section-label">// chapter I — the journey</p>
+    <div class="story-grid">
+      <div class="story-text">
+        <h2>From the first <em>stroke</em> to the infinite</h2>
+        <p>Every masterwork begins with a single stroke — a moment of intention where the brush meets the page. My journey into development started the same way: a single question, <em>"what if I could build worlds?"</em></p>
+        <p>From the forges of game development to the sculptor's studio of 3D art, from the alchemist's lab of visual effects to the architect's drafting table of web development — each discipline is a different ink in my well, a different stroke in my story.</p>
+        <p>I don't just write code. I inscribe intention into every line, carve meaning into every polygon, and kindle magic in every particle. This manuscript is my testament.</p>
+      </div>
+      <div class="story-visual">
+        <div class="seal-diagram">
+          <div class="seal-ring seal-ring-1"></div>
+          <div class="seal-ring seal-ring-2"></div>
+          <div class="seal-ring seal-ring-3"></div>
+          <div class="seal-center"></div>
+          <div class="seal-dot sd1"></div>
+          <div class="seal-dot sd2"></div>
+          <div class="seal-dot sd3"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills-section">
+    <p class="section-label">// chapter II — instruments of the craft</p>
+    <h2>The <em>inks</em> I wield</h2>
+    <p class="skills-intro">Every craftsman needs their tools. These are the languages I speak, the engines I command, and the systems I navigate with fluency.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <svg class="skill-card-icon" viewBox="0 0 32 32" fill="none">
+          <polygon points="16,3 29,25 3,25" stroke="var(--vermillion)" stroke-width="1.2" fill="none"/>
+          <circle cx="16" cy="16" r="5" stroke="var(--vermillion)" stroke-width="1" fill="rgba(196,52,45,.08)"/>
+          <circle cx="16" cy="3" r="2" fill="var(--vermillion)"/>
+        </svg>
+        <div class="skill-card-label">Chapter I</div>
+        <div class="skill-card-name">Game Development</div>
+        <div class="skill-tags">
+          <span class="skill-tag tag-vermillion">Unity 2D/3D</span>
+          <span class="skill-tag tag-vermillion">Unreal Engine 5</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <svg class="skill-card-icon" viewBox="0 0 32 32" fill="none">
+          <path d="M6,10 L2,16 L6,22" stroke="var(--gold-bright)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M26,10 L30,16 L26,22" stroke="var(--gold-bright)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M20,5 L12,27" stroke="var(--gold-bright)" stroke-width="1.2" stroke-linecap="round" opacity=".7"/>
+        </svg>
+        <div class="skill-card-label">Chapter II</div>
+        <div class="skill-card-name">Programming Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag tag-gold">C#</span>
+          <span class="skill-tag tag-gold">C++</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <svg class="skill-card-icon" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="12" stroke="var(--parchment-dim)" stroke-width="1.2"/>
+          <ellipse cx="16" cy="16" rx="6" ry="12" stroke="var(--parchment-dim)" stroke-width=".8" opacity=".5"/>
+          <line x1="4" y1="16" x2="28" y2="16" stroke="var(--parchment-dim)" stroke-width=".8" opacity=".5"/>
+        </svg>
+        <div class="skill-card-label">Chapter III</div>
+        <div class="skill-card-name">Web Development</div>
+        <div class="skill-tags">
+          <span class="skill-tag tag-parchment">HTML</span>
+          <span class="skill-tag tag-parchment">ReactJS</span>
+          <span class="skill-tag tag-parchment">PHP</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <svg class="skill-card-icon" viewBox="0 0 32 32" fill="none">
+          <ellipse cx="16" cy="9" rx="11" ry="5" stroke="#7b8fc4" stroke-width="1.2"/>
+          <path d="M5,9 L5,23 Q5,28 16,28 Q27,28 27,23 L27,9" stroke="#7b8fc4" stroke-width="1.2" fill="none"/>
+          <path d="M5,16 Q5,21 16,21 Q27,21 27,16" stroke="#7b8fc4" stroke-width=".7" opacity=".5"/>
+        </svg>
+        <div class="skill-card-label">Chapter IV</div>
+        <div class="skill-card-name">Data &amp; Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag tag-indigo">MySQL</span>
+          <span class="skill-tag tag-indigo">MongoDB</span>
+          <span class="skill-tag tag-indigo">Postman</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section">
+    <div class="contact-left">
+      <h3>Leave your <em>mark</em></h3>
+      <p>Whether you need a game, a digital experience, or a universe of your own — let's inscribe the next chapter together.</p>
+    </div>
+    <form class="contact-form" action="https://formspree.io/f/mqedkdlg" method="POST">
+      <div class="form-field">
+        <label>Your Name</label>
+        <input type="text" name="name" required>
+      </div>
+      <div class="form-field">
+        <label>Your Email</label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="form-field">
+        <label>Your Message</label>
+        <textarea name="message" required></textarea>
+      </div>
+      <button type="submit" class="btn-seal">Send the Scroll</button>
+    </form>
+  </section>
+
+  <div class="footer">
+    <span class="footer-left">&copy; 2026 JM Bautista. All rights inscribed.</span>
+    <span class="footer-mark">Inkborne</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     GAMES — WORLDS INSCRIBED
+═══════════════════════════════════════ -->
+<div id="page-games" class="page">
+  <div style="min-height:100vh;padding-top:60px">
+    <div class="inner-hero">
+      <button class="back-btn" onclick="navigate('home')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2 L4 7 L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Return to first stroke
+      </button>
+      <p class="inner-eyebrow">// chapter I — game development</p>
+      <h1 class="inner-title" style="color:var(--vermillion)">Worlds <em>Inscribed</em></h1>
+      <p class="inner-sub">Each game is a universe condensed — with its own rules, its own life, its own heartbeat. These are the worlds I have written into existence.</p>
+    </div>
+    <div class="work-section">
+      <svg class="brush-divider" viewBox="0 0 600 20" preserveAspectRatio="none"><path d="M0,10 Q50,4 100,10 T200,10 T300,10 T400,10 T500,10 T600,10" stroke-width="2"/></svg>
+      <div class="work-grid">
+        <div class="work-card" onclick="openGameModal(this)" 
+             data-title="Arcane Ale" 
+             data-software="Unity 6, Blender, Photoshop" 
+             data-role="Lead Technical Developer, Gameplay Systems Programmer, Lead Gameplay & Systems Developer, Level Designer / World Builder, 3D Artist & Prop Artist, Technical Lead" 
+             data-award="Best Game for Game Programming II" 
+             data-desc="A mystical tavern management game where players brew enchanted beverages and serve legendary patrons." 
+             data-link="https://gradiel.itch.io/arcane-ale" 
+             data-video="Assets/Game hub/PopUp Window/Arcane Ale/Gameplay.mp4"
+             data-screenshots="Screenshot 2026-04-08 124948.png,Screenshot 2026-04-08 125002.png,Screenshot 2026-04-08 125024.png,Screenshot 2026-04-08 125047.png">
+          <div class="work-card-media"><img src="Assets/Game hub/Arcane Ale.png" alt="Arcane Ale" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">Unity 6 · Multi-Role</div>
+            <div class="work-card-title">Arcane Ale</div>
+            <div class="work-card-sub">A mystical tavern management game where players brew enchanted beverages and serve legendary patrons.</div>
+          </div>
+        </div>
+        <div class="work-card" onclick="openGameModal(this)" 
+             data-title="Defuse the Maze" 
+             data-software="Unity 6, Blender, Photoshop" 
+             data-role="Lead Technical Developer, Gameplay Systems Programmer, Lead Gameplay & Systems Developer, Level Designer / World Builder, 3D Artist & Prop Artist, Technical Lead" 
+             data-award="Best Game for Applied Mathematics in Game" 
+             data-desc="Navigate treacherous labyrinths under pressure in this pulse-pounding puzzle game with procedural generation." 
+             data-link="https://gradiel.itch.io/defuse-the-maze" 
+             data-video="Assets/Game hub/PopUp Window/Defuse The Maze/Gameplay.mp4"
+             data-screenshots="Screenshot 2026-04-08 124853.png,Screenshot 2026-04-08 124911.png,Screenshot 2026-04-08 124923.png">
+          <div class="work-card-media"><img src="Assets/Game hub/Defuse the Maze.png" alt="Defuse the Maze" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">Unity 6 · Mathematics</div>
+            <div class="work-card-title">Defuse the Maze</div>
+            <div class="work-card-sub">Navigate treacherous labyrinths under pressure in this pulse-pounding puzzle game with procedural generation.</div>
+          </div>
+        </div>
+        <div class="work-card" onclick="openGameModal(this)" 
+             data-title="Mask-A-Raid" 
+             data-software="Unity Engine 6, Blender, Photoshop (C#)" 
+             data-role="Lead Technical Developer, Gameplay Systems Programmer, Lead Gameplay & Systems Developer, Technical Artist, Technical Lead" 
+             data-award="2nd Place in Global Game Jam 2026" 
+             data-desc="A stealth-action experience where masks grant supernatural abilities — choose your disguise, plan your raid." 
+             data-link="https://gradiel.itch.io/mask-a-raid" 
+             data-video="Assets/Game hub/PopUp Window/Mask-A-Raid/Gameplay.mp4"
+             data-screenshots="Screenshot 2026-04-08 124705.png,Screenshot 2026-04-08 124723.png,Screenshot 2026-04-08 124756.png,Screenshot 2026-04-08 124825.png">
+          <div class="work-card-media"><img src="Assets/Game hub/Mask-A-Raid.png" alt="Mask-A-Raid" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">Unity 6 · Game Jam</div>
+            <div class="work-card-title">Mask-A-Raid</div>
+            <div class="work-card-sub">A stealth-action experience where masks grant supernatural abilities — choose your disguise, plan your raid.</div>
+          </div>
+        </div>
+        <div class="work-card" onclick="openGameModal(this)" 
+             data-title="QUESTY" 
+             data-software="Unity 2022, Photoshop (C#)" 
+             data-role="Lead Technical Developer, Gameplay Systems Programmer, Lead Gameplay & Systems Developer, Level Designer, 2D & Prop Artist, Technical Lead" 
+             data-award="Best Game for Game Programming I" 
+             data-desc="An epic quest-driven RPG with branching narratives, dynamic combat, and a world that remembers your choices." 
+             data-link="https://gradiel.itch.io/questy" 
+             data-video="Assets/Game hub/PopUp Window/Questy/Gameplay.mp4"
+             data-screenshots="Screenshot 2026-04-08 124542.png,Screenshot 2026-04-08 124547.png,Screenshot 2026-04-08 124607.png,Screenshot 2026-04-08 124618.png,Screenshot 2026-04-08 124639.png">
+          <div class="work-card-media"><img src="Assets/Game hub/QUESTY.png" alt="QUESTY" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">Unity 2022 · RPG</div>
+            <div class="work-card-title">QUESTY</div>
+            <div class="work-card-sub">An epic quest-driven RPG with branching narratives, dynamic combat, and a world that remembers your choices.</div>
+          </div>
+        </div>
+        <div class="work-card" onclick="openGameModal(this)" 
+             data-title="The Apothecary's Tavern" 
+             data-software="Unity Engine 6, Blender, Photoshop (C#, JSON)" 
+             data-role="Lead Game Developer, Lead Game Designer, Asset Creator, Core Mechanics Developer, AI Behavior Developer" 
+             data-award="Best Game for Advance Game Design" 
+             data-desc="You're a retired adventurer with a mysterious past. You've traded your sword for a shop counter, but the battle isn't over—it's just beginning. Located next to the perilous Dungeon of Eternal Doom, your tavern serves a never-ending line of exaggerated, wildly impatient heroes who demand their potions NOW." 
+             data-link="https://gradiel.itch.io/the-apothecarys-tavern" 
+             data-video="Assets/Game hub/PopUp Window/The Apothecary's Tavern/Gameplay.mp4"
+             data-screenshots="Screenshot 2026-04-08 125353.png,Screenshot 2026-04-08 125402.png,Screenshot 2026-04-08 125413.png,Screenshot 2026-04-08 125429.png,Screenshot 2026-04-08 125449.png,Screenshot 2026-04-08 125516.png">
+          <div class="work-card-media"><img src="Assets/Game hub/The Apothecary's Tavern.png" alt="The Apothecary's Tavern" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">Unity 6 · Game Design</div>
+            <div class="work-card-title">The Apothecary's Tavern</div>
+            <div class="work-card-sub">You're a retired adventurer with a mysterious past. You've traded your sword for a shop counter, but the battle isn't over—it's just beginning. Located next to the perilous Dungeon of Eternal Doom, your tavern serves a never-ending line of exaggerated, wildly impatient heroes who demand their potions NOW.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     3D — CARVED DIMENSIONS
+═══════════════════════════════════════ -->
+<div id="page-3d" class="page">
+  <div style="min-height:100vh;padding-top:60px">
+    <div class="inner-hero">
+      <button class="back-btn" onclick="navigate('home')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2 L4 7 L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Return to first stroke
+      </button>
+      <p class="inner-eyebrow">// chapter II — 3D modeling &amp; animation</p>
+      <h1 class="inner-title" style="color:var(--gold-bright)">Carved <em>Dimensions</em></h1>
+      <p class="inner-sub">From raw polygons to breathing sculptures — the art of giving shape to the shapeless, and motion to the still.</p>
+    </div>
+    <div class="work-section">
+      <svg class="brush-divider" viewBox="0 0 600 20" preserveAspectRatio="none"><path d="M0,10 Q50,4 100,10 T200,10 T300,10 T400,10 T500,10 T600,10" stroke-width="2"/></svg>
+      <p class="section-label" style="margin-bottom:32px">// still studies</p>
+      <div class="work-grid" style="margin-bottom:60px">
+        <div class="work-card" style="cursor:pointer" onclick="openArtModal(this)" data-title="Gemini" data-desc="Forged from the same divine spark yet torn apart by the very cosmos that birthed them, two brothers find themselves locked in an eternal struggle. Their blades clash in a symphony of unspoken truths and ancient betrayals, echoing across a void that has forgotten how their war began. Bound irrevocably by blood but fractured by an unforgiving destiny, this is a timeless dance of steel and sorrow—a celestial duel that must inevitably consume them both, destined to end exactly where it started." data-role="Lead Animator, Lead 3D Modeler, Lead Sound Design, World Design, Lead Editor for Post Production" data-software="Blender, Premiere Pro" data-media-type="image" data-media-src="assets/3D Dimension/Images/Gemini.png">
+          <div class="work-card-media"><img src="assets/3D Dimension/Images/Gemini.png" alt="Gemini" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">Blender · 3D Modeling</div>
+            <div class="work-card-title">Gemini</div>
+            <div class="work-card-sub">Forged from the same divine spark yet torn apart by the cosmos that birthed them, two brothers find themselves locked in an eternal struggle...</div>
+          </div>
+        </div>
+        <div class="work-card" style="cursor:pointer" onclick="openArtModal(this)" data-title="The King" data-desc="In a shattered era where the line between humanity and machine has dissolved into a rusted, bleeding amalgamation, the strong rule without mercy. From the ashes of this biomechanical dystopia rises a lone ronin, a warrior of circuitry and spirit. His sole purpose: to dethrone a sovereign who claims omnipotence—a tyrant king whose absolute power has suffocated the eons." data-role="Lead Animator, Lead 3D Modeler, Lead Sound Design, World Design, Lead Editor for Post Production" data-software="Blender, Premiere Pro" data-media-type="image" data-media-src="assets/3D Dimension/Images/King.png">
+          <div class="work-card-media"><img src="assets/3D Dimension/Images/King.png" alt="King" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">Blender · Character Design</div>
+            <div class="work-card-title">The King</div>
+            <div class="work-card-sub">In a shattered era where the line between humanity and machine has dissolved into a rusted, bleeding amalgamation, the strong rule without mercy...</div>
+          </div>
+        </div>
+        <div class="work-card" style="cursor:pointer" onclick="openArtModal(this)" data-title="Second Coming of Greed" data-desc="When colossal spires pierced the heavens in 2026, they unleashed an endless tide from the infernal depths. As silent, forbidden deities watched their creation burn, desperate divine sparks were granted to humankind—the final, flickering embers against the dark." data-role="Lead Animator, Lead 3D Modeler, Lead Sound Design, World Design, Lead Editor for Post Production" data-software="Blender, Premiere Pro" data-media-type="image" data-media-src="assets/3D Dimension/Images/Second coming of Greed.png">
+          <div class="work-card-media"><img src="assets/3D Dimension/Images/Second coming of Greed.png" alt="Second Coming of Greed" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">Blender · Environment</div>
+            <div class="work-card-title">Second Coming of Greed</div>
+            <div class="work-card-sub">When colossal spires pierced the heavens in 2026, they unleashed an endless tide from the infernal depths. As silent, forbidden deities watched their creation burn, desperate divine sparks were granted to humankind—the final, flickering embers against the dark.</div>
+          </div>
+        </div>
+        <div class="work-card" style="cursor:pointer" onclick="openArtModal(this)" data-title="The Forest" data-desc="Is this mere timber and earth, or a living, breathing sanctuary? Within the emerald shadows dwells an ancient guardian—a playful trickster to the trespassing conqueror, yet a gentle guiding mist to the lost and weary wanderer." data-role="Lead Animator, Lead 3D Modeler, Lead Sound Design, World Design, Lead Editor for Post Production" data-software="Blender, Premiere Pro" data-media-type="image" data-media-src="assets/3D Dimension/Images/The Forest.jpg">
+          <div class="work-card-media"><img src="assets/3D Dimension/Images/The Forest.jpg" alt="The Forest" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">Blender · Environment</div>
+            <div class="work-card-title">The Forest</div>
+            <div class="work-card-sub">Is this mere timber and earth, or a living, breathing sanctuary? Within the emerald shadows dwells an ancient guardian—a playful trickster to the trespassing conqueror, yet a gentle guiding mist to the lost and weary wanderer.</div>
+          </div>
+        </div>
+        <div class="work-card" style="cursor:pointer" onclick="openArtModal(this)" data-title="Tree of Life" data-desc="Deep beneath a barren earth composed of lifeless stone and suffocating dust, an explorer descended seeking ruin. Instead, he unspooled a vibrant ribbon of crystal waters, blooming moss, and ancient creatures drawn to the glowing roots of existence itself." data-role="Lead Animator, Lead 3D Modeler, Lead Sound Design, World Design, Lead Editor for Post Production" data-software="Blender, Premiere Pro" data-media-type="image" data-media-src="assets/3D Dimension/Images/Tree of Life.png">
+          <div class="work-card-media"><img src="assets/3D Dimension/Images/Tree of Life.png" alt="Tree of Life" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">Blender · Concept Art</div>
+            <div class="work-card-title">Tree of Life</div>
+            <div class="work-card-sub">Deep beneath a barren earth composed of lifeless stone and suffocating dust, an explorer descended seeking ruin. Instead, he unspooled a vibrant ribbon of crystal waters, blooming moss, and ancient creatures drawn to the glowing roots of existence itself.</div>
+          </div>
+        </div>
+      </div>
+      <p class="section-label" style="margin-bottom:32px">// motion studies</p>
+      <div class="work-grid">
+        <div class="video-card" style="cursor:pointer" onclick="openArtModal(this)" data-title="Apollo's Arrow" data-desc="Abyssal miasma twists the forest's children into mindless nightmares that mock death itself, marching tirelessly upon the final walls. Yet one stands before the encroaching rot—Rhitta, the elven maiden cherished by the dawn. From her bowstring, she does not loose arrows, but the blinding, wrathful detonations of the dying sun." data-role="Lead Animator, Lead 3D Modeler, Lead Sound Design, World Design, Lead Editor for Post Production" data-software="Blender, Premiere Pro" data-media-type="video" data-media-src="assets/3D Dimension/Videos/Apollos Arrow.mp4">
+          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/3D Dimension/Videos/Apollos Arrow.mp4" type="video/mp4"></video>
+          <div class="video-card-info">
+            <div class="work-card-tag">Blender · Animation</div>
+            <div class="work-card-title">Apollo's Arrow</div>
+          </div>
+        </div>
+        <div class="video-card" style="cursor:pointer" onclick="openArtModal(this)" data-title="Destruction" data-desc="A phantom thief crept through the neon-drenched veins of the megacity, seeking the ultimate prize—a mechanized core of divine wrath. But flesh was never meant to grasp the apocalypse. With a single touch, greed met cataclysm, and the gleaming spires of Neo City were consumed by a silent, white obliteration." data-role="Lead Animator, Lead 3D Modeler, Lead Sound Design, World Design, Lead Editor for Post Production" data-software="Blender, Premiere Pro" data-media-type="video" data-media-src="assets/3D Dimension/Videos/Destruction.mp4">
+          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/3D Dimension/Videos/Destruction.mp4" type="video/mp4"></video>
+          <div class="video-card-info">
+            <div class="work-card-tag">Blender · Simulation</div>
+            <div class="work-card-title">Destruction</div>
+          </div>
+        </div>
+        <div class="video-card" style="cursor:pointer" onclick="openArtModal(this)" data-title="Fallen City" data-desc="The very cataclysm that wiped the neon skies from memory was excavated in the holy grounds of Saint Haven. A forbidden trigger was pulled, echoing a tragedy of old. Now, the sacred city lies as a haunting cathedral of ash, a monument to mankind's unbroken cycle of ruin." data-role="Lead Animator, Lead 3D Modeler, Lead Sound Design, World Design, Lead Editor for Post Production" data-software="Blender, Premiere Pro" data-media-type="video" data-media-src="assets/3D Dimension/Videos/Fallen City.mp4">
+          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/3D Dimension/Videos/Fallen City.mp4" type="video/mp4"></video>
+          <div class="video-card-info">
+            <div class="work-card-tag">Blender · Environment</div>
+            <div class="work-card-title">Fallen City</div>
+          </div>
+        </div>
+        <div class="video-card" style="cursor:pointer" onclick="openArtModal(this)" data-title="Gemini — Animated" data-desc="What happens when two halves of the same soul are driven to mutual destruction? Watch as the celestial twins cross blades in a war that has outlasted the stars themselves. Every strike carries the weight of a shattered brotherhood, every parry an attempt to rewrite a destiny carved in stone. A tragic, breathtaking ballet of conflict between light and shadow, ending in the only way it ever could." data-role="Lead Animator, Lead 3D Modeler, Lead Sound Design, World Design, Lead Editor for Post Production" data-software="Blender, Premiere Pro" data-media-type="video" data-media-src="assets/3D Dimension/Videos/Gemini.mp4">
+          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/3D Dimension/Videos/Gemini.mp4" type="video/mp4"></video>
+          <div class="video-card-info">
+            <div class="work-card-tag">Blender · Character</div>
+            <div class="work-card-title">Gemini — Animated</div>
+          </div>
+        </div>
+        <div class="video-card" style="cursor:pointer" onclick="openArtModal(this)" data-title="The King — Animated" data-desc="Witness the culmination of an age where marrow and chrome are inextricably fused. A wandering cyber-ronin embarks on a suicidal pilgrimage to end an immortal reign. The tyrant king, self-proclaimed god of the new epoch, has ruled unopposed for centuries—until now. Experience the cinematic clash where steel meets silicon, and absolute power is challenged by unyielding resolve." data-role="Lead Animator, Lead 3D Modeler, Lead Sound Design, World Design, Lead Editor for Post Production" data-software="Blender, Premiere Pro" data-media-type="video" data-media-src="assets/3D Dimension/Videos/The King.mp4">
+          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/3D Dimension/Videos/The King.mp4" type="video/mp4"></video>
+          <div class="video-card-info">
+            <div class="work-card-tag">Blender · Cinematic</div>
+            <div class="work-card-title">The King — Animated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     VFX — DANCING EMBERS
+═══════════════════════════════════════ -->
+<div id="page-vfx" class="page">
+  <div style="min-height:100vh;padding-top:60px">
+    <div class="inner-hero">
+      <button class="back-btn" onclick="navigate('home')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2 L4 7 L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Return to first stroke
+      </button>
+      <p class="inner-eyebrow">// chapter III — visual effects</p>
+      <h1 class="inner-title" style="color:var(--vermillion)">Dancing <em>Embers</em></h1>
+      <p class="inner-sub">The invisible made visible. The ordinary made extraordinary. VFX is the language of sensation — and these are my verses.</p>
+    </div>
+    <div class="work-section">
+      <svg class="brush-divider" viewBox="0 0 600 20" preserveAspectRatio="none"><path d="M0,10 Q50,4 100,10 T200,10 T300,10 T400,10 T500,10 T600,10" stroke-width="2"/></svg>
+      <div class="work-grid">
+        <div class="video-card">
+          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/Skill VFX/Mage_EyeOfTheStorm.mp4" type="video/mp4"></video>
+          <div class="video-card-info">
+            <div class="work-card-tag">Unity VFX Graph · Shader</div>
+            <div class="work-card-title">Eye of the Storm</div>
+          </div>
+        </div>
+        <div class="video-card">
+          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/Skill VFX/Mage_FlameTornado.mp4" type="video/mp4"></video>
+          <div class="video-card-info">
+            <div class="work-card-tag">Unity VFX Graph · Particles</div>
+            <div class="work-card-title">Flame Tornado</div>
+          </div>
+        </div>
+        <div class="video-card">
+          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/Skill VFX/Mage_FrostVortex.mp4" type="video/mp4"></video>
+          <div class="video-card-info">
+            <div class="work-card-tag">Unity VFX Graph · Ice FX</div>
+            <div class="work-card-title">Frost Vortex</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     WEB — WOVEN SCRIPTS
+═══════════════════════════════════════ -->
+<div id="page-web" class="page">
+  <div style="min-height:100vh;padding-top:60px">
+    <div class="inner-hero">
+      <button class="back-btn" onclick="navigate('home')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2 L4 7 L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Return to first stroke
+      </button>
+      <p class="inner-eyebrow">// chapter IV — web development</p>
+      <h1 class="inner-title" style="color:var(--parchment-dim)">Woven <em>Scripts</em></h1>
+      <p class="inner-sub">The web is my loom — clean code, purposeful design, and digital experiences woven thread by thread into functional art.</p>
+    </div>
+    <div class="work-section">
+      <svg class="brush-divider" viewBox="0 0 600 20" preserveAspectRatio="none"><path d="M0,10 Q50,4 100,10 T200,10 T300,10 T400,10 T500,10 T600,10" stroke-width="2"/></svg>
+      <div class="work-grid">
+        <div class="work-card">
+          <div class="work-card-media"><img src="assets/Web Development/Cat In A Box.png" alt="Cat In A Box" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">HTML · CSS · JavaScript</div>
+            <div class="work-card-title">Cat In A Box</div>
+            <div class="work-card-sub">A charming café website with e-commerce functionality, order management, and a cozy glassmorphism design.</div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card-media"><img src="assets/Web Development/Kinetix.png" alt="Kinetix" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">ReactJS · MongoDB</div>
+            <div class="work-card-title">Kinetix</div>
+            <div class="work-card-sub">A fitness tracking application with personalized workout analytics, calorie monitoring, and profile customization.</div>
+          </div>
+        </div>
+        <div class="work-card">
+          <div class="work-card-media"><img src="assets/Web Development/Locus.png" alt="Locus" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-tag">PHP · MySQL · HTML</div>
+            <div class="work-card-title">Locus</div>
+            <div class="work-card-sub">A location-based service platform with interactive mapping, booking management, and real-time search.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     BGM CONTROL BUTTON
+═══════════════════════════════════════ -->
+<button id="bgm-btn" aria-label="Toggle ambient music" title="Toggle ambient music">
+  <!-- Music note icon (shown when paused) -->
+  <svg class="bgm-icon" viewBox="0 0 24 24" fill="none" stroke="rgba(244,232,209,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+    <path d="M9 18V5l12-2v13"/>
+    <circle cx="6" cy="18" r="3"/>
+    <circle cx="18" cy="16" r="3"/>
+  </svg>
+  <!-- Equalizer bars (shown when playing) -->
+  <div class="bgm-bars">
+    <div class="bgm-bar"></div>
+    <div class="bgm-bar"></div>
+    <div class="bgm-bar"></div>
+    <div class="bgm-bar"></div>
+    <div class="bgm-bar"></div>
+  </div>
+  <span id="bgm-label">Inkborne Ambient</span>
+</button>
+
+<!-- Volume slider -->
+<div id="bgm-volume-wrap">
+  <span id="bgm-volume-label">Vol</span>
+  <input type="range" id="bgm-volume" min="0" max="1" step="0.01" value="0.6" aria-label="Volume">
+</div>
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════ -->
+<script>
+/* ─── CURSOR ─── */
+const brushCursor = document.getElementById('brush-cursor');
+const brushRing = document.getElementById('brush-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;brushCursor.style.left=mx+'px';brushCursor.style.top=my+'px'});
+(function ringLoop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;brushRing.style.left=rx+'px';brushRing.style.top=ry+'px';requestAnimationFrame(ringLoop)})();
+document.querySelectorAll('a,button,.portal-card,.work-card,.video-card,.skill-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{brushRing.style.width='50px';brushRing.style.height='50px';brushRing.style.borderColor='rgba(196,52,45,.8)'});
+  el.addEventListener('mouseleave',()=>{brushRing.style.width='32px';brushRing.style.height='32px';brushRing.style.borderColor='rgba(196,52,45,.5)'});
+});
+
+/* ─── WEBGL INK SIMULATION ─── */
+const canvas=document.getElementById('ink-canvas');
+const gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl');
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;if(gl)gl.viewport(0,0,canvas.width,canvas.height)}
+resizeCanvas();window.addEventListener('resize',resizeCanvas);
+
+if(gl){
+  const vs=`
+    attribute vec2 a_pos;
+    attribute float a_size;
+    attribute float a_alpha;
+    attribute float a_hue;
+    uniform vec2 u_res;
+    uniform float u_time;
+    varying float v_alpha;
+    varying float v_hue;
+    void main(){
+      vec2 clip=(a_pos/u_res)*2.0-1.0;
+      clip.y*=-1.0;
+      float drift=sin(u_time*0.3+a_pos.x*0.005)*0.003+cos(u_time*0.2+a_pos.y*0.004)*0.002;
+      clip.x+=drift;
+      clip.y+=cos(u_time*0.25+a_pos.x*0.003)*0.002;
+      gl_Position=vec4(clip,0.0,1.0);
+      float pulse=sin(u_time*0.8+a_pos.x*0.01+a_pos.y*0.008)*0.25+0.75;
+      gl_PointSize=a_size*pulse;
+      v_alpha=a_alpha*pulse;
+      v_hue=a_hue;
+    }`;
+  const fs=`
+    precision mediump float;
+    varying float v_alpha;
+    varying float v_hue;
+    void main(){
+      vec2 pc=gl_PointCoord-0.5;
+      float d=length(pc);
+      if(d>0.5)discard;
+      float soft=1.0-smoothstep(0.15,0.5,d);
+      float alpha=soft*v_alpha;
+      vec3 inkDark=vec3(0.12,0.04,0.04);
+      vec3 inkWarm=vec3(0.25,0.08,0.06);
+      vec3 inkGold=vec3(0.45,0.37,0.05);
+      vec3 color=mix(inkDark,mix(inkWarm,inkGold,v_hue*0.5),v_hue);
+      gl_FragColor=vec4(color,alpha*0.5);
+    }`;
+  function mkShader(t,s){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return sh}
+  const prog=gl.createProgram();
+  gl.attachShader(prog,mkShader(gl.VERTEX_SHADER,vs));
+  gl.attachShader(prog,mkShader(gl.FRAGMENT_SHADER,fs));
+  gl.linkProgram(prog);gl.useProgram(prog);
+  const N=400;
+  const pos=new Float32Array(N*2),sizes=new Float32Array(N),alphas=new Float32Array(N),hues=new Float32Array(N);
+  for(let i=0;i<N;i++){pos[i*2]=Math.random()*2000;pos[i*2+1]=Math.random()*1200;sizes[i]=Math.random()*4+1;alphas[i]=Math.random()*.6+.15;hues[i]=Math.random()}
+  function mkBuf(d){const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,d,gl.STATIC_DRAW);return b}
+  const pBuf=mkBuf(pos),sBuf=mkBuf(sizes),aBuf=mkBuf(alphas),hBuf=mkBuf(hues);
+  const aP=gl.getAttribLocation(prog,'a_pos'),aS=gl.getAttribLocation(prog,'a_size'),aA=gl.getAttribLocation(prog,'a_alpha'),aH=gl.getAttribLocation(prog,'a_hue');
+  const uR=gl.getUniformLocation(prog,'u_res'),uT=gl.getUniformLocation(prog,'u_time');
+  gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE);
+  function renderInk(t){
+    gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform2f(uR,canvas.width,canvas.height);gl.uniform1f(uT,t*.001);
+    gl.bindBuffer(gl.ARRAY_BUFFER,pBuf);gl.enableVertexAttribArray(aP);gl.vertexAttribPointer(aP,2,gl.FLOAT,false,0,0);
+    gl.bindBuffer(gl.ARRAY_BUFFER,sBuf);gl.enableVertexAttribArray(aS);gl.vertexAttribPointer(aS,1,gl.FLOAT,false,0,0);
+    gl.bindBuffer(gl.ARRAY_BUFFER,aBuf);gl.enableVertexAttribArray(aA);gl.vertexAttribPointer(aA,1,gl.FLOAT,false,0,0);
+    gl.bindBuffer(gl.ARRAY_BUFFER,hBuf);gl.enableVertexAttribArray(aH);gl.vertexAttribPointer(aH,1,gl.FLOAT,false,0,0);
+    gl.drawArrays(gl.POINTS,0,N);requestAnimationFrame(renderInk);
+  }
+  requestAnimationFrame(renderInk);
+}
+
+/* ─── BACKGROUND WASH ─── */
+setTimeout(()=>{document.querySelectorAll('.bg-wash').forEach(b=>b.classList.add('visible'))},100);
+
+/* ─── NAV SCROLL ─── */
+const nav=document.getElementById('nav');
+document.querySelectorAll('.page').forEach(page=>{
+  page.addEventListener('scroll',()=>{
+    if(page.classList.contains('active')){
+      nav.classList.toggle('scrolled',page.scrollTop>50);
+    }
+  });
+});
+
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const id = a.getAttribute('data-page');
+    if(id) navigate(id);
+  });
+});
+
+/* ─── INK DIFFUSION TRANSITION SYSTEM ─── */
+let currentPage='home';
+const inkTC=document.getElementById('ink-transition');
+const inkCtx=inkTC.getContext('2d');
+let inkAnimating=false;
+
+function resizeInkCanvas(){inkTC.width=window.innerWidth;inkTC.height=window.innerHeight}
+resizeInkCanvas();window.addEventListener('resize',resizeInkCanvas);
+
+class InkDrop{
+  constructor(x,y,maxR,speed,phase){
+    this.x=x;this.y=y;this.r=0;this.maxR=maxR;this.speed=speed;this.phase=phase;
+    this.noiseSeeds=[];for(let i=0;i<8;i++)this.noiseSeeds.push(Math.random()*6.28);
+  }
+  grow(dt){this.r=Math.min(this.r+this.speed*dt,this.maxR)}
+  shrink(dt){this.r=Math.max(this.r-this.speed*dt*1.2,0)}
+  draw(ctx,time){
+    if(this.r<1)return;
+    ctx.beginPath();
+    const pts=64;
+    for(let i=0;i<=pts;i++){
+      const angle=(i/pts)*Math.PI*2;
+      let noise=0;
+      noise+=Math.sin(angle*3+this.noiseSeeds[0]+time*1.2)*0.15;
+      noise+=Math.sin(angle*5+this.noiseSeeds[1]-time*0.8)*0.10;
+      noise+=Math.sin(angle*7+this.noiseSeeds[2]+time*2.0)*0.06;
+      noise+=Math.sin(angle*2+this.noiseSeeds[3]+time*0.5)*0.12;
+      noise+=Math.cos(angle*4+this.noiseSeeds[4]-time*1.5)*0.08;
+      noise+=Math.sin(angle*11+this.noiseSeeds[5]+time*0.3)*0.04;
+      const tendril=Math.pow(Math.max(0,Math.sin(angle*3+this.noiseSeeds[6])),8)*0.25;
+      const r=this.r*(1+noise+tendril);
+      const px=this.x+Math.cos(angle)*r;
+      const py=this.y+Math.sin(angle)*r;
+      if(i===0)ctx.moveTo(px,py);else ctx.lineTo(px,py);
+    }
+    ctx.closePath();
+    ctx.fill();
+  }
+}
+
+function runInkTransition(onMidpoint){
+  if(inkAnimating)return;
+  inkAnimating=true;
+  const W=inkTC.width,H=inkTC.height;
+  const diag=Math.sqrt(W*W+H*H);
+  const drops=[];
+  const count=6+Math.floor(Math.random()*3);
+  for(let i=0;i<count;i++){
+    const x=W*0.2+Math.random()*W*0.6;
+    const y=H*0.15+Math.random()*H*0.7;
+    const maxR=diag*0.55+Math.random()*diag*0.3;
+    const speed=diag*(0.8+Math.random()*0.5);
+    const phase=Math.random()*6.28;
+    drops.push(new InkDrop(x,y,maxR,speed,phase));
+  }
+  drops.push(new InkDrop(0,0,diag*0.6,diag*0.9,Math.random()*6.28));
+  drops.push(new InkDrop(W,H,diag*0.6,diag*0.9,Math.random()*6.28));
+
+  let phase='expand';
+  let startTime=null;
+  let midpointFired=false;
+  const expandDur=0.7;
+  const holdDur=0.15;
+  const dissolveDur=0.65;
+
+  function frame(ts){
+    if(!startTime)startTime=ts;
+    const elapsed=(ts-startTime)/1000;
+    const time=elapsed*2;
+    inkCtx.clearRect(0,0,W,H);
+    inkCtx.fillStyle='#1a0808';
+
+    if(phase==='expand'){
+      const dt=1/60;
+      drops.forEach(d=>d.grow(dt));
+      drops.forEach(d=>d.draw(inkCtx,time));
+      if(elapsed>=expandDur){
+        phase='hold';startTime=ts;
+        if(!midpointFired){midpointFired=true;onMidpoint()}
+      }
+    }else if(phase==='hold'){
+      inkCtx.fillRect(0,0,W,H);
+      if(elapsed>=holdDur){phase='dissolve';startTime=ts}
+    }else if(phase==='dissolve'){
+      const dt=1/60;
+      drops.forEach(d=>d.shrink(dt));
+      inkCtx.fillRect(0,0,W,H);
+      inkCtx.globalCompositeOperation='destination-out';
+      const progress=Math.min(elapsed/dissolveDur,1);
+      inkCtx.fillStyle='rgba(0,0,0,1)';
+      drops.forEach(d=>{
+        const dissolveR=d.maxR*progress*1.2;
+        const tempDrop=new InkDrop(d.x,d.y,dissolveR,0,d.phase);
+        tempDrop.r=dissolveR;
+        tempDrop.noiseSeeds=d.noiseSeeds.map(s=>s+1.5);
+        tempDrop.draw(inkCtx,time+2);
+      });
+      inkCtx.globalCompositeOperation='source-over';
+      inkCtx.fillStyle='#1a0808';
+      if(elapsed>=dissolveDur){
+        inkCtx.clearRect(0,0,W,H);
+        inkAnimating=false;
+        return;
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+function navigate(id){
+  if(id===currentPage||inkAnimating)return;
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const target=document.querySelector(`.nav-links a[data-page="${id}"]`);
+  if(target)target.classList.add('active');
+
+  runInkTransition(()=>{
+    const prev=document.getElementById('page-'+currentPage);
+    if(prev)prev.classList.remove('active');
+    const next=document.getElementById('page-'+id);
+    if(next){
+      next.scrollTop=0;
+      next.classList.add('active');
+      const gvp=document.querySelector('.galaxy-viewport');
+      if(gvp){
+        if(id==='home'){
+          gvp.classList.remove('inner-mode');
+          document.querySelector('#page-home .hero').appendChild(gvp);
+        }else{
+          gvp.classList.add('inner-mode');
+          next.querySelector('.inner-hero').appendChild(gvp);
+        }
+        resizeGalaxy();
+        requestAnimationFrame(()=>requestAnimationFrame(resizeGalaxy));
+      }
+    }
+    currentPage=id;
+    nav.classList.remove('scrolled');
+    lazyLoadVideos();
+  });
+  return false;
+}
+
+/* ─── SCROLL FUNCTIONS ─── */
+function scrollToStory(){
+  const home=document.getElementById('page-home');
+  const anchor=document.getElementById('story-anchor');
+  if(anchor&&home){home.scrollTo({top:anchor.offsetTop-80,behavior:'smooth'})}
+}
+
+/* ─── GALAXY MAP SYSTEM ─── */
+const gCanvas=document.getElementById('galaxy-canvas');
+const gCtx=gCanvas.getContext('2d');
+const gTooltip=document.getElementById('galaxy-tooltip');
+const gttName=document.getElementById('gtt-name');
+const gttDesc=document.getElementById('gtt-desc');
+const gViewport=document.querySelector('.galaxy-viewport');
+let gMx=0,gMy=0,gHovered=-1;
+
+const planets=[
+  {name:'Worlds Inscribed',desc:'Game Development',page:'games',orbit:0.38,speed:0.08,angle:1.25,
+   color:'#c4342d',glow:'rgba(196,52,45,.4)',size:18,rune:'ᚲ'},
+  {name:'Carved Dimensions',desc:'3D Modeling & Animation',page:'3d',orbit:0.54,speed:0.08,angle:2.51,
+   color:'#d4af37',glow:'rgba(212,175,55,.35)',size:16,rune:'ᛉ'},
+  {name:'Dancing Embers',desc:'Visual Effects',page:'vfx',orbit:0.70,speed:0.08,angle:3.76,
+   color:'#e86040',glow:'rgba(232,96,64,.35)',size:14,rune:'ᛋ'},
+  {name:'Woven Scripts',desc:'Web Development',page:'web',orbit:0.86,speed:0.08,angle:5.02,
+   color:'#7b9cff',glow:'rgba(123,156,255,.3)',size:13,rune:'ᛗ'},
+  {name:'Night Mode',desc:'Toggle Theme',page:'moon',orbit:0.22,speed:0.08,angle:0.0,
+   color:'#8a94a6',glow:'rgba(138,148,166,.4)',size:12,rune:'☾'}
+];
+
+const TILT=0.6;
+const BG_STARS=[];
+for(let i=0;i<200;i++)BG_STARS.push({x:Math.random(),y:Math.random(),s:Math.random()*1.5+.3,b:Math.random(),p:Math.random()*6.28});
+
+function resizeGalaxy(){
+  const r=gCanvas.getBoundingClientRect();
+  gCanvas.width=r.width*devicePixelRatio;
+  gCanvas.height=r.height*devicePixelRatio;
+  gCtx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+}
+resizeGalaxy();
+window.addEventListener('resize',resizeGalaxy);
+
+let gZooming=false;
+let gZoomTarget=-1;
+let gZoomProgress=0;
+let gZoomStartTime=0;
+
+if(gViewport){
+  gViewport.addEventListener('mousemove',e=>{
+    if(gZooming)return;
+    const r=gViewport.getBoundingClientRect();
+    gMx=e.clientX-r.left;gMy=e.clientY-r.top;
+  });
+  gViewport.addEventListener('click',()=>{
+    if(gZooming)return;
+    if(gHovered==='sun'){
+      document.documentElement.classList.add('light-mode');
+    }else if(gHovered>=0){
+      if(planets[gHovered].page === 'moon'){
+        document.documentElement.classList.remove('light-mode');
+        return;
+      }
+      gZooming=true;gZoomTarget=gHovered;gZoomStartTime=performance.now();
+      gTooltip.classList.remove('visible');gViewport.style.cursor='default';
+    }
+  });
+  gViewport.addEventListener('mouseleave',()=>{if(!gZooming)gHovered=-1});
+}
+
+function getOrbitalPos(angle,orbitFrac,W,H){
+  const cx=W/2,cy=H/2;
+  const maxR=Math.min(W,H)*0.44;
+  const r=maxR*orbitFrac;
+  const x=Math.cos(angle)*r;
+  const z=Math.sin(angle)*r;
+  const y=z*Math.sin(TILT);
+  const depth=z*Math.cos(TILT);
+  const persp=800;
+  const scale=persp/(persp+depth);
+  return{sx:cx+x*scale,sy:cy+y*scale,scale,depth};
+}
+
+function drawGalaxy(time){
+  const W=gCanvas.width/devicePixelRatio;
+  const H=gCanvas.height/devicePixelRatio;
+  const cx=W/2,cy=H/2;
+  gCtx.clearRect(0,0,W,H);
+
+  if(gZooming){
+    const elapsed=time-gZoomStartTime;
+    gZoomProgress=Math.min(elapsed/800,1);
+    if(gZoomProgress===1&&typeof navigate==='function'){
+      navigate(planets[gZoomTarget].page);
+      gZooming=false;gZoomTarget=-1;gZoomProgress=0;
+    }
+  }
+
+  const warpEase=gZoomProgress*gZoomProgress*gZoomProgress;
+  const globalScale=1+(warpEase*30);
+  const px=(gMx-W/2)*0.015,py=(gMy-H/2)*0.015;
+  const t=time*0.001;
+  const streakLen=warpEase*200;
+
+  BG_STARS.forEach(s=>{
+    const twinkle=Math.sin(t*1.5+s.p)*0.3+0.7;
+    gCtx.fillStyle=`rgba(244,232,209,${s.b*twinkle*0.5})`;
+    const sx=(s.x-0.5)*globalScale+0.5;
+    const sy=(s.y-0.5)*globalScale+0.5;
+    const bx=sx*W+px;
+    const by=sy*H+py;
+    if(gZoomProgress>0){
+      const sdx=bx-cx,sdy=by-cy;
+      const dist=Math.sqrt(sdx*sdx+sdy*sdy);
+      if(dist>0){
+        gCtx.beginPath();
+        gCtx.moveTo(bx,by);
+        gCtx.lineTo(bx-sdx*streakLen/dist,by-sdy*streakLen/dist);
+        gCtx.strokeStyle=`rgba(244,232,209,${(1-warpEase)*0.5})`;
+        gCtx.lineWidth=s.s*globalScale;
+        gCtx.stroke();
+      }
+    }else{gCtx.fillRect(bx,by,s.s,s.s)}
+  });
+
+  let targetOffsetX=0,targetOffsetY=0;
+  if(gZoomTarget>=0){
+    const tp=planets[gZoomTarget];
+    const tpos=getOrbitalPos(tp.angle,tp.orbit,W,H);
+    targetOffsetX=(cx-tpos.sx)*warpEase;
+    targetOffsetY=(cy-tpos.sy)*warpEase;
+  }
+
+  gCtx.save();
+  gCtx.translate(cx,cy);
+  gCtx.scale(globalScale,globalScale);
+  gCtx.translate(-cx+targetOffsetX,-cy+targetOffsetY);
+
+  planets.forEach(p=>{
+    gCtx.beginPath();
+    for(let i=0;i<=64;i++){
+      const a=(i/64)*Math.PI*2;
+      const pos=getOrbitalPos(a,p.orbit,W,H);
+      if(i===0)gCtx.moveTo(pos.sx+px,pos.sy+py);
+      else gCtx.lineTo(pos.sx+px,pos.sy+py);
+    }
+    gCtx.closePath();
+    gCtx.strokeStyle=`rgba(196,52,45,${0.12*(1-Math.min(1,warpEase*2))})`;
+    gCtx.lineWidth=1/globalScale;
+    gCtx.stroke();
+  });
+
+  planets.forEach((p,idx)=>{
+    if(gZooming&&idx===gZoomTarget)p.angle+=p.speed*0.016*2;
+    else p.angle+=p.speed*0.016;
+    if(p.page===currentPage)return;
+    const pos=getOrbitalPos(p.angle,p.orbit,W,H);
+    gCtx.beginPath();
+    gCtx.moveTo(cx+px,cy+py);
+    gCtx.lineTo(pos.sx+px,pos.sy+py);
+    gCtx.strokeStyle=`rgba(196,52,45,${0.06*(1-Math.min(1,warpEase*2))})`;
+    gCtx.lineWidth=1/globalScale;
+    gCtx.stroke();
+  });
+
+  const sunR=22;
+  const sunGrad=gCtx.createRadialGradient(cx+px,cy+py,2,cx+px,cy+py,sunR*2.5);
+  sunGrad.addColorStop(0,'rgba(196,52,45,0.9)');
+  sunGrad.addColorStop(0.3,'rgba(196,52,45,0.3)');
+  sunGrad.addColorStop(0.7,'rgba(184,150,12,0.08)');
+  sunGrad.addColorStop(1,'transparent');
+  gCtx.fillStyle=sunGrad;
+  gCtx.fillRect(cx+px-sunR*3,cy+py-sunR*3,sunR*6,sunR*6);
+  gCtx.beginPath();
+  gCtx.arc(cx+px,cy+py,sunR*(0.9+Math.sin(t*2)*0.1),0,Math.PI*2);
+  gCtx.fillStyle='rgba(196,52,45,0.85)';gCtx.fill();
+  gCtx.beginPath();
+  gCtx.arc(cx+px,cy+py,sunR*0.5,0,Math.PI*2);
+  gCtx.fillStyle='rgba(244,232,209,0.6)';gCtx.fill();
+
+  const sorted=[...planets.map((p,i)=>({...p,i}))];
+  sorted.forEach(p=>{p._pos=getOrbitalPos(p.angle,p.orbit,W,H)});
+  sorted.sort((a,b)=>a._pos.depth-b._pos.depth);
+
+  if(!gZooming){
+    gHovered=-1;
+    sorted.forEach(p=>{
+      if(p.page===currentPage)return;
+      const pos=p._pos;
+      const dx=gMx-(pos.sx+px),dy=gMy-(pos.sy+py);
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<p.size*pos.scale*2.5)gHovered=p.i;
+    });
+    const sdx=gMx-(cx+px),sdy=gMy-(cy+py);
+    if(gHovered===-1 && Math.sqrt(sdx*sdx+sdy*sdy)<sunR*2)gHovered='sun';
+  }
+
+  sorted.forEach(p=>{
+    if(p.page===currentPage)return;
+    const pos=p._pos;
+    const r=p.size*pos.scale;
+    const isHovered=(gHovered===p.i||(gZooming&&gZoomTarget===p.i));
+    const screenX=pos.sx+px,screenY=pos.sy+py;
+    const glowR=r*(isHovered?4:2.5);
+    const glowGrad=gCtx.createRadialGradient(screenX,screenY,r*0.3,screenX,screenY,glowR);
+    glowGrad.addColorStop(0,p.glow);glowGrad.addColorStop(1,'transparent');
+    gCtx.fillStyle=glowGrad;
+    gCtx.fillRect(screenX-glowR,screenY-glowR,glowR*2,glowR*2);
+    gCtx.beginPath();
+    gCtx.arc(screenX,screenY,r*(isHovered?1.3:1),0,Math.PI*2);
+    gCtx.fillStyle=p.color;gCtx.fill();
+    gCtx.beginPath();
+    gCtx.arc(screenX-r*0.25,screenY-r*0.3,r*0.4,0,Math.PI*2);
+    gCtx.fillStyle=`rgba(255,255,255,${0.2*(1-warpEase*0.5)})`;gCtx.fill();
+    gCtx.font=`${r*1.1}px var(--font-display)`;
+    gCtx.fillStyle=`rgba(244,232,209,${0.9*(1-warpEase*0.5)})`;
+    gCtx.textAlign='center';gCtx.textBaseline='middle';
+    gCtx.fillText(p.rune,screenX,screenY+r*0.05);
+
+    if(!gZooming){
+      const hudDist=r*2+10;
+      const angleOnScreen=Math.atan2(pos.sy,pos.sx);
+      const h_dir=Math.cos(angleOnScreen)>=0?1:-1;
+      const v_dir=Math.sin(angleOnScreen)>=0?1:-1;
+      const startX=screenX+h_dir*hudDist*0.4,startY=screenY+v_dir*hudDist*0.4;
+      const jointX=screenX+h_dir*hudDist,jointY=screenY+v_dir*hudDist;
+      const endX=jointX+h_dir*40;
+      gCtx.beginPath();gCtx.moveTo(startX,startY);gCtx.lineTo(jointX,jointY);gCtx.lineTo(endX,jointY);
+      gCtx.strokeStyle=p.color;gCtx.lineWidth=Math.max(0.5,1/globalScale);
+      gCtx.globalAlpha=0.5;gCtx.stroke();gCtx.globalAlpha=1.0;
+      gCtx.font=`${9/globalScale}px var(--font-mono)`;gCtx.fillStyle=p.color;
+      gCtx.textAlign=h_dir>0?'left':'right';gCtx.textBaseline='bottom';
+      gCtx.fillText(p.name.toUpperCase(),endX+h_dir*5,jointY-2/globalScale);
+      gCtx.font=`${5.5/globalScale}px var(--font-mono)`;gCtx.fillStyle='rgba(244,232,209,0.5)';
+      gCtx.textBaseline='top';
+      gCtx.fillText(p.desc.toUpperCase(),endX+h_dir*5,jointY+2/globalScale);
+    }
+
+    if(isHovered&&!gZooming){
+      gCtx.beginPath();gCtx.arc(screenX,screenY,r*2,0,Math.PI*2);
+      gCtx.strokeStyle=p.color;gCtx.lineWidth=1/globalScale;
+      gCtx.setLineDash([4/globalScale,4/globalScale]);gCtx.stroke();gCtx.setLineDash([]);
+    }
+
+    if(isHovered&&!gZooming){
+      gTooltip.style.left=screenX+'px';gTooltip.style.top=screenY+'px';
+      gttName.textContent=p.name;gttDesc.textContent=p.desc;
+      gTooltip.classList.add('visible');gViewport.style.cursor='pointer';
+    }
+  });
+
+  if(!gZooming&&gHovered==='sun'){
+    gTooltip.style.left=(cx+px)+'px';gTooltip.style.top=(cy+py)+'px';
+    gttName.textContent='Light Mode';gttDesc.textContent='Toggle Theme';
+    gTooltip.classList.add('visible');gViewport.style.cursor='pointer';
+  }
+
+  gCtx.restore();
+
+  if(gHovered===-1&&!gZooming){
+    gTooltip.classList.remove('visible');
+    if(gViewport)gViewport.style.cursor='default';
+  }
+  requestAnimationFrame(drawGalaxy);
+}
+
+/* Start galaxy loop immediately — no observer delay */
+requestAnimationFrame(drawGalaxy);
+
+/* ─── FLOATING PARTICLES ─── */
+function spawnParticle(){
+  const p=document.createElement('div');p.className='float-particle';
+  const x=Math.random()*100,dur=Math.random()*18+12,drift=(Math.random()-.5)*80;
+  p.style.cssText=`left:${x}vw;bottom:-5px;animation-duration:${dur}s;animation-delay:${Math.random()*4}s;--drift:${drift}px;width:${Math.random()*2+1}px;height:${Math.random()*2+1}px;background:${Math.random()>.6?'var(--vermillion)':'var(--gold)'}`;
+  document.body.appendChild(p);setTimeout(()=>p.remove(),(dur+5)*1000);
+}
+setInterval(spawnParticle,1200);for(let i=0;i<6;i++)spawnParticle();
+
+/* ─── SCROLL REVEAL ─── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}});
+},{threshold:.08});
+document.querySelectorAll('.skill-card,.work-card,.video-card,.story-grid').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .7s ease,transform .7s ease';obs.observe(el);
+});
+document.querySelectorAll('.skill-card,.work-card,.video-card').forEach((el,i)=>{el.style.transitionDelay=`${i*.1}s`});
+
+/* ─── LAZY VIDEO LOADING ─── */
+function lazyLoadVideos(){
+  const activePage=document.querySelector('.page.active');
+  if(!activePage)return;
+  document.querySelectorAll('video[data-lazy]').forEach(v=>v.pause());
+  const vObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting)e.target.play().catch(()=>{});
+      else e.target.pause();
+    });
+  },{threshold:.2,root:activePage});
+  activePage.querySelectorAll('video[data-lazy]').forEach(v=>vObs.observe(v));
+}
+lazyLoadVideos();
+
+/* ═══════════════════════════════════════════════════════════════
+   INKBORNE BGM SYSTEM
+   Dark ambient music generated via Web Audio API.
+
+   Architecture:
+     ┌─ Drone Layer   ─ Deep D Phrygian root tones (sawtooth → LPF)
+     ├─ Choir Pads    ─ Detuned sine chorus in Dm7 chord
+     ├─ Pink Noise    ─ Filtered ambient breath texture
+     ├─ Bell Chimes   ─ Sparse melodic notes in D Phrygian scale
+     └─ Convolution Reverb (procedural impulse)
+
+   All routed through a master gain with 3s fade-in/2s fade-out.
+═══════════════════════════════════════════════════════════════ */
+class InkborneBGM {
+  constructor() {
+    this.audioCtx   = null;
+    this.master     = null;
+    this.reverb     = null;
+    this.reverbSend = null;
+    this.playing    = false;
+    this.ready      = false;
+    this.melodyTid  = null;
+  }
+
+  /* Lazily initialise — must happen after a user gesture */
+  async init() {
+    if (this.ready) return;
+
+    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    /* ── Master gain (starts silent) ── */
+    this.master = this.audioCtx.createGain();
+    this.master.gain.value = 0;
+    this.master.connect(this.audioCtx.destination);
+
+    /* ── Convolution reverb (procedural impulse) ── */
+    this.reverb = this.audioCtx.createConvolver();
+    this.reverbSend = this.audioCtx.createGain();
+    this.reverbSend.gain.value = 0.55;
+    this.reverb.connect(this.reverbSend);
+    this.reverbSend.connect(this.master);
+
+    const sampleRate = this.audioCtx.sampleRate;
+    const len = sampleRate * 5;                  // 5-second tail
+    const impulse = this.audioCtx.createBuffer(2, len, sampleRate);
+    for (let ch = 0; ch < 2; ch++) {
+      const d = impulse.getChannelData(ch);
+      for (let i = 0; i < len; i++) {
+        // Exponential decay envelope with slight pre-delay
+        const env = Math.pow(1 - i / len, 2.8);
+        d[i] = (Math.random() * 2 - 1) * env;
+      }
+    }
+    this.reverb.buffer = impulse;
+
+    this._buildDrones();
+    this._buildChoir();
+    this._buildNoise();
+
+    this.ready = true;
+  }
+
+  /* Helper: connect a node to both dry master and reverb wet bus */
+  _wire(gainNode, dryVol = 0.7, wetVol = 0.45) {
+    const dry = this.audioCtx.createGain();
+    const wet = this.audioCtx.createGain();
+    dry.gain.value = dryVol;
+    wet.gain.value = wetVol;
+    gainNode.connect(dry);  dry.connect(this.master);
+    gainNode.connect(wet);  wet.connect(this.reverb);
+  }
+
+  /* ── DRONE LAYER ──
+     Four slightly-detuned sawtooth oscillators in D1 / D2 / A2
+     fed through a steep low-pass for that subterranean rumble.     */
+  _buildDrones() {
+    const ac = this.audioCtx;
+    // [frequency Hz, detune cents, gain]
+    const voices = [
+      [36.71,    0,  0.14],   // D1
+      [36.71,    7,  0.07],   // D1 + 7¢
+      [73.42,   -4,  0.09],   // D2
+      [110.00,   0,  0.05],   // A2 (perfect fifth)
+    ];
+
+    voices.forEach(([freq, det, vol]) => {
+      const osc = ac.createOscillator();
+      const lpf = ac.createBiquadFilter();
+      const gn  = ac.createGain();
+
+      osc.type = 'sawtooth';
+      osc.frequency.value = freq;
+      osc.detune.value    = det;
+
+      lpf.type            = 'lowpass';
+      lpf.frequency.value = 280;
+      lpf.Q.value         = 1.2;
+
+      /* Slow tremolo LFO */
+      const lfo  = ac.createOscillator();
+      const lfog = ac.createGain();
+      lfo.frequency.value = 0.07 + Math.random() * 0.04;
+      lfog.gain.value     = vol * 0.28;
+      lfo.connect(lfog); lfog.connect(gn.gain);
+      lfo.start();
+
+      gn.gain.value = vol;
+      osc.connect(lpf); lpf.connect(gn);
+      this._wire(gn, 0.85, 0.35);
+      osc.start();
+    });
+  }
+
+  /* ── CHOIR PAD LAYER ──
+     D minor 7 chord (D·F·A·C), each pitch spawns 3 detuned sine
+     voices plus a slow amplitude LFO → thick, breathing choir.     */
+  _buildChoir() {
+    const ac = this.audioCtx;
+    // D3, F3, A3, C4
+    const notes = [146.83, 174.61, 220.00, 261.63];
+
+    notes.forEach((freq, ni) => {
+      for (let v = 0; v < 3; v++) {
+        const osc  = ac.createOscillator();
+        const gn   = ac.createGain();
+        const bpf  = ac.createBiquadFilter();
+
+        osc.type            = 'sine';
+        osc.frequency.value = freq;
+        osc.detune.value    = (v - 1) * 9;   // −9, 0, +9 ¢
+
+        /* Per-voice vibrato */
+        const vib  = ac.createOscillator();
+        const vibg = ac.createGain();
+        vib.frequency.value = 0.12 + ni * 0.04 + v * 0.03;
+        vibg.gain.value     = 2.5;
+        vib.connect(vibg); vibg.connect(osc.detune);
+        vib.start();
+
+        bpf.type            = 'bandpass';
+        bpf.frequency.value = freq * 3.5;
+        bpf.Q.value         = 4;
+
+        /* Slow breath amplitude LFO */
+        const alfo  = ac.createOscillator();
+        const alfog = ac.createGain();
+        alfo.frequency.value = 0.04 + Math.random() * 0.03;
+        alfog.gain.value     = 0.012;
+        alfo.connect(alfog); alfog.connect(gn.gain);
+        alfo.start();
+
+        gn.gain.value = 0.028;
+        osc.connect(bpf); bpf.connect(gn);
+        this._wire(gn, 0.25, 0.9);
+        osc.start();
+      }
+    });
+  }
+
+  /* ── PINK NOISE TEXTURE ──
+     Classic pink-noise approximation (Paul Kellet's algorithm),
+     band-passed around 250 Hz → parchment-and-breath atmosphere.  */
+  _buildNoise() {
+    const ac  = this.audioCtx;
+    const sr  = ac.sampleRate;
+    const len = sr * 3;
+    const buf = ac.createBuffer(2, len, sr);
+
+    for (let ch = 0; ch < 2; ch++) {
+      const d = buf.getChannelData(ch);
+      let b0=0, b1=0, b2=0, b3=0, b4=0, b5=0, b6=0;
+      for (let i = 0; i < len; i++) {
+        const w = Math.random() * 2 - 1;
+        b0 = 0.99886*b0 + w*0.0555179; b1 = 0.99332*b1 + w*0.0750759;
+        b2 = 0.96900*b2 + w*0.1538520; b3 = 0.86650*b3 + w*0.3104856;
+        b4 = 0.55000*b4 + w*0.5329522; b5 = -0.7616*b5 - w*0.0168980;
+        d[i] = (b0+b1+b2+b3+b4+b5+b6+w*0.5362) * 0.11;
+        b6 = w * 0.115926;
+      }
+    }
+
+    const src = ac.createBufferSource();
+    src.buffer = buf; src.loop = true;
+
+    const bpf = ac.createBiquadFilter();
+    bpf.type            = 'bandpass';
+    bpf.frequency.value = 260;
+    bpf.Q.value         = 0.4;
+
+    const gn  = ac.createGain();
+    gn.gain.value = 0.011;
+
+    src.connect(bpf); bpf.connect(gn); gn.connect(this.master);
+    src.start();
+  }
+
+  /* ── BELL / CHIME MELODY ──
+     Schedules sparse, long-decay notes from D Phrygian scale.
+     Uses a sine + octave harmonic to mimic a struck bell.         */
+  _scheduleNote(freq, startT, duration, vol = 0.055) {
+    const ac  = this.audioCtx;
+    const osc = ac.createOscillator();
+    const os2 = ac.createOscillator();  // octave harmonic
+    const env = ac.createGain();
+    const lpf = ac.createBiquadFilter();
+
+    osc.type            = 'sine';
+    osc.frequency.value = freq;
+    os2.type            = 'sine';
+    os2.frequency.value = freq * 2;
+
+    lpf.type            = 'lowpass';
+    lpf.frequency.value = freq * 4.5;
+    lpf.Q.value         = 1;
+
+    /* Bell envelope: sharp attack, long exponential decay */
+    env.gain.setValueAtTime(0, startT);
+    env.gain.linearRampToValueAtTime(vol, startT + 0.018);
+    env.gain.setTargetAtTime(vol * 0.25, startT + 0.018, duration * 0.12);
+    env.gain.setTargetAtTime(0.0001,     startT + duration * 0.35, duration * 0.55);
+
+    const harmGain = ac.createGain();
+    harmGain.gain.value = 0.22;
+
+    osc.connect(lpf); os2.connect(harmGain); harmGain.connect(lpf);
+    lpf.connect(env);
+
+    /* Dry + wet */
+    env.connect(this.master);
+    env.connect(this.reverb);
+
+    osc.start(startT); osc.stop(startT + duration + 1.5);
+    os2.start(startT); os2.stop(startT + duration + 1.5);
+  }
+
+  _scheduleMelody() {
+    if (!this.playing) return;
+
+    /* D Phrygian: D  Eb  F  G  A  Bb  C
+       Spread across octaves 3 & 4 for a wide register.            */
+    const scale = [
+      146.83, 155.56, 174.61, 196.00, 220.00, 233.08, 261.63, // D3–C4
+      293.66, 311.13, 349.23, 392.00, 440.00, 466.16, 523.25, // D4–C5
+    ];
+    /* Prefer the darker/lower notes slightly more */
+    const weights = scale.map((_, i) => 1 - i * 0.03);
+    const pick = () => {
+      const total = weights.reduce((a, b) => a + b, 0);
+      let r = Math.random() * total;
+      for (let i = 0; i < weights.length; i++) { r -= weights[i]; if (r <= 0) return scale[i]; }
+      return scale[0];
+    };
+
+    const now     = this.audioCtx.currentTime;
+    let   t       = now + 0.05;
+    const phrases = 3 + Math.floor(Math.random() * 5);   // 3–7 notes
+
+    for (let i = 0; i < phrases; i++) {
+      if (Math.random() > 0.30) {                         // 70% note, 30% rest
+        const freq = pick();
+        const dur  = 2.5 + Math.random() * 4.5;          // 2.5–7s decay
+        const vol  = 0.038 + Math.random() * 0.032;
+        this._scheduleNote(freq, t, dur, vol);
+        t += 1.0 + Math.random() * 2.8;
+      } else {
+        t += 0.6 + Math.random() * 1.4;
+      }
+    }
+
+    /* Random rest between phrases (4–14 s) — long silences are intentional */
+    const rest     = 4 + Math.random() * 10;
+    const nextMs   = (t - now + rest) * 1000;
+    this.melodyTid = setTimeout(() => this._scheduleMelody(), nextMs);
+  }
+
+  async play() {
+    await this.init();
+    if (this.audioCtx.state === 'suspended') await this.audioCtx.resume();
+    this.playing = true;
+    const now = this.audioCtx.currentTime;
+    this.master.gain.cancelScheduledValues(now);
+    this.master.gain.setValueAtTime(this.master.gain.value, now);
+    this.master.gain.linearRampToValueAtTime(this._targetVol, now + 3.5);
+    this._scheduleMelody();
+  }
+
+  pause() {
+    this.playing = false;
+    if (this.melodyTid) { clearTimeout(this.melodyTid); this.melodyTid = null; }
+    if (!this.master) return;
+    const now = this.audioCtx.currentTime;
+    this.master.gain.cancelScheduledValues(now);
+    this.master.gain.setValueAtTime(this.master.gain.value, now);
+    this.master.gain.linearRampToValueAtTime(0, now + 2.2);
+  }
+
+  setVolume(v) {
+    this._targetVol = Math.max(0, Math.min(1, v));
+    if (this.master && this.playing) {
+      const now = this.audioCtx.currentTime;
+      this.master.gain.cancelScheduledValues(now);
+      this.master.gain.setValueAtTime(this.master.gain.value, now);
+      this.master.gain.linearRampToValueAtTime(this._targetVol, now + 0.4);
+    }
+  }
+
+  async toggle() {
+    if (this.playing) { this.pause(); return false; }
+    else              { await this.play(); return true; }
+  }
+}
+
+/* ── Instantiate & wire UI ── */
+const bgm = new InkborneBGM();
+bgm._targetVol = 0.6;   // default volume
+
+const bgmBtn        = document.getElementById('bgm-btn');
+const bgmVolumeWrap = document.getElementById('bgm-volume-wrap');
+const bgmVolumeSldr = document.getElementById('bgm-volume');
+
+bgmBtn.addEventListener('click', async () => {
+  const isNowPlaying = await bgm.toggle();
+  bgmBtn.classList.toggle('playing', isNowPlaying);
+  bgmVolumeWrap.classList.toggle('visible', isNowPlaying);
+});
+
+/* Show volume slider on hover when playing */
+bgmBtn.addEventListener('mouseenter', () => {
+  if (bgm.playing) bgmVolumeWrap.classList.add('visible');
+});
+bgmBtn.addEventListener('mouseleave', () => {
+  /* Keep visible for a moment so user can reach the slider */
+  setTimeout(() => {
+    if (!bgmVolumeWrap.matches(':hover')) bgmVolumeWrap.classList.remove('visible');
+  }, 400);
+});
+bgmVolumeWrap.addEventListener('mouseleave', () => {
+  bgmVolumeWrap.classList.remove('visible');
+});
+
+bgmVolumeSldr.addEventListener('input', e => {
+  bgm.setVolume(parseFloat(e.target.value));
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   INKBORNE SFX SYSTEM
+   All sounds synthesised via Web Audio API — no external assets.
+
+   Sound palette:
+     inkDrop     — quill tap on parchment (ghost / nav clicks)
+     waxSeal     — heavy stamp thud (primary CTA)
+     inkDiffuse  — layered rumble + resonance (page transitions)
+     parchment   — airy whisper (hover)
+     stellarWarp — chime + warp noise (galaxy planet click)
+     brushBack   — light reverse swipe (back button)
+═══════════════════════════════════════════════════════════════ */
+class InkborneSFX {
+  constructor() {
+    this._ac   = null;
+    this._mute = false;
+    this._lastHover = 0;
+  }
+
+  _ctx() {
+    if (!this._ac) {
+      this._ac = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (this._ac.state === 'suspended') this._ac.resume();
+    return this._ac;
+  }
+
+  _out(node, vol = 1) {
+    const g = this._ctx().createGain();
+    g.gain.value = vol;
+    node.connect(g);
+    g.connect(this._ctx().destination);
+    return g;
+  }
+
+  _noise(durationS) {
+    const ac  = this._ctx();
+    const len = Math.ceil(ac.sampleRate * durationS);
+    const buf = ac.createBuffer(1, len, ac.sampleRate);
+    const d   = buf.getChannelData(0);
+    let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
+    for (let i = 0; i < len; i++) {
+      const w = Math.random()*2-1;
+      b0=0.99886*b0+w*0.0555179; b1=0.99332*b1+w*0.0750759;
+      b2=0.96900*b2+w*0.1538520; b3=0.86650*b3+w*0.3104856;
+      b4=0.55000*b4+w*0.5329522; b5=-0.7616*b5-w*0.0168980;
+      d[i]=(b0+b1+b2+b3+b4+b5+b6+w*0.5362)*0.11;
+      b6=w*0.115926;
+    }
+    const src = ac.createBufferSource();
+    src.buffer = buf;
+    return src;
+  }
+
+  inkDrop(vol = 1) {
+    if (this._mute) return;
+    const ac  = this._ctx();
+    const now = ac.currentTime;
+    const plop = ac.createOscillator();
+    const pEnv = ac.createGain();
+    plop.type = 'sine';
+    plop.frequency.setValueAtTime(200, now);
+    plop.frequency.exponentialRampToValueAtTime(55, now + 0.12);
+    pEnv.gain.setValueAtTime(0.22 * vol, now);
+    pEnv.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+    plop.connect(pEnv);
+    this._out(pEnv, 0.7);
+    plop.start(now); plop.stop(now + 0.22);
+    const tick = ac.createOscillator();
+    const tEnv = ac.createGain();
+    tick.type = 'triangle';
+    tick.frequency.value = 3200;
+    tEnv.gain.setValueAtTime(0.09 * vol, now);
+    tEnv.gain.exponentialRampToValueAtTime(0.001, now + 0.014);
+    tick.connect(tEnv);
+    this._out(tEnv, 0.5);
+    tick.start(now); tick.stop(now + 0.02);
+  }
+
+  waxSeal(vol = 1) {
+    if (this._mute) return;
+    const ac  = this._ctx();
+    const now = ac.currentTime;
+    const osc = ac.createOscillator();
+    const env = ac.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(110, now);
+    osc.frequency.exponentialRampToValueAtTime(38, now + 0.28);
+    env.gain.setValueAtTime(0.38 * vol, now);
+    env.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+    const lpf = ac.createBiquadFilter();
+    lpf.type = 'lowpass'; lpf.frequency.value = 320; lpf.Q.value = 0.9;
+    osc.connect(lpf); lpf.connect(env);
+    this._out(env, 0.85);
+    osc.start(now); osc.stop(now + 0.36);
+    const crk = this._noise(0.07);
+    const cBpf = ac.createBiquadFilter();
+    cBpf.type = 'bandpass'; cBpf.frequency.value = 1800; cBpf.Q.value = 1.4;
+    const cEnv = ac.createGain();
+    cEnv.gain.setValueAtTime(0.18 * vol, now);
+    cEnv.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+    crk.connect(cBpf); cBpf.connect(cEnv);
+    this._out(cEnv, 0.4);
+    crk.start(now);
+    const h = ac.createOscillator();
+    const hEnv = ac.createGain();
+    h.type = 'sawtooth'; h.frequency.value = 80;
+    hEnv.gain.setValueAtTime(0.12 * vol, now);
+    hEnv.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+    const hLpf = ac.createBiquadFilter();
+    hLpf.type = 'lowpass'; hLpf.frequency.value = 160;
+    h.connect(hLpf); hLpf.connect(hEnv);
+    this._out(hEnv, 0.5);
+    h.start(now); h.stop(now + 0.06);
+  }
+
+  inkDiffuse(vol = 1) {
+    if (this._mute) return;
+    const ac  = this._ctx();
+    const now = ac.currentTime;
+    const rumble = this._noise(1.6);
+    const rLpf   = ac.createBiquadFilter();
+    rLpf.type = 'lowpass';
+    rLpf.frequency.setValueAtTime(55,  now);
+    rLpf.frequency.linearRampToValueAtTime(320, now + 0.45);
+    rLpf.frequency.linearRampToValueAtTime(48,  now + 1.5);
+    const rEnv = ac.createGain();
+    rEnv.gain.setValueAtTime(0, now);
+    rEnv.gain.linearRampToValueAtTime(0.55 * vol, now + 0.18);
+    rEnv.gain.linearRampToValueAtTime(0.30 * vol, now + 0.75);
+    rEnv.gain.linearRampToValueAtTime(0,           now + 1.55);
+    rumble.connect(rLpf); rLpf.connect(rEnv);
+    this._out(rEnv, 0.9);
+    rumble.start(now);
+    const spr = ac.createOscillator();
+    spr.type = 'sine';
+    spr.frequency.setValueAtTime(55,  now);
+    spr.frequency.linearRampToValueAtTime(180, now + 0.5);
+    spr.frequency.linearRampToValueAtTime(40,  now + 1.4);
+    const sEnv = ac.createGain();
+    sEnv.gain.setValueAtTime(0,           now);
+    sEnv.gain.linearRampToValueAtTime(0.16 * vol, now + 0.12);
+    sEnv.gain.linearRampToValueAtTime(0.09 * vol, now + 0.65);
+    sEnv.gain.linearRampToValueAtTime(0,           now + 1.45);
+    spr.connect(sEnv);
+    this._out(sEnv, 0.7);
+    spr.start(now); spr.stop(now + 1.5);
+    const breath  = this._noise(0.9);
+    const bBpf    = ac.createBiquadFilter();
+    bBpf.type = 'bandpass'; bBpf.frequency.value = 2800; bBpf.Q.value = 0.6;
+    const bEnv = ac.createGain();
+    bEnv.gain.setValueAtTime(0,           now);
+    bEnv.gain.linearRampToValueAtTime(0.04 * vol, now + 0.08);
+    bEnv.gain.linearRampToValueAtTime(0.02 * vol, now + 0.5);
+    bEnv.gain.linearRampToValueAtTime(0,           now + 0.85);
+    breath.connect(bBpf); bBpf.connect(bEnv);
+    this._out(bEnv, 0.5);
+    breath.start(now);
+  }
+
+  parchment(vol = 1) {
+    if (this._mute) return;
+    const now = performance.now();
+    if (now - this._lastHover < 80) return;
+    this._lastHover = now;
+    const ac  = this._ctx();
+    const t   = ac.currentTime;
+    const src = this._noise(0.055);
+    const hpf = ac.createBiquadFilter();
+    hpf.type = 'highpass'; hpf.frequency.value = 4500; hpf.Q.value = 0.8;
+    const env = ac.createGain();
+    env.gain.setValueAtTime(0,            t);
+    env.gain.linearRampToValueAtTime(0.022 * vol, t + 0.006);
+    env.gain.linearRampToValueAtTime(0,           t + 0.05);
+    src.connect(hpf); hpf.connect(env);
+    this._out(env, 0.4);
+    src.start(t);
+  }
+
+  stellarWarp(vol = 1) {
+    if (this._mute) return;
+    const ac  = this._ctx();
+    const now = ac.currentTime;
+    const bell  = ac.createOscillator();
+    const bell2 = ac.createOscillator();
+    const bEnv  = ac.createGain();
+    bell.type  = 'sine'; bell.frequency.value  = 523.25;
+    bell2.type = 'sine'; bell2.frequency.value = 1046.5;
+    const b2g  = ac.createGain(); b2g.gain.value = 0.18;
+    bell2.connect(b2g);
+    bEnv.gain.setValueAtTime(0,            now);
+    bEnv.gain.linearRampToValueAtTime(0.18 * vol, now + 0.018);
+    bEnv.gain.setTargetAtTime(0.04 * vol,  now + 0.018, 0.18);
+    bEnv.gain.setTargetAtTime(0.001,       now + 0.4,   0.35);
+    bell.connect(bEnv); b2g.connect(bEnv);
+    this._out(bEnv, 0.65);
+    bell.start(now); bell.stop(now + 1.2);
+    bell2.start(now); bell2.stop(now + 1.2);
+    const warp = ac.createOscillator();
+    warp.type  = 'sawtooth';
+    warp.frequency.setValueAtTime(80,   now + 0.05);
+    warp.frequency.exponentialRampToValueAtTime(3200, now + 0.75);
+    const wLpf = ac.createBiquadFilter();
+    wLpf.type  = 'lowpass';
+    wLpf.frequency.setValueAtTime(200,  now + 0.05);
+    wLpf.frequency.exponentialRampToValueAtTime(6000, now + 0.75);
+    const wEnv = ac.createGain();
+    wEnv.gain.setValueAtTime(0,            now + 0.05);
+    wEnv.gain.linearRampToValueAtTime(0.11 * vol, now + 0.15);
+    wEnv.gain.linearRampToValueAtTime(0,           now + 0.78);
+    warp.connect(wLpf); wLpf.connect(wEnv);
+    this._out(wEnv, 0.5);
+    warp.start(now + 0.05); warp.stop(now + 0.82);
+    const shim = this._noise(0.5);
+    const sBpf = ac.createBiquadFilter();
+    sBpf.type  = 'bandpass'; sBpf.frequency.value = 5000; sBpf.Q.value = 1;
+    const sEnv = ac.createGain();
+    sEnv.gain.setValueAtTime(0,            now);
+    sEnv.gain.linearRampToValueAtTime(0.03 * vol, now + 0.05);
+    sEnv.gain.linearRampToValueAtTime(0,           now + 0.5);
+    shim.connect(sBpf); sBpf.connect(sEnv);
+    this._out(sEnv, 0.35);
+    shim.start(now);
+  }
+
+  brushBack(vol = 1) {
+    if (this._mute) return;
+    const ac  = this._ctx();
+    const now = ac.currentTime;
+    const osc = ac.createOscillator();
+    osc.type  = 'triangle';
+    osc.frequency.setValueAtTime(380, now);
+    osc.frequency.exponentialRampToValueAtTime(120, now + 0.1);
+    const env = ac.createGain();
+    env.gain.setValueAtTime(0.13 * vol, now);
+    env.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+    osc.connect(env);
+    this._out(env, 0.6);
+    osc.start(now); osc.stop(now + 0.15);
+    const src = this._noise(0.09);
+    const bpf = ac.createBiquadFilter();
+    bpf.type  = 'bandpass'; bpf.frequency.value = 3800; bpf.Q.value = 1.2;
+    const nEnv = ac.createGain();
+    nEnv.gain.setValueAtTime(0,            now);
+    nEnv.gain.linearRampToValueAtTime(0.025 * vol, now + 0.01);
+    nEnv.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+    src.connect(bpf); bpf.connect(nEnv);
+    this._out(nEnv, 0.4);
+    src.start(now);
+  }
+}
+
+const sfx = new InkborneSFX();
+
+const _origNavigate = navigate;
+window.navigate = function(id) {
+  if (id !== currentPage && !inkAnimating) {
+    sfx.inkDiffuse(0.72);
+  }
+  return _origNavigate(id);
+};
+
+/* ─── THEME TOGGLE ─── */
+function toggleTheme(mode) {
+  const root = document.documentElement;
+  if (mode === 'light') {
+    root.classList.add('light-mode');
+  } else {
+    root.classList.remove('light-mode');
+  }
+}
+
+if (gViewport) {
+  gViewport.addEventListener('click', () => {
+    if (gHovered === 'sun') {
+      sfx.stellarWarp(0.8);
+      toggleTheme('light');
+    } else if (gHovered !== -1) {
+      sfx.stellarWarp(0.8);
+      const p = planets[gHovered];
+      if (p.page === 'moon') {
+        toggleTheme('dark');
+      } else {
+        navigate(p.page);
+      }
+    }
+  });
+}
+
+function wireSFX() {
+  document.querySelectorAll('.btn-seal').forEach(el => {
+    el.addEventListener('click', () => sfx.stellarWarp(0.25));
+  });
+  document.querySelectorAll('.btn-ghost').forEach(el => {
+    el.addEventListener('click', () => sfx.stellarWarp(0.25));
+  });
+  document.querySelectorAll('.back-btn').forEach(el => {
+    el.addEventListener('click', () => sfx.stellarWarp(0.25));
+  });
+  const navLogo = document.querySelector('.nav-logo');
+  if(navLogo) navLogo.addEventListener('click', () => sfx.stellarWarp(0.25));
+  const bgmBtnElement = document.getElementById('bgm-btn');
+  if(bgmBtnElement) bgmBtnElement.addEventListener('click', () => sfx.stellarWarp(0.25));
+  
+  document.querySelectorAll(
+    '.skill-card, .work-card, .video-card, .nav-links li a, .portal-card'
+  ).forEach(el => {
+    el.addEventListener('mouseenter', () => sfx.parchment(0.9));
+  });
+  document.querySelectorAll('.btn-seal, .btn-ghost, .back-btn').forEach(el => {
+    el.addEventListener('mouseenter', () => sfx.parchment(0.7));
+  });
+  if (gViewport) {
+    gViewport.addEventListener('mouseenter', () => sfx.parchment(0.5));
+  }
+}
+
+wireSFX();
+const _sfxPatchedNavigate = window.navigate;
+window.navigate = function(id) {
+  const result = _sfxPatchedNavigate(id);
+  setTimeout(wireSFX, 900);
+  return result;
+};
+</script>
+
+<div id="game-modal" onclick="if(event.target === this) closeGameModal()">
+  <div class="game-modal-content">
+    <button class="game-modal-close" onclick="closeGameModal()">×</button>
+    <div class="game-modal-video">
+      <video id="modal-vid" autoplay loop muted playsinline preload="none">
+        <source id="modal-video-source" src="" type="video/mp4">
+      </video>
+    </div>
+    <div class="game-modal-body">
+      <h2 id="modal-title" class="game-modal-title"></h2>
+      <div id="modal-award" class="game-modal-award">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18,2H6A2,2 0 0,0 4,4V7A6,6 0 0,0 10,13V16H5V22H19V16H14V13A6,6 0 0,0 20,7V4A2,2 0 0,0 18,2M6,4H8V11A4,4 0 0,1 6,7V4M18,7A4,4 0 0,1 16,11V4H18V7Z"/></svg>
+        <span id="modal-award-text"></span>
+      </div>
+      <div class="game-modal-info-grid">
+        <div class="info-col">
+          <p class="info-col-label">Roles & Production</p>
+          <div id="modal-roles" class="info-col-list"></div>
+        </div>
+        <div class="info-col">
+          <p class="info-col-label">Software & Language</p>
+          <div id="modal-software" class="info-col-list"></div>
+        </div>
+      </div>
+      <p id="modal-desc" class="game-modal-desc"></p>
+      
+      <p class="modal-gallery-label">// chronicles of the world</p>
+      <div id="modal-gallery" class="modal-gallery"></div>
+
+      <a id="modal-itch" href="#" target="_blank" class="btn-itch" style="margin-top:24px">
+        <svg style="width:16px;height:16px" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2C11.53,2 11.08,2.15 10.74,2.41L2.25,9.2C1.91,9.47 1.71,9.88 1.71,10.31V21C1.71,21.55 2.16,22 2.71,22H21.29C21.84,22 22.29,21.55 22.29,21V10.31C22.29,9.88 22.09,9.47 21.75,9.2L13.26,2.41C12.92,2.15 12.47,2 12,2M12,4.03L19.29,9.84V19.97H4.71V9.84L12,4.03M7,11.5V13.5H9V11.5H7M15,11.5V13.5H17V11.5H15M11,14.5V16.5H13V14.5H11Z"/></svg>
+        Visit Itch.io Page
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="art-modal" onclick="if(event.target === this) closeArtModal()">
+  <div class="game-modal-content">
+    <button class="game-modal-close" onclick="closeArtModal()">×</button>
+    <div class="game-modal-video" id="art-modal-media">
+      <!-- Media dynamically injected here -->
+    </div>
+    <div class="game-modal-body">
+      <h2 id="art-modal-title" class="game-modal-title"></h2>
+      <div class="game-modal-info-grid">
+        <div class="info-col">
+          <p class="info-col-label">Roles & Production</p>
+          <div id="art-modal-roles" class="info-col-list"></div>
+        </div>
+        <div class="info-col">
+          <p class="info-col-label">Software</p>
+          <div id="art-modal-software" class="info-col-list"></div>
+        </div>
+      </div>
+      <p id="art-modal-desc" class="game-modal-desc"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─── GAME MODAL LOGIC ─── */
+function openGameModal(el) {
+  const modal = document.getElementById('game-modal');
+  const vid = document.getElementById('modal-vid');
+  const src = document.getElementById('modal-video-source');
+  const gallery = document.getElementById('modal-gallery');
+  
+  const data = el.dataset;
+  
+  document.getElementById('modal-title').textContent = data.title;
+  document.getElementById('modal-desc').textContent = data.desc;
+  document.getElementById('modal-itch').href = data.link;
+
+  // Roles & Software Formatting
+  document.getElementById('modal-roles').innerHTML = data.role.split(',').map(r => `<div>• ${r.trim()}</div>`).join('');
+  document.getElementById('modal-software').innerHTML = data.software.split(',').map(s => `<div>• ${s.trim()}</div>`).join('');
+
+  // Awards logic
+  const awardBox = document.getElementById('modal-award');
+  if (data.award && data.award !== "null") {
+    awardBox.style.display = 'flex';
+    document.getElementById('modal-award-text').textContent = data.award;
+  } else {
+    awardBox.style.display = 'none';
+  }
+  
+  // Handle video
+  src.src = data.video;
+  vid.load();
+  vid.play().catch(e => console.log("Auto-play blocked or video missing"));
+  
+  // Handle gallery
+  gallery.innerHTML = "";
+  if (data.screenshots) {
+    const list = data.screenshots.split(',');
+    const basePath = `Assets/Game hub/PopUp Window/${data.title}/ScreenShots/`;
+    
+    list.forEach(imgName => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'gallery-img-wrapper';
+      const img = document.createElement('img');
+      img.src = basePath + imgName.trim();
+      img.alt = "Screenshot";
+      img.loading = "lazy";
+      wrapper.appendChild(img);
+      gallery.appendChild(wrapper);
+    });
+  }
+  
+  modal.classList.add('visible');
+  if (window.sfx) sfx.waxSeal(0.85);
+}
+
+function closeGameModal() {
+  const modal = document.getElementById('game-modal');
+  const vid = document.getElementById('modal-vid');
+  const src = document.getElementById('modal-video-source');
+  const gallery = document.getElementById('modal-gallery');
+  
+  modal.classList.remove('visible');
+  vid.pause();
+  src.src = "";
+  setTimeout(() => { gallery.innerHTML = ""; }, 400); // clear after fade
+  if (window.sfx) sfx.brushBack(0.9);
+}
+
+/* ─── ART MODAL LOGIC ─── */
+function openArtModal(el) {
+  const modal = document.getElementById('art-modal');
+  const mediaContainer = document.getElementById('art-modal-media');
+  
+  const data = el.dataset;
+  
+  document.getElementById('art-modal-title').textContent = data.title;
+  document.getElementById('art-modal-desc').textContent = data.desc;
+  
+  document.getElementById('art-modal-roles').innerHTML = data.role.split(',').map(r => `<div>• ${r.trim()}</div>`).join('');
+  document.getElementById('art-modal-software').innerHTML = data.software.split(',').map(s => `<div>• ${s.trim()}</div>`).join('');
+  
+  // Handle media
+  mediaContainer.innerHTML = "";
+  if (data.mediaType === "video") {
+    const vid = document.createElement('video');
+    vid.autoplay = true;
+    vid.loop = true;
+    vid.muted = true;
+    vid.playsInline = true;
+    const src = document.createElement('source');
+    src.src = data.mediaSrc;
+    src.type = 'video/mp4';
+    vid.appendChild(src);
+    mediaContainer.appendChild(vid);
+    vid.play().catch(e => console.log("Auto-play blocked"));
+  } else {
+    const img = document.createElement('img');
+    img.src = data.mediaSrc;
+    img.alt = data.title;
+    mediaContainer.appendChild(img);
+  }
+  
+  modal.classList.add('visible');
+  if (window.sfx) sfx.waxSeal(0.85);
+}
+
+function closeArtModal() {
+  const modal = document.getElementById('art-modal');
+  const mediaContainer = document.getElementById('art-modal-media');
+  
+  modal.classList.remove('visible');
+  setTimeout(() => { mediaContainer.innerHTML = ""; }, 400); // clear after fade
+  if (window.sfx) sfx.brushBack(0.9);
+}
+
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const gameModal = document.getElementById('game-modal');
+    if (gameModal && gameModal.classList.contains('visible')) closeGameModal();
+    const artModal = document.getElementById('art-modal');
+    if (artModal && artModal.classList.contains('visible')) closeArtModal();
+  }
+});
+</script>
+</body>
 </html>
