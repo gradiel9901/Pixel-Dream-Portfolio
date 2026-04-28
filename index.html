@@ -70,11 +70,20 @@ body, #nav, .work-card, .skill-card, .portal-card, .video-card, .btn-seal, .btn-
 
 /* ═══ RESET ═══ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;font-size:16px}
+html{scroll-behavior:smooth;font-size:16px;scrollbar-width:thin;scrollbar-color:var(--vermillion) transparent}
 body{background:var(--ink-void);color:var(--parchment);font-family:var(--font-body);font-weight:400;overflow-x:hidden;min-height:100vh;cursor:none}
 img,video{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit}
+
+/* ═══ CUSTOM SCROLLBAR — GLOBAL ═══ */
+*{scrollbar-width:thin;scrollbar-color:rgba(196,52,45,0.35) transparent}
+*::-webkit-scrollbar{width:6px;height:6px}
+*::-webkit-scrollbar-track{background:transparent}
+*::-webkit-scrollbar-thumb{background:rgba(196,52,45,0.3);border-radius:10px;border:1px solid transparent;background-clip:content-box;transition:background .3s}
+*::-webkit-scrollbar-thumb:hover{background:rgba(196,52,45,0.6)}
+*::-webkit-scrollbar-thumb:active{background:var(--vermillion)}
+*::-webkit-scrollbar-corner{background:transparent}
 
 /* ═══ CUSTOM CURSOR ═══ */
 #brush-cursor{position:fixed;width:6px;height:6px;background:var(--vermillion);border-radius:50%;pointer-events:none;z-index:11000;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:transform .1s,background .3s}
@@ -125,9 +134,10 @@ button{font-family:inherit}
 /* ═══ PAGE SYSTEM ═══ */
 .page{position:fixed;inset:0;z-index:10;overflow-y:auto;overflow-x:hidden;opacity:0;pointer-events:none;visibility:hidden;transition:opacity 0s;will-change:opacity}
 .page.active{opacity:1;pointer-events:auto;visibility:visible;transition:opacity .7s var(--ease-ink)}
-.page::-webkit-scrollbar{width:4px}
-.page::-webkit-scrollbar-track{background:transparent}
-.page::-webkit-scrollbar-thumb{background:var(--vermillion-dim);border-radius:2px}
+.page::-webkit-scrollbar{width:5px}
+.page::-webkit-scrollbar-track{background:rgba(13,5,5,0.4)}
+.page::-webkit-scrollbar-thumb{background:linear-gradient(180deg,rgba(196,52,45,0.5),rgba(184,150,12,0.25));border-radius:10px}
+.page::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,rgba(196,52,45,0.8),rgba(184,150,12,0.45))}
 
 /* ═══ HOME — HERO ═══ */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 10vw;overflow:hidden}
@@ -207,7 +217,7 @@ button{font-family:inherit}
 .galaxy-tooltip-name{font-family:var(--font-display);font-size:1.1rem;font-weight:500;color:var(--parchment);margin-bottom:4px}
 .galaxy-tooltip-desc{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.2em;color:var(--vermillion);text-transform:uppercase}
 .galaxy-click-hint{font-family:var(--font-mono);font-size:.5rem;letter-spacing:.15em;color:var(--parchment-muted);text-transform:uppercase;margin-top:6px}
-.galaxy-instruction-overlay{position:absolute;top:50%;left:10%;transform:translateY(-50%);display:flex;align-items:center;gap:12px;opacity:0;animation:fadeIn 1.5s ease forwards 2.5s;pointer-events:none;z-index:5}
+.galaxy-instruction-overlay{position:absolute;top:50%;left:-5%;transform:translateY(-50%);display:flex;align-items:center;gap:12px;opacity:0;animation:fadeIn 1.5s ease forwards 2.5s;pointer-events:none;z-index:5}
 .galaxy-instruction-overlay p{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.15em;color:var(--parchment-muted);text-transform:uppercase}
 .galaxy-instruction-overlay svg{width:24px;height:24px;animation:pointArrow 1.5s infinite alternate}
 @keyframes pointArrow{from{transform:translateX(0)}to{transform:translateX(8px)}}
@@ -260,21 +270,26 @@ button{font-family:inherit}
 .footer{border-top:1px solid var(--parchment-line);padding:40px 10vw;display:flex;justify-content:space-between;align-items:center}
 
 /* ═══ PROJECT POPUP MODALS ═══ */
-#game-modal, #art-modal {
+#game-modal, #art-modal, #web-modal {
   position: fixed; inset: 0; z-index: 10000;
   background: rgba(13, 5, 5, 0.85); backdrop-filter: blur(8px);
   display: flex; align-items: center; justify-content: center;
   opacity: 0; pointer-events: none; transition: opacity 0.4s var(--ease-ink);
   will-change: opacity;
 }
-#game-modal.visible, #art-modal.visible { opacity: 1; pointer-events: auto; }
+#game-modal.visible, #art-modal.visible, #web-modal.visible { opacity: 1; pointer-events: auto; }
 .game-modal-content {
   background: var(--surface-bg); border: 1px solid var(--parchment-line);
   width: 90%; max-width: 800px; max-height: 90vh;
   overflow-y: auto; position: relative;
   transform: translateY(20px); transition: transform 0.4s var(--ease-brush);
+  scrollbar-width:thin;scrollbar-color:rgba(196,52,45,0.35) rgba(13,5,5,0.5);
 }
-#game-modal.visible .game-modal-content, #art-modal.visible .game-modal-content { transform: translateY(0); }
+.game-modal-content::-webkit-scrollbar{width:5px}
+.game-modal-content::-webkit-scrollbar-track{background:rgba(13,5,5,0.5);border-radius:0 0 0 0}
+.game-modal-content::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--vermillion),rgba(196,52,45,0.3));border-radius:10px}
+.game-modal-content::-webkit-scrollbar-thumb:hover{background:var(--vermillion)}
+#game-modal.visible .game-modal-content, #art-modal.visible .game-modal-content, #web-modal.visible .game-modal-content { transform: translateY(0); }
 .game-modal-close {
   position: absolute; top: 16px; right: 16px;
   background: rgba(13, 5, 5, 0.7); border: 1px solid var(--vermillion);
@@ -319,10 +334,12 @@ button{font-family:inherit}
 .modal-gallery-label { font-family: var(--font-mono); font-size: 0.55rem; color: var(--vermillion); text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.2em; }
 .modal-gallery {
   display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px;
-  cursor: grab; scrollbar-width: thin; scrollbar-color: var(--vermillion-dim) transparent;
+  cursor: grab; scrollbar-width: thin; scrollbar-color: rgba(196,52,45,0.35) transparent;
 }
 .modal-gallery::-webkit-scrollbar { height: 4px; }
-.modal-gallery::-webkit-scrollbar-thumb { background: var(--vermillion-dim); border-radius: 2px; }
+.modal-gallery::-webkit-scrollbar-track { background: rgba(196,52,45,0.05); border-radius: 10px; }
+.modal-gallery::-webkit-scrollbar-thumb { background: rgba(196,52,45,0.4); border-radius: 10px; }
+.modal-gallery::-webkit-scrollbar-thumb:hover { background: var(--vermillion); }
 .gallery-img-wrapper { flex: 0 0 auto; height: 160px; border: 1px solid var(--parchment-line); overflow: hidden; }
 .gallery-img-wrapper img { height: 100%; width: auto; transition: transform 0.4s var(--ease-brush); }
 .gallery-img-wrapper:hover img { transform: scale(1.05); }
@@ -492,6 +509,113 @@ button{font-family:inherit}
   to   { transform: scaleY(1.15); }
 }
 
+/* ═══ QUICK NAV — ESCAPE HATCH ═══ */
+#quick-nav {
+  position: fixed;
+  top: 28px;
+  right: 28px;
+  z-index: 160;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+  pointer-events: auto;
+}
+#quick-nav-trigger {
+  font-family: var(--font-mono);
+  font-size: .58rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--parchment-muted);
+  opacity: .45;
+  background: rgba(13,5,5,0.5);
+  border: 1px solid rgba(244,232,209,0.08);
+  cursor: pointer;
+  padding: 6px 12px;
+  transition: opacity .4s, color .3s, border-color .3s, background .3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+#quick-nav-trigger:hover, #quick-nav:hover #quick-nav-trigger {
+  opacity: 1;
+  color: var(--vermillion);
+  border-color: rgba(196,52,45,.35);
+  background: rgba(13,5,5,0.8);
+}
+#quick-nav-trigger .qn-icon {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2.5px;
+  width: 12px;
+}
+#quick-nav-trigger .qn-icon span {
+  display: block;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 1px;
+  transition: transform .3s, width .3s;
+}
+#quick-nav-trigger .qn-icon span:nth-child(1) { width: 12px; }
+#quick-nav-trigger .qn-icon span:nth-child(2) { width: 8px; }
+#quick-nav-trigger .qn-icon span:nth-child(3) { width: 10px; }
+#quick-nav:hover #quick-nav-trigger .qn-icon span { width: 12px; }
+.quick-nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height .45s var(--ease-brush), opacity .35s var(--ease-ink), transform .35s var(--ease-ink);
+  pointer-events: none;
+  margin-top: 4px;
+}
+#quick-nav:hover .quick-nav-links,
+#quick-nav.open .quick-nav-links {
+  max-height: 220px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.qnl {
+  font-family: var(--font-mono);
+  font-size: .55rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--parchment-muted);
+  background: rgba(13,5,5,0.6);
+  border: 1px solid rgba(244,232,209,0.06);
+  border-top: none;
+  cursor: pointer;
+  padding: 8px 14px;
+  text-align: right;
+  opacity: .7;
+  transition: opacity .25s, color .25s, background .25s, border-color .25s;
+  white-space: nowrap;
+  width: 100%;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.qnl:first-child { border-top: 1px solid rgba(244,232,209,0.06); }
+.qnl::before {
+  content: '— ';
+  opacity: .3;
+  transition: opacity .25s;
+}
+.qnl:hover {
+  opacity: 1;
+  color: var(--vermillion);
+  background: rgba(196,52,45,0.08);
+  border-color: rgba(196,52,45,.2);
+}
+.qnl:hover::before { opacity: .7; }
+
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:900px){
   body{cursor:auto}
@@ -514,6 +638,8 @@ button{font-family:inherit}
   .footer{padding:30px 24px;flex-direction:column;gap:12px;text-align:center}
   #bgm-btn{bottom:20px;left:20px;width:42px;height:42px}
   #bgm-volume-wrap{bottom:74px;left:14px}
+  #quick-nav{top:18px;right:18px}
+  #quick-nav-trigger{font-size:.52rem;padding:5px 10px}
 }
 </style>
 </head>
@@ -966,7 +1092,14 @@ button{font-family:inherit}
     <div class="work-section">
       <svg class="brush-divider" viewBox="0 0 600 20" preserveAspectRatio="none"><path d="M0,10 Q50,4 100,10 T200,10 T300,10 T400,10 T500,10 T600,10" stroke-width="2"/></svg>
       <div class="work-grid">
-        <div class="work-card" onclick="window.open('https://gradiel9901.github.io/Cat-in-a-Box/', '_blank')">
+        <div class="work-card" onclick="openWebModal(this)"
+             data-title="Cat In A Box"
+             data-tags="HTML, CSS, JavaScript"
+             data-purpose="A fully functional café e-commerce website built as an academic project to demonstrate front-end web development mastery — from responsive layout design to dynamic cart management and order processing."
+             data-desc="Cat In A Box is a charming, fully responsive café website featuring a glassmorphism-inspired UI with warm, inviting aesthetics. The site includes a complete product catalog with categorized menu items, a dynamic shopping cart system with real-time price calculation, order form validation, and a cozy visual design that reflects the café's personality. Every interaction — from browsing the menu to placing an order — was crafted to feel intuitive and delightful."
+             data-tech="HTML was chosen as the structural backbone for its semantic clarity and accessibility. CSS was used extensively with modern techniques like glassmorphism, CSS Grid, and Flexbox to create the warm, layered visual design without relying on any framework — proving that vanilla CSS can produce premium aesthetics. JavaScript powers all interactivity: the dynamic cart system, real-time total calculations, form validation, and smooth UI transitions — demonstrating that complex functionality doesn't require heavy libraries."
+             data-link="https://gradiel9901.github.io/Cat-in-a-Box/"
+             data-img="assets/Web Development/Cat In A Box.png">
           <div class="work-card-media"><img src="assets/Web Development/Cat In A Box.png" alt="Cat In A Box" loading="lazy"></div>
           <div class="work-card-body">
             <div class="work-card-tag">HTML · CSS · JavaScript</div>
@@ -974,7 +1107,14 @@ button{font-family:inherit}
             <div class="work-card-sub">A charming café website with e-commerce functionality, order management, and a cozy glassmorphism design.</div>
           </div>
         </div>
-        <div class="work-card" onclick="window.open('https://gradiel9901.github.io/Kinetix/', '_blank')">
+        <div class="work-card" onclick="openWebModal(this)"
+             data-title="Kinetix"
+             data-tags="ReactJS, MongoDB, Express.js, Node.js"
+             data-purpose="A full-stack fitness tracking web application developed to showcase proficiency in the MERN stack — building a complete data-driven platform from database design to interactive front-end dashboards."
+             data-desc="Kinetix is a comprehensive fitness tracking application that empowers users to monitor their workout routines, track calorie intake, and visualize their progress over time. The platform features personalized user profiles, workout logging with exercise categorization, calorie monitoring with nutritional breakdowns, progress analytics with visual charts, and a responsive dashboard that adapts seamlessly across devices. The UI was designed with a dark, energetic aesthetic that motivates users to stay engaged with their fitness goals."
+             data-tech="ReactJS was chosen for the front-end for its component-based architecture — perfect for building reusable UI elements like workout cards, progress charts, and form components that update in real-time without page reloads. MongoDB was selected as the database for its flexible document schema, which naturally fits the varied structure of workout data, meal logs, and user profiles without rigid table constraints. Express.js and Node.js complete the MERN stack, providing a lightweight, JavaScript-native backend that simplifies API development and keeps the entire codebase in one language."
+             data-link="https://gradiel9901.github.io/Kinetix/"
+             data-img="assets/Web Development/Kinetix.png">
           <div class="work-card-media"><img src="assets/Web Development/Kinetix.png" alt="Kinetix" loading="lazy"></div>
           <div class="work-card-body">
             <div class="work-card-tag">ReactJS · MongoDB</div>
@@ -982,7 +1122,14 @@ button{font-family:inherit}
             <div class="work-card-sub">A fitness tracking application with personalized workout analytics, calorie monitoring, and profile customization.</div>
           </div>
         </div>
-        <div class="work-card" onclick="window.open('https://gradiel9901.github.io/Locus/#', '_blank')">
+        <div class="work-card" onclick="openWebModal(this)"
+             data-title="Locus"
+             data-tags="PHP, MySQL, HTML, CSS, JavaScript"
+             data-purpose="A server-side web application built to demonstrate full-stack development with traditional LAMP stack technologies — implementing user authentication, database-driven content, and interactive mapping features."
+             data-desc="Locus is a location-based service platform that connects users with venues, events, and local experiences. The platform features interactive map integration for exploring nearby locations, a booking management system with availability tracking, real-time search with filtering capabilities, user authentication with session management, and a clean, professional interface designed for ease of use. The admin panel allows venue owners to manage their listings, track bookings, and update availability in real time."
+             data-tech="PHP was chosen as the server-side language for its native integration with web servers and MySQL — making it ideal for building dynamic, database-driven pages with server-side rendering. MySQL provides the relational database backbone, perfectly suited for the structured data relationships between users, venues, bookings, and reviews — where data integrity and complex queries are essential. HTML and CSS deliver the front-end structure and styling, while JavaScript handles client-side interactivity like the map interface, search filtering, and form validation without requiring a full SPA framework."
+             data-link="https://gradiel9901.github.io/Locus/#"
+             data-img="assets/Web Development/Locus.png">
           <div class="work-card-media"><img src="assets/Web Development/Locus.png" alt="Locus" loading="lazy"></div>
           <div class="work-card-body">
             <div class="work-card-tag">PHP · MySQL · HTML</div>
@@ -1020,6 +1167,22 @@ button{font-family:inherit}
 <div id="bgm-volume-wrap">
   <span id="bgm-volume-label">Vol</span>
   <input type="range" id="bgm-volume" min="0" max="1" step="0.01" value="0.6" aria-label="Volume">
+</div>
+
+<!-- ═══════════════════════════════════════
+     QUICK NAV — ESCAPE HATCH
+═══════════════════════════════════════ -->
+<div id="quick-nav" role="navigation" aria-label="Quick section access">
+  <button id="quick-nav-trigger" aria-expanded="false" aria-controls="quick-nav-list">
+    <span class="qn-icon"><span></span><span></span><span></span></span>
+    jump to projects
+  </button>
+  <div class="quick-nav-links" id="quick-nav-list">
+    <button class="qnl" id="qnl-games"  onclick="navigate('games')">Game Development</button>
+    <button class="qnl" id="qnl-3d"     onclick="navigate('3d')">3D Modeling</button>
+    <button class="qnl" id="qnl-vfx"    onclick="navigate('vfx')">Visual Effects</button>
+    <button class="qnl" id="qnl-web"    onclick="navigate('web')">Web Development</button>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════
@@ -2301,6 +2464,34 @@ window.navigate = function(id) {
   </div>
 </div>
 
+<div id="web-modal" onclick="if(event.target === this) closeWebModal()">
+  <div class="game-modal-content">
+    <button class="game-modal-close" onclick="closeWebModal()">×</button>
+    <div class="game-modal-video" id="web-modal-media">
+      <!-- Image dynamically injected here -->
+    </div>
+    <div class="game-modal-body">
+      <h2 id="web-modal-title" class="game-modal-title"></h2>
+      <div id="web-modal-tags" class="game-modal-tags"></div>
+      <div class="game-modal-info-grid">
+        <div class="info-col" style="grid-column:1/-1">
+          <p class="info-col-label">// Purpose</p>
+          <div id="web-modal-purpose" class="info-col-list" style="line-height:1.7"></div>
+        </div>
+      </div>
+      <p id="web-modal-desc" class="game-modal-desc"></p>
+      <div style="margin-bottom:32px">
+        <p class="info-col-label" style="margin-bottom:12px">// Why These Technologies</p>
+        <p id="web-modal-tech" style="font-size:0.9rem;line-height:1.8;color:var(--parchment-muted);border-bottom:1px solid var(--parchment-line);padding-bottom:32px"></p>
+      </div>
+      <a id="web-modal-link" href="#" target="_blank" class="btn-itch">
+        <svg style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Visit Live Site
+      </a>
+    </div>
+  </div>
+</div>
+
 <script>
 /* ─── GAME MODAL LOGIC ─── */
 function openGameModal(el) {
@@ -2415,12 +2606,51 @@ function closeArtModal() {
   if (window.sfx) sfx.brushBack(0.9);
 }
 
+/* ─── WEB MODAL LOGIC ─── */
+function openWebModal(el) {
+  const modal = document.getElementById('web-modal');
+  const mediaContainer = document.getElementById('web-modal-media');
+  const data = el.dataset;
+
+  document.getElementById('web-modal-title').textContent = data.title;
+  document.getElementById('web-modal-purpose').textContent = data.purpose;
+  document.getElementById('web-modal-desc').textContent = data.desc;
+  document.getElementById('web-modal-tech').textContent = data.tech;
+  document.getElementById('web-modal-link').href = data.link;
+
+  // Tags
+  const tagsContainer = document.getElementById('web-modal-tags');
+  tagsContainer.innerHTML = data.tags.split(',').map(t => `<span>${t.trim()}</span>`).join('');
+
+  // Image
+  mediaContainer.innerHTML = '';
+  if (data.img) {
+    const img = document.createElement('img');
+    img.src = data.img;
+    img.alt = data.title;
+    mediaContainer.appendChild(img);
+  }
+
+  modal.classList.add('visible');
+  if (window.sfx) sfx.waxSeal(0.85);
+}
+
+function closeWebModal() {
+  const modal = document.getElementById('web-modal');
+  const mediaContainer = document.getElementById('web-modal-media');
+  modal.classList.remove('visible');
+  setTimeout(() => { mediaContainer.innerHTML = ''; }, 400);
+  if (window.sfx) sfx.brushBack(0.9);
+}
+
 window.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     const gameModal = document.getElementById('game-modal');
     if (gameModal && gameModal.classList.contains('visible')) closeGameModal();
     const artModal = document.getElementById('art-modal');
     if (artModal && artModal.classList.contains('visible')) closeArtModal();
+    const webModal = document.getElementById('web-modal');
+    if (webModal && webModal.classList.contains('visible')) closeWebModal();
   }
 });
 </script>
