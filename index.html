@@ -1,1420 +1,2911 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JM Bautista — Pixel Dream</title>
-<meta name="description" content="JM Bautista — Game Developer, 3D Artist & Digital Craftsman. A interactive canvas of worlds built, dimensions carved, and stories inscribed in code.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' fill='none'%3E%3Ccircle cx='25' cy='25' r='20' fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='50' y2='50'%3E%3Cstop stop-color='%2300f2fe'/%3E%3Cstop offset='1' stop-color='%234facfe'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M25 12L31 20L25 28L19 20Z' fill='white' opacity='0.9'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel-Dream | JM Bautista — Game Dev, 3D Artist & Web Designer</title>
+    <meta name="description" content="Portfolio of JM Bautista — Game Developer, 3D Artist & Animator, and Web Programmer & Designer. Inspired by the pixel worlds of classic Pokémon on Game Boy Advance.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo-icon.png">
+    <link rel="apple-touch-icon" href="assets/logo-icon.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-<style>
-/* ═══ PIXEL DREAM DESIGN TOKENS (LIQUID GLASS) ═══ */
-:root {
-  /* Dynamic Mesh Background */
-  --bg-gradient: radial-gradient(circle at 15% 15%, rgba(127, 0, 255, 0.28), transparent 45%),
-                 radial-gradient(circle at 85% 20%, rgba(0, 242, 254, 0.25), transparent 45%),
-                 radial-gradient(circle at 50% 60%, rgba(255, 8, 68, 0.18), transparent 50%),
-                 radial-gradient(circle at 80% 85%, rgba(79, 172, 254, 0.22), transparent 45%),
-                 linear-gradient(135deg, #eef2f5 0%, #e6ebf1 50%, #dbe3ed 100%);
-  
-  /* Glass Surfaces */
-  --glass-bg: rgba(255, 255, 255, 0.45);
-  --glass-bg-hover: rgba(255, 255, 255, 0.65);
-  --glass-border: rgba(255, 255, 255, 0.65);
-  --glass-border-light: rgba(255, 255, 255, 0.9);
-  --glass-shadow: 0 20px 40px rgba(31, 38, 135, 0.07), 0 2px 6px rgba(255, 255, 255, 0.6) inset;
-  --glass-blur: blur(28px) saturate(190%);
-  
-  /* Text & Palette */
-  --text-primary: #1d1d1f;
-  --text-muted: rgba(29, 29, 31, 0.65);
-  --text-ghost: rgba(29, 29, 31, 0.4);
-  --accent-cyan: #00c6ff;
-  --accent-purple: #7f00ff;
-  --accent-pink: #ff0844;
-  --accent-blue: #007aff;
-  --accent-gradient: linear-gradient(135deg, #007aff, #7f00ff);
-  
-  /* Typography & Curves */
-  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  
-  --squircle-lg: 32px;
-  --squircle-md: 20px;
-  --squircle-sm: 12px;
-  --squircle-pill: 9999px;
+    <style>
+        /* ==========================================================================
+           CLEAR LIQUID GLASS DESIGN VARIABLES
+           ========================================================================== */
+        :root[data-theme="light"] {
+            --bg-color: #e4ebf3;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --accent: #4f46e5;
+            --accent-glow: rgba(79, 70, 229, 0.35);
+            --accent-secondary: #0891b2;
+            
+            /* Clear Liquid Glass - Light Theme */
+            --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.25) 100%);
+            --modal-glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 246, 252, 0.92) 100%);
+            --glass-border: rgba(255, 255, 255, 0.85);
+            --glass-shadow: 0 12px 36px 0 rgba(79, 70, 229, 0.08), inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.05);
+            --glass-hover-shadow: 0 18px 45px 0 rgba(79, 70, 229, 0.16), inset 0 2px 1px 0 rgba(255, 255, 255, 1);
+            --glass-pressed-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 1px 1px 0 rgba(255, 255, 255, 0.5);
+            --input-glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 100%);
+        }
 
-  /* Spring Animations */
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-  
-  --tooltip-bg: rgba(255, 255, 255, 0.75);
-}
+        :root[data-theme="dark"] {
+            --bg-color: #0d1117;
+            --text-color: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.45);
+            --accent-secondary: #06b6d4;
+            
+            /* Clear Liquid Glass - Dark Theme */
+            --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            --modal-glass-bg: linear-gradient(135deg, rgba(16, 22, 30, 0.95) 0%, rgba(22, 30, 42, 0.92) 100%);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.5), inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.4);
+            --glass-hover-shadow: 0 18px 45px 0 rgba(99, 102, 241, 0.25), inset 0 2px 1px 0 rgba(255, 255, 255, 0.4);
+            --glass-pressed-shadow: inset 4px 4px 10px 0 rgba(0, 0, 0, 0.6), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+            --input-glass-bg: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+        }
 
-:root.dark-mode {
-  --bg-gradient: radial-gradient(circle at 20% 20%, rgba(127, 0, 255, 0.35), transparent 50%),
-                 radial-gradient(circle at 80% 15%, rgba(0, 242, 254, 0.28), transparent 50%),
-                 radial-gradient(circle at 50% 75%, rgba(255, 8, 68, 0.22), transparent 50%),
-                 linear-gradient(135deg, #0b0d17 0%, #121526 50%, #080910 100%);
-  
-  --glass-bg: rgba(20, 23, 40, 0.52);
-  --glass-bg-hover: rgba(30, 35, 60, 0.68);
-  --glass-border: rgba(255, 255, 255, 0.14);
-  --glass-border-light: rgba(255, 255, 255, 0.28);
-  --glass-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  
-  --text-primary: #f5f5f7;
-  --text-muted: rgba(245, 245, 247, 0.68);
-  --text-ghost: rgba(245, 245, 247, 0.42);
-  --tooltip-bg: rgba(18, 21, 38, 0.85);
-}
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
 
-/* ═══ RESET & BASE ═══ */
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; font-size:16px; scrollbar-width:thin; scrollbar-color:rgba(0,122,255,0.4) transparent; }
-body {
-  background: var(--bg-gradient);
-  background-attachment: fixed;
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  font-weight: 400;
-  overflow-x: hidden;
-  min-height: 100vh;
-  cursor: none;
-  -webkit-font-smoothing: antialiased;
-}
-img, video { max-width:100%; display:block; }
-a { text-decoration:none; color:inherit; }
-button { font-family:inherit; border:none; background:none; outline:none; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.6;
+            position: relative;
+        }
 
-/* ═══ CUSTOM SCROLLBAR ═══ */
-*::-webkit-scrollbar { width:8px; height:8px; }
-*::-webkit-scrollbar-track { background:transparent; }
-*::-webkit-scrollbar-thumb {
-  background: rgba(127, 0, 255, 0.25);
-  border-radius: var(--squircle-pill);
-  border: 2px solid transparent;
-  background-clip: content-box;
-  transition: background .3s;
-}
-*::-webkit-scrollbar-thumb:hover { background: rgba(0, 122, 255, 0.5); }
+        /* Ambient Background Canvas */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.65;
+        }
 
-/* ═══ GLASS REFRACTIVE ORB CURSOR ═══ */
-#glass-cursor {
-  position: fixed; width: 10px; height: 10px;
-  background: #007aff; border-radius: 50%;
-  pointer-events: none; z-index: 11000;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 15px rgba(0,122,255,0.8);
-  transition: transform .1s, background .3s;
-}
-#glass-ring {
-  position: fixed; width: 38px; height: 38px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-  border: 1px solid var(--glass-border-light);
-  border-radius: 50%; pointer-events: none; z-index: 10999;
-  transform: translate(-50%, -50%);
-  transition: transform .15s ease, width .3s var(--ease-spring), height .3s var(--ease-spring), background .3s;
-  box-shadow: var(--glass-shadow);
-}
+        h1, h2, h3, h4, .brand-text {
+            font-family: 'Space Grotesk', sans-serif;
+        }
 
-/* ═══ BACKGROUND MESH & LIQUID CANVAS ═══ */
-#ambient-canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
-#bg-blur-overlay { position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.7; }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-/* ═══ LIQUID GLASS PANEL MATERIAL ═══ */
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--squircle-lg);
-}
+        .svg-icon {
+            width: 1.25em;
+            height: 1.25em;
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
 
-.glass-panel::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, var(--glass-border-light), transparent 60%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
+        /* ==========================================================================
+           INTENSIFIED LIQUID GLASS CONTAINER SYSTEM (.glass)
+           ========================================================================== */
+        .glass, .neu-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 20px;
+            backdrop-filter: url(#lg);
+            -webkit-backdrop-filter: url(#lg);
+            position: relative;
+        }
 
-/* Specular Shimmer Effect */
-.glass-shimmer::after {
-  content: '';
-  position: absolute;
-  top: -50%; left: -50%; width: 200%; height: 200%;
-  background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.15) 50%, transparent 55%);
-  transform: rotate(30deg) translateY(-100%);
-  transition: transform 0.8s var(--ease-smooth);
-  pointer-events: none;
-}
-.glass-shimmer:hover::after {
-  transform: rotate(30deg) translateY(100%);
-}
+        .neu-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 14px;
+            padding: 12px 24px;
+            color: var(--text-color);
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            user-select: none;
+            backdrop-filter: url(#lg);
+            -webkit-backdrop-filter: url(#lg);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-/* ═══ LIQUID GLASS TRANSITION CANVAS ═══ */
-#liquid-transition { position:fixed; inset:0; z-index:500; pointer-events:none; filter: url(#liquid-glass); }
+        .neu-btn:hover {
+            box-shadow: var(--glass-hover-shadow);
+            color: var(--accent);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
 
-/* ═══ NAVIGATION ═══ */
-#nav {
-  position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-  z-index: 150; display: flex; align-items: center; justify-content: space-between;
-  width: calc(100% - 80px); max-width: 1200px;
-  padding: 14px 28px; border-radius: var(--squircle-pill);
-  background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow);
-  transition: all 0.4s var(--ease-smooth);
-}
-#nav.scrolled {
-  top: 12px; padding: 10px 24px; width: calc(100% - 40px);
-  background: var(--glass-bg-hover);
-}
+        .neu-btn:active, .neu-btn.active {
+            box-shadow: var(--glass-pressed-shadow);
+            color: var(--accent);
+            transform: translateY(0);
+        }
 
-.nav-logo { display:flex; align-items:center; gap:10px; cursor:pointer; }
-.nav-logo svg { width:28px; height:28px; transition:transform 0.4s var(--ease-spring); }
-.nav-logo:hover svg { transform: scale(1.15) rotate(10deg); }
-.nav-logo-text { font-family:var(--font-display); font-size:1.15rem; font-weight:700; letter-spacing:-0.02em; color:var(--text-primary); }
+        .neu-icon-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            cursor: pointer;
+            color: var(--text-color);
+            backdrop-filter: url(#lg);
+            -webkit-backdrop-filter: url(#lg);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-.nav-links { display:flex; gap:8px; list-style:none; }
-.nav-links li a {
-  font-family: var(--font-body); font-size: 0.85rem; font-weight: 500;
-  color: var(--text-muted); padding: 8px 18px; border-radius: var(--squircle-pill);
-  transition: all 0.3s var(--ease-spring); position: relative; cursor: pointer;
-}
-.nav-links li a:hover, .nav-links li a.active {
-  color: var(--text-primary); background: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-.dark-mode .nav-links li a:hover, .dark-mode .nav-links li a.active {
-  background: rgba(255, 255, 255, 0.12);
-}
+        .neu-icon-btn:hover {
+            box-shadow: var(--glass-hover-shadow);
+            color: var(--accent);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
 
-/* Mobile Menu */
-.burger { display:none; background:none; border:none; cursor:pointer; padding:4px; z-index:110; }
-.burger span { display:block; width:22px; height:2px; background:var(--text-primary); margin:4px 0; transition:transform .3s, opacity .3s; border-radius:2px; }
-.burger.open span:nth-child(1) { transform:rotate(45deg) translate(4px,4px); }
-.burger.open span:nth-child(2) { opacity:0; }
-.burger.open span:nth-child(3) { transform:rotate(-45deg) translate(4px,-4px); }
-.mobile-menu {
-  position:fixed; inset:0; z-index:99; background:var(--glass-bg); backdrop-filter:blur(40px); -webkit-backdrop-filter:blur(40px);
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px;
-  opacity:0; pointer-events:none; transition:opacity .4s var(--ease-smooth);
-}
-.mobile-menu.open { opacity:1; pointer-events:auto; }
-.mobile-menu a { font-family:var(--font-display); font-size:1.8rem; font-weight:600; color:var(--text-primary); }
+        .neu-icon-btn:active, .neu-icon-btn.active {
+            box-shadow: var(--glass-pressed-shadow);
+            color: var(--accent);
+            transform: translateY(0);
+        }
 
-/* ═══ PAGE SYSTEM ═══ */
-.page { position:fixed; inset:0; z-index:10; overflow-y:auto; overflow-x:hidden; opacity:0; pointer-events:none; visibility:hidden; transition:opacity 0s; will-change:opacity, transform; }
-.page.active { opacity:1; pointer-events:auto; visibility:visible; transition:opacity 0.6s var(--ease-smooth); }
+        /* ==========================================================================
+           LARGE CIRCULAR AVAILABILITY CLOCK ORB
+           ========================================================================== */
+        .clock-orb-wrapper {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+        }
 
-/* ═══ HOME — HERO ═══ */
-.hero { position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:120px 10vw 60px; }
-.hero-eyebrow {
-  font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500;
-  letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-blue);
-  margin-bottom: 20px; opacity: 0; transform: translateY(20px);
-  animation: springUp 0.9s var(--ease-spring) forwards 0.2s;
-}
-.hero-name {
-  font-family: var(--font-display); font-size: clamp(3.8rem, 8.5vw, 7.5rem);
-  font-weight: 800; line-height: 1.02; letter-spacing: -0.03em; margin-bottom: 20px;
-  opacity: 0; transform: translateY(30px); animation: springUp 1s var(--ease-spring) forwards 0.4s;
-}
-.hero-name em {
-  font-style: normal; background: var(--accent-gradient);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block;
-}
-.hero-title {
-  font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  font-weight: 500; color: var(--text-muted); margin-bottom: 28px;
-  opacity: 0; transform: translateY(20px); animation: springUp 0.9s var(--ease-spring) forwards 0.6s;
-}
-.hero-desc {
-  font-size: 1.1rem; line-height: 1.7; color: var(--text-muted); max-width: 520px; margin-bottom: 40px;
-  opacity: 0; transform: translateY(20px); animation: springUp 0.9s var(--ease-spring) forwards 0.8s;
-}
-.hero-cta { display:flex; gap:16px; flex-wrap:wrap; opacity:0; animation:springUp 0.9s var(--ease-spring) forwards 1s; z-index:20; }
+        .clock-orb {
+            width: 100%;
+            padding: 32px 24px;
+            border-radius: 28px;
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
+            box-shadow: var(--glass-shadow), 0 0 40px rgba(99, 102, 241, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.6s ease;
+        }
 
-/* Apple-style Glass Buttons */
-.btn-glass {
-  font-family: var(--font-body); font-size: 0.9rem; font-weight: 600;
-  padding: 14px 32px; border-radius: var(--squircle-pill); cursor: pointer;
-  background: var(--accent-gradient); color: #ffffff;
-  box-shadow: 0 10px 25px rgba(0, 122, 255, 0.35);
-  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-smooth);
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-}
-.btn-glass:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 15px 30px rgba(0, 122, 255, 0.5); }
-.btn-glass:active { transform: scale(0.96); }
+        /* Animated glow ring */
+        .clock-orb::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 28px;
+            padding: 3px;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                var(--clock-glow, var(--accent)) 25%,
+                transparent 50%,
+                var(--clock-glow, var(--accent)) 75%,
+                transparent 100%
+            );
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.35;
+            animation: clockRingSpin 8s linear infinite;
+        }
 
-.btn-ghost-glass {
-  font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
-  padding: 14px 32px; border-radius: var(--squircle-pill); cursor: pointer;
-  background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border); color: var(--text-primary);
-  box-shadow: var(--glass-shadow); transition: all 0.3s var(--ease-spring);
-}
-.btn-ghost-glass:hover { transform: scale(1.04) translateY(-2px); background: var(--glass-bg-hover); }
-.btn-ghost-glass:active { transform: scale(0.96); }
+        .clock-orb.awake {
+            --clock-glow: #22c55e;
+            box-shadow: var(--glass-shadow), 0 0 50px rgba(34, 197, 94, 0.12);
+        }
 
-/* Scroll Hint */
-.scroll-hint { position:absolute; bottom:30px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; opacity:0; animation:fadeIn 1s ease forwards 1.8s; }
-.scroll-hint span { font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.2em; color:var(--text-ghost); text-transform:uppercase; }
-.scroll-line { width:2px; height:36px; background:linear-gradient(to bottom, var(--accent-cyan), transparent); border-radius:2px; animation:scrollPulse 2s infinite; }
+        .clock-orb.asleep {
+            --clock-glow: #f59e0b;
+            box-shadow: var(--glass-shadow), 0 0 50px rgba(245, 158, 11, 0.12);
+        }
 
-/* ═══ SECTIONS ═══ */
-.section-label { font-family:var(--font-mono); font-size:0.7rem; font-weight:500; letter-spacing:0.2em; color:var(--accent-blue); text-transform:uppercase; margin-bottom:16px; }
+        .clock-orb.asleep::before {
+            animation-duration: 16s;
+            opacity: 0.2;
+        }
 
-/* ═══ STORY ═══ */
-.story-section { padding: 120px 10vw; }
-.story-grid { display:grid; grid-template-columns: 1.2fr 0.8fr; gap:60px; align-items:center; }
-.story-text h2 { font-family:var(--font-display); font-size:clamp(2.2rem, 4vw, 3.2rem); font-weight:700; letter-spacing:-0.02em; margin-bottom:24px; line-height:1.15; }
-.story-text h2 em { font-style:normal; background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.story-text p { font-size:1.05rem; line-height:1.8; color:var(--text-muted); margin-bottom:18px; }
+        @keyframes clockRingSpin {
+            to { transform: rotate(360deg); }
+        }
 
-/* Liquid Prism Diagram replacing Seal Diagram */
-.seal-diagram { width:280px; height:280px; position:relative; margin:0 auto; }
-.glass-orb-wrapper { width:100%; height:100%; position:relative; display:flex; align-items:center; justify-content:center; }
-.glass-ring-1 { position:absolute; inset:0; border-radius:50%; border:1.5px solid rgba(0,122,255,0.3); animation:slowSpin 25s linear infinite; }
-.glass-ring-2 { position:absolute; inset:25px; border-radius:50%; border:1.5px dashed rgba(127,0,255,0.3); animation:slowSpin 18s linear infinite reverse; }
-.seal-center {
-  width:100px; height:100px; border-radius:50%; background:var(--glass-bg);
-  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-  border:1px solid var(--glass-border-light); box-shadow:0 0 40px rgba(0,242,254,0.4);
-  animation:pulseOrb 4s ease-in-out infinite alternate;
-}
+        .clock-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
 
-/* ═══ SKILLS ═══ */
-.skills-section { padding:60px 10vw 120px; }
-.skills-section h2 { font-family:var(--font-display); font-size:clamp(2rem, 3.5vw, 2.8rem); font-weight:700; margin-bottom:12px; }
-.skills-intro { font-size:1rem; color:var(--text-muted); max-width:500px; line-height:1.7; margin-bottom:48px; }
-.skills-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
-.skill-card { padding:32px 28px; transition:transform 0.4s var(--ease-spring), background 0.4s, box-shadow 0.4s; }
-.skill-card:hover { transform:translateY(-8px) scale(1.02); background:var(--glass-bg-hover); box-shadow:0 25px 45px rgba(0,122,255,0.15); }
-.skill-card-icon { width:36px; height:36px; margin-bottom:20px; }
-.skill-card-label { font-family:var(--font-mono); font-size:0.65rem; letter-spacing:0.15em; color:var(--accent-blue); text-transform:uppercase; margin-bottom:8px; }
-.skill-card-name { font-family:var(--font-display); font-size:1.35rem; font-weight:600; margin-bottom:16px; }
-.skill-tags { display:flex; flex-wrap:wrap; gap:8px; }
-.skill-tag {
-  font-family:var(--font-mono); font-size:0.7rem; font-weight:500; padding:5px 12px;
-  border-radius:var(--squircle-pill); background:rgba(255,255,255,0.4); border:1px solid var(--glass-border);
-  color:var(--text-primary); backdrop-filter:blur(8px);
-}
-.dark-mode .skill-tag { background:rgba(255,255,255,0.08); }
+        .clock-time-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0;
+            line-height: 1;
+        }
 
-/* ═══ GALAXY MAP (LIQUID GLASS ORB MAP) ═══ */
-.galaxy-viewport { position:absolute; right:2vw; top:50%; transform:translateY(-50%); width:50%; height:80%; min-height:550px; overflow:hidden; z-index:2; border-radius:var(--squircle-lg); }
-.galaxy-viewport.inner-mode { width:45vw; max-width:480px; height:420px; top:50%; right:5vw; }
-#galaxy-canvas { display:block; width:100%; height:100%; filter: url(#liquid-glass-subtle); }
-.galaxy-tooltip { position:absolute; pointer-events:none; opacity:0; transition:opacity .25s var(--ease-smooth); z-index:10; transform:translate(-50%,-120%); }
-.galaxy-tooltip.visible { opacity:1; }
-.galaxy-tooltip-inner {
-  background: var(--tooltip-bg); border: 1px solid var(--glass-border-light);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  padding: 12px 20px; border-radius: var(--squircle-md); box-shadow: var(--glass-shadow); text-align: center;
-}
-.galaxy-tooltip-name { font-family:var(--font-display); font-size:1.05rem; font-weight:600; color:var(--text-primary); }
-.galaxy-tooltip-desc { font-family:var(--font-mono); font-size:0.65rem; color:var(--accent-blue); text-transform:uppercase; margin-top:2px; }
-.galaxy-click-hint { font-family:var(--font-mono); font-size:0.6rem; color:var(--text-ghost); text-transform:uppercase; margin-top:6px; }
+        .clock-digits {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            letter-spacing: 2px;
+            font-variant-numeric: tabular-nums;
+        }
 
-/* ═══ CONTACT ═══ */
-.contact-section { padding:100px 10vw; display:grid; grid-template-columns:1fr 1.1fr; gap:60px; align-items:start; }
-.contact-left h3 { font-family:var(--font-display); font-size:clamp(1.8rem, 3vw, 2.6rem); font-weight:700; margin-bottom:16px; }
-.contact-left h3 em { font-style:normal; background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.contact-left p { font-size:1rem; color:var(--text-muted); line-height:1.7; max-width:420px; }
-.contact-form { display:flex; flex-direction:column; gap:20px; }
-.form-field { position:relative; }
-.form-field input, .form-field textarea {
-  width:100%; background:var(--glass-bg); backdrop-filter:var(--glass-blur); -webkit-backdrop-filter:var(--glass-blur);
-  border:1px solid var(--glass-border); border-radius:var(--squircle-md); color:var(--text-primary);
-  font-family:var(--font-body); font-size:0.95rem; padding:16px 20px; outline:none;
-  transition:border-color .3s, box-shadow .3s, background .3s;
-}
-.form-field textarea { resize:vertical; min-height:130px; }
-.form-field input:focus, .form-field textarea:focus { border-color:var(--accent-blue); box-shadow:0 0 20px rgba(0,122,255,0.25); background:var(--glass-bg-hover); }
-.form-field label { position:absolute; top:-10px; left:16px; font-family:var(--font-mono); font-size:0.65rem; font-weight:500; text-transform:uppercase; color:var(--accent-blue); background:var(--glass-bg); padding:2px 8px; border-radius:var(--squircle-pill); border:1px solid var(--glass-border); }
+        .clock-colon {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            animation: colonBlink 1s steps(1) infinite;
+            margin: 0 2px;
+        }
 
-/* ═══ INNER PAGES ═══ */
-.inner-hero { min-height:30vh; display:flex; flex-direction:column; justify-content:flex-end; padding:120px 10vw 40px; position:relative; }
-.inner-eyebrow { font-family:var(--font-mono); font-size:0.75rem; letter-spacing:0.15em; color:var(--accent-blue); text-transform:uppercase; margin-bottom:12px; }
-.inner-title { font-family:var(--font-display); font-size:clamp(2.8rem, 6vw, 5rem); font-weight:800; letter-spacing:-0.02em; line-height:1; margin-bottom:16px; }
-.inner-sub { font-size:1.05rem; color:var(--text-muted); max-width:540px; line-height:1.7; }
-.back-btn { font-family:var(--font-body); font-size:0.8rem; font-weight:600; color:var(--text-muted); display:inline-flex; align-items:center; gap:8px; cursor:pointer; padding:8px 16px; border-radius:var(--squircle-pill); background:var(--glass-bg); border:1px solid var(--glass-border); transition:all 0.3s var(--ease-spring); margin-bottom:32px; }
-.back-btn:hover { color:var(--text-primary); transform:translateX(-4px); background:var(--glass-bg-hover); }
+        @keyframes colonBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
 
-/* ═══ WORK GRID & CARDS ═══ */
-.work-section { padding:0 10vw 120px; }
-.work-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:24px; }
-.work-card {
-  position:relative; overflow:hidden; transition:all 0.4s var(--ease-spring);
-  cursor:pointer; display:flex; flex-direction:column; height:100%; border-radius:var(--squircle-lg);
-}
-.work-card:hover { transform:translateY(-10px) scale(1.02); box-shadow:0 30px 60px rgba(0,0,0,0.12); }
-.work-card-media { width:100%; height:230px; overflow:hidden; position:relative; }
-.work-card-media img, .work-card-media video { width:100%; height:100%; object-fit:cover; transition:transform 0.6s var(--ease-smooth); }
-.work-card:hover .work-card-media img, .work-card:hover .work-card-media video { transform:scale(1.08); }
-.work-card-body { padding:24px; flex-grow:1; display:flex; flex-direction:column; }
-.work-card-tag { font-family:var(--font-mono); font-size:0.65rem; font-weight:500; color:var(--accent-blue); text-transform:uppercase; margin-bottom:8px; }
-.work-card-title { font-family:var(--font-display); font-size:1.35rem; font-weight:700; margin-bottom:8px; }
-.work-card-sub { font-size:0.9rem; color:var(--text-muted); line-height:1.6; }
+        .clock-ampm {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-top: 2px;
+            letter-spacing: 1px;
+        }
 
-/* Video Card */
-.video-card { position:relative; overflow:hidden; border-radius:var(--squircle-lg); aspect-ratio:16/9; transition:transform 0.4s var(--ease-spring); }
-.video-card:hover { transform:translateY(-8px) scale(1.02); }
-.video-card video { width:100%; height:100%; object-fit:cover; }
-.video-card-info { position:absolute; bottom:0; left:0; right:0; padding:24px; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent); color:#fff; }
-.video-card-info .work-card-tag { color:var(--accent-cyan); }
+        .clock-status {
+            margin-top: 12px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 200px;
+            line-height: 1.45;
+        }
 
-/* ═══ FOOTER ═══ */
-.footer { border-top:1px solid var(--glass-border); padding:40px 10vw; display:flex; justify-between:space-between; align-items:center; }
-.footer-left { font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); }
-.footer-mark { font-family:var(--font-display); font-size:1rem; font-weight:700; background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .clock-status .status-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            margin-right: 5px;
+            vertical-align: middle;
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+        }
 
-/* ═══ PROJECT POPUP MODALS ═══ */
-#game-modal, #art-modal, #web-modal {
-  position: fixed; inset: 0; z-index: 10000;
-  background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none; transition: opacity 0.4s var(--ease-smooth);
-}
-#game-modal.visible, #art-modal.visible, #web-modal.visible { opacity: 1; pointer-events: auto; }
+        .clock-orb.awake .status-dot {
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+        }
 
-.game-modal-content {
-  width: 90%; max-width: 840px; max-height: 88vh;
-  overflow-y: auto; position: relative; border-radius: var(--squircle-lg);
-  transform: scale(0.9) translateY(30px); transition: transform 0.5s var(--ease-spring);
-  filter: url(#liquid-glass-subtle);
-}
-#game-modal.visible .game-modal-content, #art-modal.visible .game-modal-content, #web-modal.visible .game-modal-content {
-  transform: scale(1) translateY(0);
-}
+        .clock-orb.asleep .status-dot {
+            background: #f59e0b;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+        }
 
-.game-modal-close {
-  position: absolute; top: 18px; right: 18px; z-index: 10;
-  width: 36px; height: 36px; border-radius: 50%;
-  background: var(--glass-bg); border: 1px solid var(--glass-border-light);
-  color: var(--text-primary); font-size: 1.2rem; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: transform 0.3s var(--ease-spring), background 0.3s;
-}
-.game-modal-close:hover { transform: scale(1.15) rotate(90deg); background: var(--glass-bg-hover); }
+        .clock-tz {
+            margin-top: 10px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
 
-.game-modal-video { width: 100%; background: #000; display: flex; align-items: center; justify-content: center; max-height: 60vh; overflow: hidden; }
-.game-modal-video video, .game-modal-video img { width: 100%; height: auto; max-height: 60vh; object-fit: contain; }
-.game-modal-body { padding: 36px; }
-.game-modal-title { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 12px; }
-.game-modal-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
-.game-modal-tags span { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; padding: 4px 12px; border-radius: var(--squircle-pill); background: rgba(0,122,255,0.12); color: var(--accent-blue); border: 1px solid rgba(0,122,255,0.25); }
+        @media (max-width: 640px) {
+            .clock-orb {
+                padding: 24px 18px;
+            }
+            .clock-digits, .clock-colon {
+                font-size: 3rem;
+            }
+            .clock-ampm {
+                font-size: 1.1rem;
+            }
+        }
 
-.game-modal-award {
-  display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: var(--squircle-md);
-  background: rgba(255, 215, 0, 0.15); border: 1px solid rgba(255, 215, 0, 0.4); color: #d4af37;
-  font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; margin-bottom: 24px;
-}
-.game-modal-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
-.info-col-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
-.info-col-list { font-size: 0.9rem; color: var(--text-primary); line-height: 1.6; }
-.game-modal-desc { font-size: 1rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 28px; border-bottom: 1px solid var(--glass-border); padding-bottom: 28px; }
+        .neu-input {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 14px;
+            background: var(--input-glass-bg);
+            box-shadow: var(--glass-pressed-shadow);
+            border: 1px solid var(--glass-border);
+            color: var(--text-color);
+            font-family: inherit;
+            outline: none;
+        }
 
-/* Screenshots Gallery */
-.modal-gallery-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 14px; font-weight: 600; }
-.modal-gallery { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 12px; }
-.gallery-img-wrapper { flex: 0 0 auto; height: 150px; border-radius: var(--squircle-md); overflow: hidden; border: 1px solid var(--glass-border); }
-.gallery-img-wrapper img { height: 100%; width: auto; transition: transform 0.4s var(--ease-smooth); }
-.gallery-img-wrapper:hover img { transform: scale(1.08); }
+        .neu-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
 
-/* ═══ BGM & QUICK NAV CONTROL WIDGETS ═══ */
-#bgm-btn {
-  position: fixed; bottom: 30px; left: 30px; z-index: 200;
-  width: 50px; height: 50px; border-radius: 50%;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: transform 0.3s var(--ease-spring), background 0.3s;
-}
-#bgm-btn:hover { transform: scale(1.12); }
-#bgm-btn.playing { box-shadow: 0 0 25px rgba(0, 122, 255, 0.5); }
+        .neu-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-.bgm-bars { display:none; align-items:flex-end; gap:3px; height:18px; }
-#bgm-btn.playing .bgm-icon { display:none; }
-#bgm-btn.playing .bgm-bars { display:flex; }
-.bgm-bar { width:3px; background:var(--accent-blue); border-radius:3px; transform-origin:bottom; }
-.bgm-bar:nth-child(1){ height:8px; animation: bgmBeat .75s ease infinite alternate 0s; }
-.bgm-bar:nth-child(2){ height:14px; animation: bgmBeat .75s ease infinite alternate .12s; }
-.bgm-bar:nth-child(3){ height:18px; animation: bgmBeat .75s ease infinite alternate .24s; }
-.bgm-bar:nth-child(4){ height:12px; animation: bgmBeat .75s ease infinite alternate .36s; }
+        /* ==========================================================================
+           CUSTOM NEUMORPHIC LIQUID GLASS VIDEO PLAYER CONTROLS
+           ========================================================================== */
+        .custom-video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #000;
+        }
 
-#bgm-volume-wrap {
-  position: fixed; bottom: 90px; left: 38px; z-index: 200;
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  padding: 12px 8px; border-radius: var(--squircle-pill);
-  opacity: 0; transform: translateY(10px); transition: all 0.35s var(--ease-spring); pointer-events: none;
-}
-#bgm-volume-wrap.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-#bgm-volume { -webkit-appearance: none; appearance: none; writing-mode: vertical-lr; direction: rtl; width: 4px; height: 70px; background: var(--glass-border); border-radius: 2px; outline: none; }
-#bgm-volume::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-blue); cursor: pointer; }
+        .custom-video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
 
-#quick-nav { position: fixed; top: 24px; right: 30px; z-index: 160; display: flex; flex-direction: column; align-items: flex-end; }
-#quick-nav-trigger {
-  font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500; text-transform: uppercase;
-  color: var(--text-muted); padding: 8px 16px; border-radius: var(--squircle-pill);
-  cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s var(--ease-spring);
-}
-#quick-nav-trigger:hover { color: var(--text-primary); transform: scale(1.05); }
-.quick-nav-links { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; opacity: 0; transform: translateY(-10px); transition: all 0.35s var(--ease-spring); pointer-events: none; }
-#quick-nav:hover .quick-nav-links, #quick-nav.open .quick-nav-links { opacity: 1; transform: translateY(0); pointer-events: auto; }
-.qnl { font-family: var(--font-body); font-size: 0.75rem; font-weight: 500; padding: 8px 16px; border-radius: var(--squircle-pill); color: var(--text-muted); cursor: pointer; transition: all 0.25s var(--ease-spring); text-align: right; }
-.qnl:hover { color: var(--text-primary); background: var(--glass-bg-hover); transform: translateX(-4px); }
+        .video-controls-bar {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 24px);
+            max-width: 760px;
+            padding: 8px 16px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: url(#lg);
+            -webkit-backdrop-filter: url(#lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 25;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: auto;
+        }
 
-/* Keyframes */
-@keyframes springUp { to { opacity:1; transform:translateY(0); } }
-@keyframes fadeIn { to { opacity:1; } }
-@keyframes scrollPulse { 0%,100%{ opacity:0.3; transform:scaleY(0.8); } 50%{ opacity:1; transform:scaleY(1); } }
-@keyframes slowSpin { from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
-@keyframes pulseOrb { 0%{ transform:scale(0.95); box-shadow:0 0 30px rgba(0,242,254,0.3); } 100%{ transform:scale(1.05); box-shadow:0 0 60px rgba(127,0,255,0.5); } }
-@keyframes bgmBeat { from{ transform:scaleY(0.3); } to{ transform:scaleY(1.1); } }
+        .custom-video-wrapper:hover .video-controls-bar,
+        .custom-video-wrapper.paused .video-controls-bar,
+        .custom-video-wrapper.show-controls .video-controls-bar {
+            opacity: 1;
+        }
 
-/* Responsive */
-@media (max-width: 900px) {
-  body { cursor: auto; }
-  #glass-cursor, #glass-ring { display: none; }
-  #nav { width: calc(100% - 32px); padding: 10px 18px; }
-  .nav-links { display: none; }
-  .burger { display: block; }
-  .hero-name { font-size: clamp(3rem, 10vw, 4.8rem); }
-  .galaxy-viewport { position: relative; width: 100%; height: 50vh; right: 0; top: 0; transform: none; margin-top: 30px; }
-  .galaxy-viewport.inner-mode { display: none; }
-  .story-grid { grid-template-columns: 1fr; gap: 40px; }
-  .seal-diagram { display: none; }
-  .contact-section { grid-template-columns: 1fr; padding: 60px 20px; }
-  .inner-hero { padding: 100px 20px 30px; }
-  .work-section { padding: 0 20px 60px; }
-  .footer { flex-direction: column; gap: 12px; text-align: center; }
-}
-</style>
+        .v-btn {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            cursor: pointer;
+            color: var(--text-color);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .v-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            box-shadow: var(--glass-hover-shadow);
+            transform: translateY(-1px) scale(1.05);
+        }
+
+        .v-btn:active {
+            box-shadow: var(--glass-pressed-shadow);
+            transform: translateY(0) scale(0.98);
+        }
+
+        .v-time {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            white-space: nowrap;
+            font-family: 'Space Grotesk', sans-serif;
+            user-select: none;
+        }
+
+        .v-progress-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .v-progress-bar {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--input-glass-bg);
+            box-shadow: var(--glass-pressed-shadow);
+            border-radius: 6px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .v-progress-bar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow), var(--glass-shadow);
+            border: 1.5px solid #fff;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .v-progress-bar::-webkit-slider-thumb:hover {
+            transform: scale(1.3);
+        }
+
+        /* Big Overlay Play/Pause Button on Video Click */
+        .v-overlay-play {
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: url(#lg);
+            -webkit-backdrop-filter: url(#lg);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            transform: scale(0.7);
+            z-index: 20;
+        }
+
+        .custom-video-wrapper.paused .v-overlay-play {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .custom-video-wrapper.paused:hover .v-overlay-play {
+            transform: scale(1.1);
+        }
+
+        /* ==========================================================================
+           HEADER & NAVIGATION
+           ========================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 5%;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            border-radius: 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-color);
+            cursor: pointer;
+            user-select: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .brand:hover {
+            opacity: 0.9;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            padding: 5px;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+        }
+
+        .brand:hover .brand-icon {
+            transform: scale(1.08) rotate(3deg);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .brand-icon .brand-logo-img,
+        .brand-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .brand-icon .svg-icon {
+            width: 1.5em;
+            height: 1.5em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-link {
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-color);
+        }
+
+        .nav-link.active {
+            box-shadow: var(--glass-pressed-shadow);
+            color: var(--accent);
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* ==========================================================================
+           PAGE TRANSITIONS & HERO SECTION
+           ========================================================================== */
+        main {
+            max-width: 1300px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+            min-height: calc(100vh - 200px);
+            position: relative;
+        }
+
+        .page-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(25px) scale(0.985);
+            transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+
+        .page-section.active-display {
+            display: block;
+        }
+
+        .page-section.in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Staggered Entrance Animations */
+        .page-section.in-view .portfolio-card,
+        .page-section.in-view .skill-card,
+        .page-section.in-view .contact-container > * {
+            animation: staggerIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        @keyframes staggerIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .portfolio-grid > div:nth-child(1), .skill-grid > div:nth-child(1) { animation-delay: 0.05s !important; }
+        .portfolio-grid > div:nth-child(2), .skill-grid > div:nth-child(2) { animation-delay: 0.12s !important; }
+        .portfolio-grid > div:nth-child(3), .skill-grid > div:nth-child(3) { animation-delay: 0.19s !important; }
+        .portfolio-grid > div:nth-child(4), .skill-grid > div:nth-child(4) { animation-delay: 0.26s !important; }
+
+        .section-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* Hero Layout & Interactive Glass Card */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            padding: 40px 0;
+            perspective: 1000px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Interactive Canvas Container with 3D Tilt */
+        .canvas-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out;
+            cursor: crosshair;
+        }
+
+        #heroCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Interactive Overlay Pills inside Hero Canvas */
+        .canvas-overlay-ui {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .canvas-pill {
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 16px;
+            cursor: pointer;
+            user-select: none;
+            color: var(--text-color);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.2s ease;
+        }
+
+        .canvas-pill:hover, .canvas-pill.active {
+            color: var(--accent);
+            border-color: var(--accent);
+            box-shadow: var(--glass-hover-shadow);
+        }
+
+        .canvas-hint-tag {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--glass-bg);
+            padding: 4px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 60px;
+        }
+
+        .skill-card {
+            padding: 24px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--glass-hover-shadow);
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            color: var(--accent);
+        }
+
+        .skill-icon .svg-icon {
+            width: 1.6em;
+            height: 1.6em;
+        }
+
+        /* Portfolio Grids */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-card {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--glass-hover-shadow);
+        }
+
+        .card-preview {
+            height: 220px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--glass-pressed-shadow);
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .card-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Dynamic Video Autoplay & Hover Switch CSS */
+        .card-preview.has-video {
+            position: relative;
+        }
+
+        .card-preview.has-video .preview-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            transition: opacity 0.35s ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .card-preview.has-video .preview-thumb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.35s ease-in-out;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* When user hovers card: Video fades out & static image thumbnail fades in */
+        .portfolio-card:hover .card-preview.has-video .preview-video {
+            opacity: 0;
+        }
+
+        .portfolio-card:hover .card-preview.has-video .preview-thumb {
+            opacity: 1;
+        }
+
+        .card-preview-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--text-muted);
+            background: linear-gradient(135deg, rgba(79,70,229,0.08) 0%, rgba(8,145,178,0.04) 100%);
+        }
+
+        .card-preview-placeholder .svg-icon {
+            width: 3.5em;
+            height: 3.5em;
+            color: var(--accent);
+        }
+
+        .card-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .card-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 15px;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-form {
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* ==========================================================================
+           MODAL SYSTEM WITH SLIDESHOW / CAROUSEL CONTROLS
+           ========================================================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.78);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content.glass {
+            background: var(--modal-glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.4);
+            border-radius: 24px;
+            backdrop-filter: url(#lg);
+            -webkit-backdrop-filter: url(#lg);
+            max-width: 840px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 32px;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            z-index: 30;
+        }
+
+        /* Carousel Slideshow Outer Wrapper */
+        .slideshow-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-pressed-shadow);
+            background: rgba(0, 0, 0, 0.25);
+            margin-bottom: 24px;
+        }
+
+        /* Slide Items Track */
+        .slides-track {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: scale(0.97);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-item.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        .slide-media {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: rgba(0, 0, 0, 0.4);
+            display: block;
+        }
+
+        /* Slideshow Arrow Navigation Buttons */
+        .slide-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 30;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: url(#lg);
+            -webkit-backdrop-filter: url(#lg);
+            transition: all 0.2s ease;
+        }
+
+        .slide-nav-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            box-shadow: var(--glass-hover-shadow);
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .slide-nav-btn.prev { left: 14px; }
+        .slide-nav-btn.next { right: 14px; }
+
+        /* Slideshow Dot Indicators */
+        .slideshow-dots {
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 30;
+            display: flex;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: url(#lg);
+        }
+
+        .dot-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .dot-indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .dot-indicator.active {
+            width: 24px;
+            border-radius: 10px;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .modal-header-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            background: var(--glass-bg);
+        }
+
+        .modal-header-fallback .svg-icon {
+            width: 4.5em;
+            height: 4.5em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        @media (max-width: 900px) {
+            .hero, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: flex !important;
+            }
+            .nav-links.mobile-open {
+                display: flex;
+                position: absolute;
+                top: 80px;
+                left: 5%;
+                width: 90%;
+                flex-direction: column;
+                gap: 6px;
+                padding: 14px;
+                border-radius: 20px;
+                z-index: 100;
+                background: var(--modal-glass-bg);
+                border: 1px solid var(--glass-border);
+                box-shadow: var(--glass-shadow);
+                backdrop-filter: url(#lg);
+                -webkit-backdrop-filter: url(#lg);
+            }
+            .nav-links.mobile-open .nav-link {
+                padding: 14px 18px;
+                border-radius: 12px;
+                width: 100%;
+            }
+            .slideshow-container {
+                height: 250px;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        /* ==========================================================================
+           CUSTOM LIQUID GLASS TOAST NOTIFICATION
+           ========================================================================== */
+        .toast-container {
+            position: fixed;
+            top: 28px;
+            right: 28px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            pointer-events: none;
+        }
+
+        .toast {
+            pointer-events: auto;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            min-width: 280px;
+            max-width: 360px;
+            padding: 16px 18px;
+            border-radius: 18px;
+            background: var(--modal-glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: url(#lg);
+            -webkit-backdrop-filter: url(#lg);
+            transform: translateX(120%) scale(0.95);
+            opacity: 0;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .toast.show {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+        }
+
+        .toast.hide {
+            transform: translateX(120%) scale(0.95);
+            opacity: 0;
+        }
+
+        .toast-icon {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent);
+            box-shadow: 0 0 16px var(--accent-glow);
+        }
+
+        .toast.toast-error .toast-icon {
+            background: #e11d48;
+            box-shadow: 0 0 16px rgba(225, 29, 72, 0.45);
+        }
+
+        .toast-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: white;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .toast-body {
+            flex: 1;
+            padding-top: 2px;
+        }
+
+        .toast-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            margin-bottom: 2px;
+        }
+
+        .toast-message {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .toast-close {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-muted);
+            background: transparent;
+            border: none;
+            font-size: 1rem;
+            line-height: 1;
+            transition: color 0.2s ease, background 0.2s ease;
+        }
+
+        .toast-close:hover {
+            color: var(--text-color);
+            background: rgba(128, 128, 128, 0.15);
+        }
+
+        .toast-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background: var(--accent);
+            transform-origin: left;
+            animation: toast-shrink linear forwards;
+        }
+
+        .toast.toast-error .toast-progress {
+            background: #e11d48;
+        }
+
+        @keyframes toast-shrink {
+            from { transform: scaleX(1); }
+            to { transform: scaleX(0); }
+        }
+
+        @media (max-width: 640px) {
+            .toast-container {
+                top: auto;
+                bottom: 20px;
+                right: 16px;
+                left: 16px;
+            }
+            .toast {
+                min-width: 0;
+                max-width: none;
+                width: 100%;
+                transform: translateY(120%) scale(0.95);
+            }
+            .toast.show {
+                transform: translateY(0) scale(1);
+            }
+            .toast.hide {
+                transform: translateY(120%) scale(0.95);
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- SVG LIQUID GLASS DISPLACEMENT FILTER -->
-<svg style="position:absolute; width:0; height:0; pointer-events:none;" aria-hidden="true">
-  <defs>
-    <filter id="liquid-glass" x="-20%" y="-20%" width="140%" height="140%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.008" numOctaves="2" seed="2" result="noise" />
-      <feGaussianBlur in="noise" stdDeviation="2" result="blurredNoise" />
-      <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="35" xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-    <filter id="liquid-glass-subtle" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.012" numOctaves="1" seed="5" result="noise" />
-      <feGaussianBlur in="noise" stdDeviation="1" result="blurredNoise" />
-      <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="14" xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-  </defs>
-</svg>
+    <!-- Dynamic Subtle Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
 
-<!-- Glass Orb Cursor -->
-<div id="glass-cursor"></div>
-<div id="glass-ring"></div>
+    <div class="toast-container" id="toastContainer"></div>
 
-<!-- Liquid Glass Transition Overlay -->
-<canvas id="liquid-transition"></canvas>
+    <!-- ==========================================================================
+       SVG LIQUID GLASS DISPLACEMENT FILTER & SYMBOL ICON LIBRARY
+       ========================================================================== -->
+    <svg width="0" height="0" style="position: absolute; pointer-events: none;">
+        <defs>
+            <filter id="lg" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" result="n" />
+                <feDisplacementMap in="SourceGraphic" in2="n" scale="38" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
 
-<!-- Background Mesh Layer -->
-<div id="bg-blur-overlay"></div>
-
-<!-- NAVIGATION -->
-<nav id="nav">
-  <div class="nav-logo" onclick="navigate('home')">
-    <svg viewBox="0 0 50 50" fill="none">
-      <circle cx="25" cy="25" r="20" fill="url(#nav-g)" />
-      <defs>
-        <linearGradient id="nav-g" x1="0" y1="0" x2="50" y2="50">
-          <stop stop-color="#00f2fe" />
-          <stop offset="1" stop-color="#7f00ff" />
-        </linearGradient>
-      </defs>
-      <path d="M25 14L32 22L25 30L18 22Z" fill="white" opacity="0.95"/>
+            <symbol id="icon-brand-logo" viewBox="0 0 32 32">
+                <path d="M16 2 L28 8.5 L28 21.5 L16 28 L4 21.5 L4 8.5 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M16 2 L16 15 L28 8.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M16 15 L4 8.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M16 15 L16 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                <rect x="13.5" y="12.5" width="5" height="5" rx="1" fill="currentColor"/>
+            </symbol>
+            <symbol id="icon-gamepad" viewBox="0 0 24 24">
+                <path d="M6 4h12a4 4 0 0 1 4 4v7a4 4 0 0 1-4 4l-2.6-1.3a2 2 0 0 0-1.8 0L11.2 19a2 2 0 0 1-1.8 0L6.8 17.7a2 2 0 0 0-1.8 0L2.4 19A4 4 0 0 1 0 15V8a4 4 0 0 1 4-4zm2 5V7H6v2H4v2h2v2h2v-2h2V9H8zm10 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-2 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-2 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+            </symbol>
+            <symbol id="icon-wand" viewBox="0 0 24 24">
+                <path d="M14.7 2.3a1 1 0 0 0-1.4 0l-11 11a1 1 0 0 0 0 1.4l4.6 4.6a1 1 0 0 0 1.4 0l11-11a1 1 0 0 0 0-1.4l-4.6-4.6zM15 7.4L16.6 9 7.4 18.2 5.8 16.6 15 7.4zM20 3l.6 1.4L22 5l-1.4.6L20 7l-.6-1.4L18 5l1.4-.6L20 3zm-16 1l.4.9L5 5.3l-.9.4L3.7 7l-.4-.9L2.4 5.7l.9-.4L3.7 4z"/>
+            </symbol>
+            <symbol id="icon-3d-cube" viewBox="0 0 24 24">
+                <path d="M12 1L2 6v12l10 5 10-5V6L12 1zm0 2.3l6.9 3.4-6.9 3.5-6.9-3.5L12 3.3zM4 8.1l7 3.5v7.5l-7-3.5V8.1zm16 7.5l-7 3.5v-7.5l7-3.5v7.5z"/>
+            </symbol>
+            <symbol id="icon-laptop-code" viewBox="0 0 24 24">
+                <path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm0 2v10h16V5H4zm-4 14h24v2H0v-2zm9-8l-2 2 2 2-1.4 1.4L4.8 11l2.8-3.4L9 9zm6 0l2 2-2 2 1.4 1.4 2.8-3.4-2.8-3.4L15 9z"/>
+            </symbol>
+            <symbol id="icon-moon" viewBox="0 0 24 24">
+                <path d="M12.3 2a10 10 0 1 0 9.7 12.8 1 1 0 0 0-1.2-1.2 8 8 0 1 1-8.5-10.4 1 1 0 0 0-.1-1.2z"/>
+            </symbol>
+            <symbol id="icon-sun" viewBox="0 0 24 24">
+                <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 16a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1zm10-7a1 1 0 0 1-1 1h-2a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1zM5 12a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1zm14.1-6.1a1 1 0 0 1 0 1.4l-1.4 1.4a1 1 0 1 1-1.4-1.4l1.4-1.4a1 1 0 0 1 1.4 0zM6.3 16.3a1 1 0 0 1 0 1.4l-1.4 1.4a1 1 0 1 1-1.4-1.4l1.4-1.4a1 1 0 0 1 1.4 0zm12.8 1.4a1 1 0 0 1-1.4 0l-1.4-1.4a1 1 0 0 1 1.4-1.4l1.4 1.4a1 1 0 0 1 0 1.4zM6.3 7.7a1 1 0 0 1-1.4 0L3.5 6.3a1 1 0 1 1 1.4-1.4l1.4 1.4a1 1 0 0 1 0 1.4z"/>
+            </symbol>
+            <symbol id="icon-bars" viewBox="0 0 24 24">
+                <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
+            </symbol>
+            <symbol id="icon-mask" viewBox="0 0 24 24">
+                <path d="M12 2C6.5 2 2 6 2 11c0 6 5 11 10 11s10-5 10-11c0-5-4.5-9-10-9zm-4 7a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm8 0a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+            </symbol>
+            <symbol id="icon-flask" viewBox="0 0 24 24">
+                <path d="M19 18l-4.5-7V5H16V3H8v2h1.5v6L5 18a3 3 0 0 0 2.5 4.5h9a3 3 0 0 0 2.5-4.5zM9.3 13h5.4L17 17.5a1 1 0 0 1-.9 1.5H7.9a1 1 0 0 1-.9-1.5L9.3 13z"/>
+            </symbol>
+            <symbol id="icon-building" viewBox="0 0 24 24">
+                <path d="M19 2H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-8 16H7v-2h4v2zm0-4H7v-2h4v2zm0-4H7V8h4v2zm6 8h-4v-2h4v2zm0-4h-4v-2h4v2zm0-4h-4V8h4v2z"/>
+            </symbol>
+            <symbol id="icon-user-ninja" viewBox="0 0 24 24">
+                <path d="M12 2a5 5 0 0 0-5 5v3h10V7a5 5 0 0 0-5-5zm-7 9a2 2 0 0 0-2 2v4a7 7 0 0 0 14 0v-4a2 2 0 0 0-2-2H5zm3 3h8v2H8v-2z"/>
+            </symbol>
+            <symbol id="icon-dungeon" viewBox="0 0 24 24">
+                <path d="M12 2L9 5h2v8H9v2h2v4H9v2h6v-2h-2v-4h2v-2h-2V5h2L12 2zM5 9l-3 3 3 3v-2h5V11H5V9zm14 0v2h-5v2h5v2l3-3-3-3z"/>
+            </symbol>
+            <symbol id="icon-fire" viewBox="0 0 24 24">
+                <path d="M12 2.3s-4.5 4-4.5 8c0 2.2 1.3 4 3 4.8-1-1.3-1-3 0-4.3 1.5 2 4.5 2.5 4.5 5.5 0 3.3-2.7 6-6 6A6 6 0 0 1 3 16.4C3 9.4 12 2.3 12 2.3z"/>
+            </symbol>
+            <symbol id="icon-atom" viewBox="0 0 24 24">
+                <path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0-7C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"/>
+            </symbol>
+            <symbol id="icon-desktop" viewBox="0 0 24 24">
+                <path d="M20 3H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h6v2H8v2h8v-2h-2v-2h6a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 12H4V5h16v10z"/>
+            </symbol>
+            <symbol id="icon-chart" viewBox="0 0 24 24">
+                <path d="M3 3v18h18v-2H5V3H3zm4 12h3v4H7v-4zm5-6h3v10h-3V9zm5-4h3v14h-3V5z"/>
+            </symbol>
+            <symbol id="icon-cloud-sun" viewBox="0 0 24 24">
+                <path d="M8.2 5a4.5 4.5 0 0 1 8.5 2 4 4 0 0 1 3.8 5.3A4.5 4.5 0 0 1 17 20H7a5 5 0 0 1-.8-9.9A4.5 4.5 0 0 1 8.2 5z"/>
+            </symbol>
+            <symbol id="icon-bag" viewBox="0 0 24 24">
+                <path d="M16 6V5a4 4 0 0 0-8 0v1H4v13a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V6h-4zm-6-1a2 2 0 0 1 4 0v1h-4V5zm8 14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V8h3v2h2V8h4v2h2V8h3v11z"/>
+            </symbol>
+            <symbol id="icon-arrow-left" viewBox="0 0 24 24">
+                <path d="M19 11H7.8l4.6-4.6L11 5l-7 7 7 7 1.4-1.4L7.8 13H19v-2z"/>
+            </symbol>
+            <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+                <path d="M5 11h11.2l-4.6-4.6L13 5l7 7-7 7-1.4-1.4 4.6-4.6H5v-2z"/>
+            </symbol>
+            <symbol id="icon-external" viewBox="0 0 24 24">
+                <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.6l-9.8 9.8 1.4 1.4L19 6.4V10h2V3h-7z"/>
+            </symbol>
+            <symbol id="icon-code" viewBox="0 0 24 24">
+                <path d="M8.6 16.6L4 12l4.6-4.6L7.2 6 1.2 12l6 6 1.4-1.4zm6.8 0l4.6-4.6-4.6-4.6L16.8 6l6 6-6 6-1.4-1.4z"/>
+            </symbol>
+            <symbol id="icon-github" viewBox="0 0 24 24">
+                <path d="M12 2A10 10 0 0 0 8.8 21.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.7-1.4-2.2-.2-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7 3.6 3.6 0 0 1 .1-2.7s.9-.3 2.8 1a9.7 9.7 0 0 1 5.2 0c1.9-1.3 2.8-1 2.8-1 .4 1 .2 2.1.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.8-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/>
+            </symbol>
+            <symbol id="icon-linkedin" viewBox="0 0 24 24">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.7a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8m1.4 9.8v-8.37H5.06v8.37h2.8z"/>
+            </symbol>
+            <symbol id="icon-artstation" viewBox="0 0 24 24">
+                <path d="M2 18l3-5.2h4.5L5 18H2zm10.7-11.2L9.2 12h8.5l-5-5.2zM22 18l-6.5-11.2L14 9.3 19 18h3z"/>
+            </symbol>
+            <symbol id="icon-itch" viewBox="0 0 24 24">
+                <path d="M4 3C2.9 3 2 3.9 2 5v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H4zm4 4h2v2H8V7zm6 0h2v2h-2V7zm-7 4h8v6H7v-6z"/>
+            </symbol>
+            <symbol id="icon-facebook" viewBox="0 0 24 24">
+                <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/>
+            </symbol>
+            <symbol id="icon-gmail" viewBox="0 0 24 24">
+                <path d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm15.4 2H4.6L12 12.4 19.4 6zM4 8.2V18h16V8.2l-8 6.8-8-6.8z"/>
+            </symbol>
+            <symbol id="icon-envelope" viewBox="0 0 24 24">
+                <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </symbol>
+            <symbol id="icon-location" viewBox="0 0 24 24">
+                <path d="M12 2a8 8 0 0 0-8 8c0 5.2 8 12 8 12s8-6.8 8-12a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+            </symbol>
+            <symbol id="icon-send" viewBox="0 0 24 24">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </symbol>
+            <symbol id="icon-xmark" viewBox="0 0 24 24">
+                <path d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"/>
+            </symbol>
+            <!-- VIDEO CONTROLS ICONS -->
+            <symbol id="icon-play" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+            </symbol>
+            <symbol id="icon-pause" viewBox="0 0 24 24">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </symbol>
+            <symbol id="icon-volume" viewBox="0 0 24 24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+            </symbol>
+            <symbol id="icon-volume-mute" viewBox="0 0 24 24">
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+            </symbol>
+            <symbol id="icon-fullscreen" viewBox="0 0 24 24">
+                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+            </symbol>
+        </defs>
     </svg>
-    <span class="nav-logo-text">Pixel Dream</span>
-  </div>
-  <ul class="nav-links">
-    <li><a data-page="home" class="active">Home</a></li>
-    <li><a data-page="games">Games</a></li>
-    <li><a data-page="3d">3D Art</a></li>
-    <li><a data-page="vfx">VFX</a></li>
-    <li><a data-page="web">Web</a></li>
-  </ul>
-  <button class="burger" aria-label="Toggle menu" onclick="toggleMobileMenu()">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
 
-<div class="mobile-menu" id="mobile-menu">
-  <a onclick="navigate('home'); toggleMobileMenu();">Home</a>
-  <a onclick="navigate('games'); toggleMobileMenu();">Games</a>
-  <a onclick="navigate('3d'); toggleMobileMenu();">3D Art</a>
-  <a onclick="navigate('vfx'); toggleMobileMenu();">VFX</a>
-  <a onclick="navigate('web'); toggleMobileMenu();">Web</a>
-</div>
+    <!-- Header & Navigation Bar -->
+    <header>
+        <div class="nav-container glass">
+            <div class="brand" onclick="navigateTo('home')">
+                <div class="brand-icon">
+                    <img src="assets/logo-icon.png" alt="Pixel-Dream Logo" class="brand-logo-img">
+                </div>
+                <span class="brand-text">Pixel-Dream</span>
+            </div>
 
-<!-- ═══════════════════════════════════════
-     HOME PAGE
-═══════════════════════════════════════ -->
-<div id="page-home" class="page active">
-  <section class="hero">
-    <p class="hero-eyebrow">// Portfolio Archive — Edition 2026</p>
-    <h1 class="hero-name">JM<br><em>Bautista</em></h1>
-    <p class="hero-title">Game Developer &amp; Digital Craftsman</p>
-    <p class="hero-desc">I inscribe worlds into existence — building immersive games, sculpting dimensions, and weaving code into living experiences that leave their mark long after the screen fades.</p>
-    <div class="hero-cta">
-      <button class="btn-glass" onclick="scrollToStory()">Read the Journey</button>
+            <ul class="nav-links" id="navLinks">
+                <li class="nav-link active" data-target="home">Home</li>
+                <li class="nav-link" data-target="games">Games</li>
+                <li class="nav-link" data-target="modeling">3D & Modeling</li>
+                <li class="nav-link" data-target="vfx">Game VFX</li>
+                <li class="nav-link" data-target="webdev">Website Creation</li>
+                <li class="nav-link" data-target="contact">Contact</li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="neu-icon-btn" id="themeToggle" title="Toggle Light/Dark Theme">
+                    <svg class="svg-icon"><use href="#icon-sun"/></svg>
+                </button>
+                <button class="neu-icon-btn mobile-menu-btn" id="mobileToggle">
+                    <svg class="svg-icon"><use href="#icon-bars"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content App Pages -->
+    <main>
+
+        <!-- PAGE 1: HOME -->
+        <section id="home" class="page-section active-display in-view">
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="neu-badge">
+                        <svg class="svg-icon"><use href="#icon-gamepad"/></svg>
+                        Born from pixels, built for the future
+                    </span>
+                    <h1 class="hero-title" style="margin-top: 15px;">Hi, I'm <span>JM Bautista</span></h1>
+                    <p class="hero-subtitle" style="font-size: 1.15rem; font-weight: 600; color: var(--accent); margin-top: -4px; margin-bottom: 8px; font-family: 'Space Grotesk', sans-serif;">Game Developer · 3D Artist & Animator · Web Designer</p>
+                    <p class="hero-description">
+                        Welcome to <strong>Pixel-Dream</strong> — a name inspired by the world that started it all for me: the original <strong>Pokémon</strong> games on the <strong>Game Boy Advance</strong>. Those tiny pixel sprites sparked a lifelong passion for crafting interactive worlds. Today, I channel that same wonder into game development, 3D art & animation, and modern web experiences.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="neu-btn" onclick="navigateTo('games')">
+                            <svg class="svg-icon"><use href="#icon-gamepad"/></svg> Explore My Games
+                        </button>
+                        <button class="neu-btn" onclick="navigateTo('modeling')">
+                            <svg class="svg-icon"><use href="#icon-3d-cube"/></svg> View 3D Work
+                        </button>
+                        <button class="neu-btn" onclick="navigateTo('contact')">
+                            <svg class="svg-icon"><use href="#icon-send"/></svg> Get In Touch
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Interactive Hero Canvas Container with Liquid Glass & Physics -->
+                <div class="canvas-container glass" id="heroContainer">
+                    <div class="canvas-overlay-ui">
+                        <span class="canvas-pill active" id="modeRepel">Repel</span>
+                        <span class="canvas-pill" id="modeAttract">Attract</span>
+                    </div>
+
+                    <div class="canvas-hint-tag">
+                        <svg class="svg-icon"><use href="#icon-wand"/></svg> Move cursor or click to interact
+                    </div>
+
+                    <canvas id="heroCanvas"></canvas>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="text-align: center; margin-top: 60px;">What I Do</h2>
+            <div class="skill-grid">
+                <div class="skill-card glass">
+                    <div class="skill-icon">
+                        <svg class="svg-icon"><use href="#icon-gamepad"/></svg>
+                    </div>
+                    <h3>Game Development</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">End-to-end game creation with Unity 6, Unreal Engine 5, C#, multiplayer networking, and polished game mechanics & systems.</p>
+                </div>
+                <div class="skill-card glass">
+                    <div class="skill-icon">
+                        <svg class="svg-icon"><use href="#icon-3d-cube"/></svg>
+                    </div>
+                    <h3>3D Art & Animation</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">Character & environment modeling, rigging, skeletal animation, PBR texturing, and production-ready game assets.</p>
+                </div>
+                <div class="skill-card glass">
+                    <div class="skill-icon">
+                        <svg class="svg-icon"><use href="#icon-wand"/></svg>
+                    </div>
+                    <h3>Real-Time Game VFX</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">HLSL shaders, URP particle systems, dissolve effects, elemental magic, and cinematic post-processing.</p>
+                </div>
+                <div class="skill-card glass">
+                    <div class="skill-icon">
+                        <svg class="svg-icon"><use href="#icon-laptop-code"/></svg>
+                    </div>
+                    <h3>Web Design & Development</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">Modern, responsive web apps and sites — HTML5/CSS3, JavaScript SPAs, WebGL, and polished UI/UX design.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: GAMES -->
+        <section id="games" class="page-section">
+            <div class="section-header">
+                <h2 class="section-title">Game Development</h2>
+                <p class="section-subtitle">Playable prototypes, game jam award-winners, and full production designs.</p>
+            </div>
+
+            <div class="filter-bar">
+                <button class="neu-btn active filter-btn" data-filter="all">All Games</button>
+                <button class="neu-btn filter-btn" data-filter="unity">Unity 6</button>
+                <button class="neu-btn filter-btn" data-filter="rpg">RPG / Story</button>
+                <button class="neu-btn filter-btn" data-filter="jam">Game Jams</button>
+            </div>
+
+            <div class="portfolio-grid" id="gamesGrid"></div>
+        </section>
+
+        <!-- PAGE 3: 3D ANIMATION & MODELING -->
+        <section id="modeling" class="page-section">
+            <div class="section-header">
+                <h2 class="section-title">3D Animation & Modeling</h2>
+                <p class="section-subtitle">Hard-surface modeling, environment kits, character rigs, and PBR textures.</p>
+            </div>
+
+            <div class="filter-bar">
+                <button class="neu-btn active filter-btn-3d" data-filter="all">All Assets</button>
+                <button class="neu-btn filter-btn-3d" data-filter="props">Props & Kits</button>
+                <button class="neu-btn filter-btn-3d" data-filter="character">Characters</button>
+                <button class="neu-btn filter-btn-3d" data-filter="environment">Environments</button>
+            </div>
+
+            <div class="portfolio-grid" id="modelingGrid"></div>
+        </section>
+
+        <!-- PAGE 4: GAME VFX -->
+        <section id="vfx" class="page-section">
+            <div class="section-header">
+                <h2 class="section-title">Game Visual Effects (VFX)</h2>
+                <p class="section-subtitle">HLSL dynamic shaders, procedural particle graph systems, and custom dynamic animations.</p>
+            </div>
+
+            <div class="portfolio-grid" id="vfxGrid"></div>
+        </section>
+
+        <!-- PAGE 5: WEBSITE CREATION -->
+        <section id="webdev" class="page-section">
+            <div class="section-header">
+                <h2 class="section-title">Website Creation</h2>
+                <p class="section-subtitle">Single page applications, custom UI frameworks, WebGL experiences, and dynamic dashboards.</p>
+            </div>
+
+            <div class="portfolio-grid" id="webGrid"></div>
+        </section>
+
+        <!-- PAGE 6: CONTACT -->
+        <section id="contact" class="page-section">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Looking for a game developer, 3D artist, or web designer? Let's build something amazing together.</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info glass">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 6px;">
+                        <div class="brand-icon" style="width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0; padding: 6px;">
+                            <img src="assets/logo-icon.png" alt="Pixel-Dream Logo" class="brand-logo-img">
+                        </div>
+                        <div>
+                            <h3 style="margin: 0; line-height: 1.2;">JM Bautista</h3>
+                            <p style="color: var(--accent); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.5px; margin: 4px 0 0 0;">Game Developer · 3D Artist & Animator · Web Designer</p>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-muted); margin-top: 12px;">I'm open to freelance projects, collaborations, and full-time opportunities. Whether you need a game built from scratch, 3D assets & animations, or a modern website — I'd love to hear from you.</p>
+
+                    <div class="contact-item" style="margin-top: 20px;">
+                        <a class="neu-icon-btn" href="mailto:ebbangoy@gmail.com"><svg class="svg-icon"><use href="#icon-envelope"/></svg></a>
+                        <div>
+                            <strong>Email</strong>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">ebbangoy@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Find me on</p>
+                    <div style="display: flex; gap: 12px; margin-top: 8px;">
+                        <a class="neu-icon-btn" href="https://github.com/gradiel9901" target="_blank" rel="noopener" aria-label="GitHub"><svg class="svg-icon"><use href="#icon-github"/></svg></a>
+                        <a class="neu-icon-btn" href="https://www.facebook.com/Zoldyckmiero/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="svg-icon"><use href="#icon-facebook"/></svg></a>
+                        <a class="neu-icon-btn" href="https://www.linkedin.com/in/jmbangoybautista/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="svg-icon"><use href="#icon-linkedin"/></svg></a>
+                        <a class="neu-icon-btn" href="mailto:ebbangoy@gmail.com" aria-label="Gmail"><svg class="svg-icon"><use href="#icon-gmail"/></svg></a>
+                    </div>
+
+                    <!-- Large Availability Clock Orb -->
+                    <div class="clock-orb-wrapper">
+                        <div class="clock-orb" id="clockOrb">
+                            <div class="clock-label">My Current Local Time</div>
+                            <div class="clock-time-row">
+                                <span class="clock-digits" id="clockHours">--</span>
+                                <span class="clock-colon">:</span>
+                                <span class="clock-digits" id="clockMinutes">--</span>
+                            </div>
+                            <div class="clock-ampm" id="clockAmPm">--</div>
+                            <div class="clock-status" id="availabilityStatus"><span class="status-dot"></span>Loading...</div>
+                            <div class="clock-tz">PHT · GMT+8</div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form glass" id="contactForm" action="https://formspree.io/f/mqedkdlg" method="POST">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" name="name" class="neu-input" placeholder="e.g. Alex Mercer" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Email</label>
+                        <input type="email" name="email" class="neu-input" placeholder="e.g. alex@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Project Type</label>
+                        <input type="text" name="project_type" class="neu-input" placeholder="e.g. Game Development / 3D Art / Web Design">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" class="neu-input" rows="5" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="neu-btn" id="contactSubmitBtn" style="width: fit-content; align-self: flex-start;">
+                        <svg class="svg-icon"><use href="#icon-send"/></svg> <span id="contactBtnText">Send Message</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Clear Liquid Glass Modal Dialog with Interactive Slideshow / Carousel -->
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal-content glass">
+            <button class="neu-icon-btn modal-close" id="modalClose">
+                <svg class="svg-icon"><use href="#icon-xmark"/></svg>
+            </button>
+            
+            <!-- Dynamic Multi-Media Carousel Slideshow -->
+            <div class="slideshow-container" id="slideshowContainer">
+                <button class="slide-nav-btn prev" id="slidePrev" title="Previous Image">
+                    <svg class="svg-icon"><use href="#icon-arrow-left"/></svg>
+                </button>
+                <button class="slide-nav-btn next" id="slideNext" title="Next Image">
+                    <svg class="svg-icon"><use href="#icon-arrow-right"/></svg>
+                </button>
+                
+                <div class="slides-track" id="slidesTrack"></div>
+                <div class="slideshow-dots" id="slideshowDots"></div>
+            </div>
+
+            <div class="card-tags" id="modalTags"></div>
+            <h2 id="modalTitle" style="margin-bottom: 12px; margin-top: 10px;">Project Title</h2>
+            <p id="modalDescription" style="color: var(--text-muted); margin-bottom: 24px; font-size: 1rem; line-height: 1.7;">Project details load dynamically here.</p>
+            <div style="display: flex; gap: 12px;" id="modalActions">
+                <button class="neu-btn"><svg class="svg-icon"><use href="#icon-external"/></svg> Launch Demo</button>
+                <button class="neu-btn"><svg class="svg-icon"><use href="#icon-github"/></svg> View Source</button>
+            </div>
+        </div>
     </div>
 
-    <!-- GALAXY MAP (HERO) -->
-    <div class="galaxy-viewport glass-panel">
-      <canvas id="galaxy-canvas"></canvas>
-      <div id="galaxy-tooltip" class="galaxy-tooltip">
-        <div class="galaxy-tooltip-inner">
-          <div class="galaxy-tooltip-name" id="gtt-name"></div>
-          <div class="galaxy-tooltip-desc" id="gtt-desc"></div>
-          <div class="galaxy-click-hint">Click to enter</div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-brand" onclick="navigateTo('home')" style="display: inline-flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 12px;">
+            <div class="brand-icon" style="width: 32px; height: 32px; border-radius: 10px; padding: 4px;">
+                <img src="assets/logo-icon.png" alt="Pixel-Dream Logo" class="brand-logo-img">
+            </div>
+            <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--text-color);">Pixel-Dream</span>
         </div>
-      </div>
-    </div>
+        <p>&copy; 2026 Pixel-Dream · JM Bautista. All Rights Reserved.</p>
+    </footer>
 
-    <div class="scroll-hint">
-      <span>scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
+    <!-- JavaScript App Logic -->
+    <script>
+        /* --- 1. DATA SOURCES WITH MULTI-MEDIA SLIDESHOW SUPPORT --- */
+        const gamesData = [
+            { 
+                id: 'g1', 
+                title: 'Mask-A-Raid', 
+                category: 'jam', 
+                tags: ['Global Game Jam', 'Stealth', 'Unity'], 
+                desc: 'Fast-paced stealth action game with dynamic mask switching mechanics.', 
+                icon: 'icon-mask', 
+                detail: 'Awarded 2nd Place at GGJ 2026. Features custom vision-cone stencil shaders, dynamic patrol state machines, and real-time enemy alertness UI.',
+                media: [
+                    { type: 'video', url: 'assets/Game Hub/PopUp Window/Mask-A-Raid/Gameplay.mp4' },
+                    { type: 'image', url: 'assets/Game Hub/Mask-A-Raid.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Mask-A-Raid/ScreenShots/Screenshot 2026-04-08 124705.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Mask-A-Raid/ScreenShots/Screenshot 2026-04-08 124723.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Mask-A-Raid/ScreenShots/Screenshot 2026-04-08 124756.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Mask-A-Raid/ScreenShots/Screenshot 2026-04-08 124825.png' }
+                ]
+            },
+            { 
+                id: 'g2', 
+                title: 'The Apothecary\'s Tavern', 
+                category: 'unity', 
+                tags: ['Unity 6', '3D Isometric', 'Simulation'], 
+                desc: 'Retail simulation centered on physical inventory management and spatial memory.', 
+                icon: 'icon-flask', 
+                detail: 'Features 3D drag-and-drop shelf stocking, potion crafting recipes, spatial memory mechanics, and customer queue pathfinding algorithms.',
+                media: [
+                    { type: 'video', url: 'assets/Game Hub/PopUp Window/The Apothecary\'s Tavern/Gameplay.mp4' },
+                    { type: 'image', url: 'assets/Game Hub/The Apothecary\'s Tavern.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/The Apothecary\'s Tavern/ScreenShots/Screenshot 2026-04-08 125353.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/The Apothecary\'s Tavern/ScreenShots/Screenshot 2026-04-08 125402.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/The Apothecary\'s Tavern/ScreenShots/Screenshot 2026-04-08 125413.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/The Apothecary\'s Tavern/ScreenShots/Screenshot 2026-04-08 125429.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/The Apothecary\'s Tavern/ScreenShots/Screenshot 2026-04-08 125449.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/The Apothecary\'s Tavern/ScreenShots/Screenshot 2026-04-08 125516.png' }
+                ]
+            },
+            { 
+                id: 'g3', 
+                title: 'QUESTY', 
+                category: 'rpg', 
+                tags: ['C#', 'Retro RPG', 'Pixel Art'], 
+                desc: 'Classic fantasy retro adventure game focused on crystal collection.', 
+                icon: 'icon-gamepad', 
+                detail: 'Features custom animated particle effects, turn-based battle logic, crystal quest triggers, and automated save state data management.',
+                media: [
+                    { type: 'video', url: 'assets/Game Hub/PopUp Window/Questy/Gameplay.mp4' },
+                    { type: 'image', url: 'assets/Game Hub/QUESTY.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Questy/ScreenShots/Screenshot 2026-04-08 124542.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Questy/ScreenShots/Screenshot 2026-04-08 124547.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Questy/ScreenShots/Screenshot 2026-04-08 124607.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Questy/ScreenShots/Screenshot 2026-04-08 124618.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Questy/ScreenShots/Screenshot 2026-04-08 124639.png' }
+                ]
+            },
+            { 
+                id: 'g4', 
+                title: 'Arcane Ale', 
+                category: 'unity', 
+                tags: ['Unity 6', 'Crafting', 'Puzzle'], 
+                desc: 'Magical tavern brewing and potion alchemy puzzle mechanics.', 
+                icon: 'icon-flask', 
+                detail: 'Explore complex ingredient combination logic, potion aging timers, and customer ordering state machines in a fantasy tavern setting.',
+                media: [
+                    { type: 'video', url: 'assets/Game Hub/PopUp Window/Arcane Ale/Gameplay.mp4' },
+                    { type: 'image', url: 'assets/Game Hub/Arcane Ale.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Arcane Ale/ScreenShots/Screenshot 2026-04-08 124948.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Arcane Ale/ScreenShots/Screenshot 2026-04-08 125002.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Arcane Ale/ScreenShots/Screenshot 2026-04-08 125024.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Arcane Ale/ScreenShots/Screenshot 2026-04-08 125047.png' }
+                ]
+            },
+            { 
+                id: 'g5', 
+                title: 'Defuse the Maze', 
+                category: 'jam', 
+                tags: ['Action', 'Puzzle', 'Unity'], 
+                desc: 'Time-critical maze navigation and bomb defusal action mechanics.', 
+                icon: 'icon-gamepad', 
+                detail: 'Navigate maze hazards under intense countdown timers, defusing procedural explosive traps while avoiding patrolling sentries.',
+                media: [
+                    { type: 'video', url: 'assets/Game Hub/PopUp Window/Defuse The Maze/GamePlay.mp4' },
+                    { type: 'image', url: 'assets/Game Hub/Defuse the Maze.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Defuse The Maze/ScreenShots/Screenshot 2026-04-08 124853.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Defuse The Maze/ScreenShots/Screenshot 2026-04-08 124911.png' },
+                    { type: 'image', url: 'assets/Game Hub/PopUp Window/Defuse The Maze/ScreenShots/Screenshot 2026-04-08 124923.png' }
+                ]
+            }
+        ];
 
-  <!-- STORY -->
-  <section class="story-section" id="story-anchor">
-    <p class="section-label">// Chapter I — The Journey</p>
-    <div class="story-grid">
-      <div class="story-text">
-        <h2>From the first <em>spark</em> to the infinite</h2>
-        <p>Every masterwork begins with a single stroke — a moment of intention where code meets creativity. My journey into development started with a single question: <em>"What if I could build worlds?"</em></p>
-        <p>From the forges of game development to the sculptor's studio of 3D art, from the alchemist's lab of visual effects to the architect's drafting table of web development — each discipline is a thread in my digital tapestry.</p>
-        <p>I don't just write code. I inscribe intention into every line, carve meaning into every polygon, and kindle magic in every particle.</p>
-      </div>
-      <div class="story-visual">
-        <div class="seal-diagram">
-          <div class="glass-orb-wrapper">
-            <div class="glass-ring-1"></div>
-            <div class="glass-ring-2"></div>
-            <div class="seal-center"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        /* --- 3D DIMENSION ASSETS --- */
+        const modelingData = [
+            { 
+                id: 'm1', 
+                title: 'Gemini', 
+                category: 'character', 
+                tags: ['3D Character', 'Animation', 'Rigging'], 
+                desc: '3D character concept design complete with render composition and animated showcase.', 
+                icon: 'icon-user-ninja', 
+                detail: 'High-detail 3D model featuring custom texturing, dynamic lighting setup, and turntable animation sequence.',
+                media: [
+                    { type: 'video', url: 'assets/3D Dimension/Videos/Gemini.mp4' },
+                    { type: 'image', url: 'assets/3D Dimension/Images/Gemini.png' }
+                ]
+            },
+            { 
+                id: 'm2', 
+                title: 'The King', 
+                category: 'character', 
+                tags: ['Character Rig', '3D Sculpt', 'Cinematic'], 
+                desc: 'Detailed 3D character sculpture featuring full animation preview and high-poly details.', 
+                icon: 'icon-user-ninja', 
+                detail: 'Sculpted in ZBrush and Blender, featuring facial rig setup and dynamic cloth/armor animation showcase.',
+                media: [
+                    { type: 'video', url: 'assets/3D Dimension/Videos/The King.mp4' },
+                    { type: 'image', url: 'assets/3D Dimension/Images/King.png' }
+                ]
+            },
+            { 
+                id: 'm3', 
+                title: 'Second Coming of Greed', 
+                category: 'props', 
+                tags: ['High-Poly', 'Concept Art', 'Destruction VFX'], 
+                desc: 'Dark fantasy 3D concept artwork and destruction physics simulation sequence.', 
+                icon: 'icon-dungeon', 
+                detail: 'Intricate hard-surface and organic sculpting featuring procedural fracture and dynamic destruction dynamics.',
+                media: [
+                    { type: 'video', url: 'assets/3D Dimension/Videos/Destruction.mp4' },
+                    { type: 'image', url: 'assets/3D Dimension/Images/Second coming of Greed.png' }
+                ]
+            },
+            { 
+                id: 'm4', 
+                title: 'Tree of Life & Environment', 
+                category: 'environment', 
+                tags: ['3D Environment', 'Foliage', 'World Building'], 
+                desc: 'Atmospheric 3D environmental design featuring natural elements and ancient urban ruins.', 
+                icon: 'icon-building', 
+                detail: 'Modular environment composition incorporating dense tree foliage, realistic atmospheric lighting, and high-resolution environment renders.',
+                media: [
+                    { type: 'image', url: 'assets/3D Dimension/Images/Tree of Life.png' },
+                    { type: 'image', url: 'assets/3D Dimension/Images/The Forest.jpg' }
+                ]
+            },
+            { 
+                id: 'm5', 
+                title: 'Apollo\'s Arrow', 
+                category: 'props', 
+                tags: ['Hard Surface', 'Weapon Model', '3D Animation'], 
+                desc: 'Mythological weapon 3D model featuring dynamic trajectory animation.', 
+                icon: 'icon-wand', 
+                detail: 'Precision hard-surface modeling with glowing emissive shader maps and trajectory physics animation.',
+                media: [
+                    { type: 'video', url: 'assets/3D Dimension/Videos/Apollos Arrow.mp4' },
+                    { type: 'image', url: 'assets/3D Dimension/Images/Gemini.png' }
+                ]
+            }
+        ];
 
-  <!-- SKILLS -->
-  <section class="skills-section">
-    <p class="section-label">// Chapter II — Instruments of the Craft</p>
-    <h2>The <em>tools</em> I command</h2>
-    <p class="skills-intro">Every craftsman needs their instruments. These are the languages I speak, the engines I command, and the frameworks I navigate.</p>
-    <div class="skills-grid">
-      <div class="skill-card glass-panel glass-shimmer">
-        <div class="skill-card-label">Module 01</div>
-        <div class="skill-card-name">Game Development</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Unity 2D/3D</span>
-          <span class="skill-tag">Unreal Engine 5</span>
-        </div>
-      </div>
-      <div class="skill-card glass-panel glass-shimmer">
-        <div class="skill-card-label">Module 02</div>
-        <div class="skill-card-name">Programming</div>
-        <div class="skill-tags">
-          <span class="skill-tag">C#</span>
-          <span class="skill-tag">C++</span>
-        </div>
-      </div>
-      <div class="skill-card glass-panel glass-shimmer">
-        <div class="skill-card-label">Module 03</div>
-        <div class="skill-card-name">Web Development</div>
-        <div class="skill-tags">
-          <span class="skill-tag">HTML5 / CSS3</span>
-          <span class="skill-tag">ReactJS</span>
-          <span class="skill-tag">PHP</span>
-        </div>
-      </div>
-      <div class="skill-card glass-panel glass-shimmer">
-        <div class="skill-card-label">Module 04</div>
-        <div class="skill-card-name">Data &amp; Tools</div>
-        <div class="skill-tags">
-          <span class="skill-tag">MySQL</span>
-          <span class="skill-tag">MongoDB</span>
-          <span class="skill-tag">Postman</span>
-        </div>
-      </div>
-    </div>
-  </section>
+        /* --- GAME VISUAL EFFECTS (VFX) ASSETS --- */
+        const vfxData = [
+            { 
+                id: 'v1', 
+                title: 'Eye of the Storm', 
+                tags: ['Unity 6', 'VFX Graph', 'Lightning Shader'], 
+                desc: 'Procedural lightning storm bursts with dynamic ground shockwaves and vertex displacement.', 
+                icon: 'icon-wand',
+                detail: 'Real-time particle graph simulation utilizing custom vertex noise displacement, high-intensity lightning electric bursts, and dynamic screen-space shockwave shaders.',
+                media: [
+                    { type: 'video', url: 'assets/Skill VFX/Mage_EyeOfTheStorm.mp4' }
+                ]
+            },
+            { 
+                id: 'v2', 
+                title: 'Flame Tornado', 
+                tags: ['HLSL Shaders', 'Fire VFX', 'URP Particle System'], 
+                desc: 'Swirling high-intensity elemental fire vortex with custom dissolve and ember particles.', 
+                icon: 'icon-fire',
+                detail: 'Built with dynamic UV distortion HLSL shaders, swirling vortex mesh particles, procedural glow dissolution, and real-time ember physics behavior.',
+                media: [
+                    { type: 'video', url: 'assets/Skill VFX/Mage_FlameTornado.mp4' }
+                ]
+            },
+            { 
+                id: 'v3', 
+                title: 'Frost Vortex', 
+                tags: ['Compute Shader', 'Ice VFX', 'Displacement'], 
+                desc: 'Cryo-elemental ice vortex featuring ground freezing dynamics and crystalline shards.', 
+                icon: 'icon-atom',
+                detail: 'Procedural cryo-freeze visual effect showcasing radial frost ground decay, crystalline specular refraction shaders, and explosive ice shard particle physics.',
+                media: [
+                    { type: 'video', url: 'assets/Skill VFX/Mage_FrostVortex.mp4' }
+                ]
+            }
+        ];
 
-  <!-- CONTACT -->
-  <section class="contact-section">
-    <div class="contact-left">
-      <h3>Leave your <em>mark</em></h3>
-      <p>Whether you need a game, a digital experience, or a universe of your own — let's build the next chapter together.</p>
-    </div>
-    <form class="contact-form" action="https://formspree.io/f/mqedkdlg" method="POST">
-      <div class="form-field">
-        <label>Your Name</label>
-        <input type="text" name="name" required>
-      </div>
-      <div class="form-field">
-        <label>Your Email</label>
-        <input type="email" name="email" required>
-      </div>
-      <div class="form-field">
-        <label>Your Message</label>
-        <textarea name="message" required></textarea>
-      </div>
-      <button type="submit" class="btn-glass">Send Transmission</button>
-    </form>
-  </section>
+        /* --- WEBSITE CREATION ASSETS --- */
+        const webData = [
+            { 
+                id: 'w1', 
+                title: 'Cat in a Box E-Commerce Prototype', 
+                category: 'web', 
+                tags: ['Frontend', 'Cart Logic', 'CSS3'], 
+                desc: 'Playful modern online shop prototype with reactive shopping cart state updates.', 
+                icon: 'icon-bag', 
+                detail: 'Responsive design complete with dynamic price calculation, responsive grid layout, and animated cart interaction.',
+                media: [
+                    { type: 'image', url: 'assets/Web Development/Cat In A Box.png' }
+                ]
+            },
+            { 
+                id: 'w2', 
+                title: 'Kinetix Fitness Dashboard', 
+                category: 'web', 
+                tags: ['JavaScript', 'CSS Grid', 'Charts'], 
+                desc: 'Interactive fitness analytics dashboard UI with realtime graphs.', 
+                icon: 'icon-chart', 
+                detail: 'Built modular widget structures with interactive data filtering and performance analytics visualization.',
+                media: [
+                    { type: 'image', url: 'assets/Web Development/Kinetix.png' }
+                ]
+            },
+            { 
+                id: 'w3', 
+                title: 'Locus Platform', 
+                category: 'web', 
+                tags: ['WebGL', 'Interactive UI', 'JavaScript'], 
+                desc: 'Modern web application platform featuring clean UI layout and interactive navigation.', 
+                icon: 'icon-desktop', 
+                detail: 'Full-stack responsive design featuring custom theme control, smooth page transitions, and interactive visual components.',
+                media: [
+                    { type: 'image', url: 'assets/Web Development/Locus.png' }
+                ]
+            }
+        ];
 
-  <div class="footer">
-    <span class="footer-left">&copy; 2026 JM Bautista. All rights reserved.</span>
-    <span class="footer-mark">Pixel Dream</span>
-  </div>
-</div>
+        /* --- 2. SMOOTH PAGE TRANSITION CONTROLLER --- */
+        let isTransitioning = false;
 
-<!-- ═══════════════════════════════════════
-     GAMES PAGE
-═══════════════════════════════════════ -->
-<div id="page-games" class="page">
-  <div style="min-height:100vh;">
-    <div class="inner-hero">
-      <button class="back-btn" onclick="navigate('home')">← Return Home</button>
-      <p class="inner-eyebrow">// Chapter I — Game Development</p>
-      <h1 class="inner-title">Worlds <em>Inscribed</em></h1>
-      <p class="inner-sub">Each game is a universe condensed — with its own rules, its own life, its own heartbeat. These are the worlds I have built.</p>
-    </div>
-    <div class="work-section">
-      <div class="work-grid">
-        <div class="work-card glass-panel glass-shimmer" onclick="openGameModal(this)" 
-             data-title="Arcane Ale" 
-             data-software="Unity 6, Blender, Photoshop" 
-             data-role="Lead Technical Developer, Gameplay Systems Programmer, Lead Gameplay & Systems Developer, Level Designer / World Builder, 3D Artist & Prop Artist, Technical Lead" 
-             data-award="Best Game for Game Programming II" 
-             data-desc="A mystical tavern management game where players brew enchanted beverages and serve legendary patrons." 
-             data-link="https://gradiel.itch.io/arcane-ale" 
-             data-video="assets/Game Hub/PopUp Window/Arcane Ale/Gameplay.mp4"
-             data-screenshots="Screenshot 2026-04-08 124948.png,Screenshot 2026-04-08 125002.png,Screenshot 2026-04-08 125024.png,Screenshot 2026-04-08 125047.png">
-          <div class="work-card-media"><img src="assets/Game Hub/Arcane Ale.png" alt="Arcane Ale" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">Unity 6 · Multi-Role</div>
-            <div class="work-card-title">Arcane Ale</div>
-            <div class="work-card-sub">A mystical tavern management game where players brew enchanted beverages and serve legendary patrons.</div>
-          </div>
-        </div>
-        <div class="work-card glass-panel glass-shimmer" onclick="openGameModal(this)" 
-             data-title="Defuse the Maze" 
-             data-software="Unity 6, Blender, Photoshop" 
-             data-role="Lead Technical Developer, Gameplay Systems Programmer, Lead Gameplay & Systems Developer, Level Designer / World Builder, 3D Artist & Prop Artist, Technical Lead" 
-             data-award="Best Game for Applied Mathematics in Game" 
-             data-desc="Navigate treacherous labyrinths under pressure in this pulse-pounding puzzle game with procedural generation." 
-             data-link="https://gradiel.itch.io/defuse-the-maze" 
-             data-video="assets/Game Hub/PopUp Window/Defuse the Maze/Gameplay.mp4"
-             data-screenshots="Screenshot 2026-04-08 124853.png,Screenshot 2026-04-08 124911.png,Screenshot 2026-04-08 124923.png">
-          <div class="work-card-media"><img src="assets/Game Hub/Defuse the Maze.png" alt="Defuse the Maze" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">Unity 6 · Mathematics</div>
-            <div class="work-card-title">Defuse the Maze</div>
-            <div class="work-card-sub">Navigate treacherous labyrinths under pressure in this pulse-pounding puzzle game with procedural generation.</div>
-          </div>
-        </div>
-        <div class="work-card glass-panel glass-shimmer" onclick="openGameModal(this)" 
-             data-title="Mask-A-Raid" 
-             data-software="Unity Engine 6, Blender, Photoshop (C#)" 
-             data-role="Lead Technical Developer, Gameplay Systems Programmer, Lead Gameplay & Systems Developer, Technical Artist, Technical Lead" 
-             data-award="2nd Place in Global Game Jam 2026" 
-             data-desc="A stealth-action experience where masks grant supernatural abilities — choose your disguise, plan your raid." 
-             data-link="https://gradiel.itch.io/mask-a-raid" 
-             data-video="assets/Game Hub/PopUp Window/Mask-A-Raid/Gameplay.mp4"
-             data-screenshots="Screenshot 2026-04-08 124705.png,Screenshot 2026-04-08 124723.png,Screenshot 2026-04-08 124756.png,Screenshot 2026-04-08 124825.png">
-          <div class="work-card-media"><img src="assets/Game Hub/Mask-A-Raid.png" alt="Mask-A-Raid" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">Unity 6 · Game Jam</div>
-            <div class="work-card-title">Mask-A-Raid</div>
-            <div class="work-card-sub">A stealth-action experience where masks grant supernatural abilities — choose your disguise, plan your raid.</div>
-          </div>
-        </div>
-        <div class="work-card glass-panel glass-shimmer" onclick="openGameModal(this)" 
-             data-title="QUESTY" 
-             data-software="Unity 2022, Photoshop (C#)" 
-             data-role="Lead Technical Developer, Gameplay Systems Programmer, Lead Gameplay & Systems Developer, Level Designer, 2D & Prop Artist, Technical Lead" 
-             data-award="Best Game for Game Programming I" 
-             data-desc="An epic quest-driven RPG with branching narratives, dynamic combat, and a world that remembers your choices." 
-             data-link="https://gradiel.itch.io/questy" 
-             data-video="assets/Game Hub/PopUp Window/QUESTY/Gameplay.mp4"
-             data-screenshots="Screenshot 2026-04-08 124542.png,Screenshot 2026-04-08 124547.png,Screenshot 2026-04-08 124607.png,Screenshot 2026-04-08 124618.png,Screenshot 2026-04-08 124639.png">
-          <div class="work-card-media"><img src="assets/Game Hub/QUESTY.png" alt="QUESTY" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">Unity 2022 · RPG</div>
-            <div class="work-card-title">QUESTY</div>
-            <div class="work-card-sub">An epic quest-driven RPG with branching narratives, dynamic combat, and a world that remembers your choices.</div>
-          </div>
-        </div>
-        <div class="work-card glass-panel glass-shimmer" onclick="openGameModal(this)" 
-             data-title="The Apothecary's Tavern" 
-             data-software="Unity Engine 6, Blender, Photoshop (C#, JSON)" 
-             data-role="Lead Game Developer, Lead Game Designer, Asset Creator, Core Mechanics Developer, AI Behavior Developer" 
-             data-award="Best Game for Advance Game Design" 
-             data-desc="You're a retired adventurer with a mysterious past. You've traded your sword for a shop counter, serving a line of impatient heroes who demand potions NOW." 
-             data-link="https://gradiel.itch.io/the-apothecarys-tavern" 
-             data-video="assets/Game Hub/PopUp Window/The Apothecary's Tavern/Gameplay.mp4"
-             data-screenshots="Screenshot 2026-04-08 125353.png,Screenshot 2026-04-08 125402.png,Screenshot 2026-04-08 125413.png,Screenshot 2026-04-08 125429.png,Screenshot 2026-04-08 125449.png,Screenshot 2026-04-08 125516.png">
-          <div class="work-card-media"><img src="assets/Game Hub/The Apothecary's Tavern.png" alt="The Apothecary's Tavern" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">Unity 6 · Game Design</div>
-            <div class="work-card-title">The Apothecary's Tavern</div>
-            <div class="work-card-sub">A tavern management simulation next to a dungeon where impatient heroes demand their potions.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        function navigateTo(targetId) {
+            const currentSection = document.querySelector('.page-section.in-view');
+            const targetSection = document.getElementById(targetId);
 
-<!-- ═══════════════════════════════════════
-     3D PAGE
-═══════════════════════════════════════ -->
-<div id="page-3d" class="page">
-  <div style="min-height:100vh;">
-    <div class="inner-hero">
-      <button class="back-btn" onclick="navigate('home')">← Return Home</button>
-      <p class="inner-eyebrow">// Chapter II — 3D Modeling &amp; Animation</p>
-      <h1 class="inner-title">Carved <em>Dimensions</em></h1>
-      <p class="inner-sub">From raw polygons to breathing sculptures — giving shape to the shapeless, and motion to the still.</p>
-    </div>
-    <div class="work-section">
-      <p class="section-label" style="margin-bottom:24px">// Still Studies</p>
-      <div class="work-grid" style="margin-bottom:60px">
-        <div class="work-card glass-panel glass-shimmer" onclick="openArtModal(this)" data-title="Gemini" data-desc="Forged from the same spark yet torn apart, two brothers locked in an eternal struggle." data-role="Lead Animator, Lead 3D Modeler, Sound Design, Editor" data-software="Blender, Premiere Pro" data-media-type="image" data-media-src="assets/3D Dimension/Images/Gemini.png">
-          <div class="work-card-media"><img src="assets/3D Dimension/Images/Gemini.png" alt="Gemini" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">Blender · 3D Modeling</div>
-            <div class="work-card-title">Gemini</div>
-            <div class="work-card-sub">Two brothers locked in celestial conflict...</div>
-          </div>
-        </div>
-        <div class="work-card glass-panel glass-shimmer" onclick="openArtModal(this)" data-title="The King" data-desc="A lone cyber ronin rising to dethrone a sovereign tyrant." data-role="Lead Animator, Lead 3D Modeler, Sound Design, Editor" data-software="Blender, Premiere Pro" data-media-type="image" data-media-src="assets/3D Dimension/Images/King.png">
-          <div class="work-card-media"><img src="assets/3D Dimension/Images/King.png" alt="King" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">Blender · Character Design</div>
-            <div class="work-card-title">The King</div>
-            <div class="work-card-sub">Biomechanical ronin challenging an omnipotent tyrant...</div>
-          </div>
-        </div>
-        <div class="work-card glass-panel glass-shimmer" onclick="openArtModal(this)" data-title="Second Coming of Greed" data-desc="Colossal spires piercing the heavens." data-role="Lead Animator, Lead 3D Modeler, World Design" data-software="Blender, Premiere Pro" data-media-type="image" data-media-src="assets/3D Dimension/Images/Second coming of Greed.png">
-          <div class="work-card-media"><img src="assets/3D Dimension/Images/Second coming of Greed.png" alt="Second Coming of Greed" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">Blender · Environment</div>
-            <div class="work-card-title">Second Coming of Greed</div>
-            <div class="work-card-sub">Infernal tide unleashed from subterranean spires...</div>
-          </div>
-        </div>
-        <div class="work-card glass-panel glass-shimmer" onclick="openArtModal(this)" data-title="The Forest" data-desc="An emerald sanctuary guarded by an ancient spirit." data-role="Lead 3D Modeler, World Design" data-software="Blender, Premiere Pro" data-media-type="image" data-media-src="assets/3D Dimension/Images/The Forest.jpg">
-          <div class="work-card-media"><img src="assets/3D Dimension/Images/The Forest.jpg" alt="The Forest" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">Blender · Environment</div>
-            <div class="work-card-title">The Forest</div>
-            <div class="work-card-sub">Living sanctuary dwelling within emerald shadows...</div>
-          </div>
-        </div>
-        <div class="work-card glass-panel glass-shimmer" onclick="openArtModal(this)" data-title="Tree of Life" data-desc="Glowing roots of existence beneath stone." data-role="Lead 3D Modeler, Concept Art" data-software="Blender, Premiere Pro" data-media-type="image" data-media-src="assets/3D Dimension/Images/Tree of Life.png">
-          <div class="work-card-media"><img src="assets/3D Dimension/Images/Tree of Life.png" alt="Tree of Life" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">Blender · Concept Art</div>
-            <div class="work-card-title">Tree of Life</div>
-            <div class="work-card-sub">Crystal waters blooming moss beneath barren earth...</div>
-          </div>
-        </div>
-      </div>
-      <p class="section-label" style="margin-bottom:24px">// Motion Studies</p>
-      <div class="work-grid">
-        <div class="video-card glass-panel" onclick="openArtModal(this)" data-title="Apollo's Arrow" data-desc="Wrathful detonations of the dawn." data-role="Lead Animator, Sound Design" data-software="Blender, Premiere Pro" data-media-type="video" data-media-src="assets/3D Dimension/Videos/Apollos Arrow.mp4">
-          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/3D Dimension/Videos/Apollos Arrow.mp4" type="video/mp4"></video>
-          <div class="video-card-info">
-            <div class="work-card-tag">Blender · Animation</div>
-            <div class="work-card-title">Apollo's Arrow</div>
-          </div>
-        </div>
-        <div class="video-card glass-panel" onclick="openArtModal(this)" data-title="Destruction" data-desc="Cataclysmic energy releasing across Neo City." data-role="Lead Animator, Simulation" data-software="Blender, Premiere Pro" data-media-type="video" data-media-src="assets/3D Dimension/Videos/Destruction.mp4">
-          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/3D Dimension/Videos/Destruction.mp4" type="video/mp4"></video>
-          <div class="video-card-info">
-            <div class="work-card-tag">Blender · Simulation</div>
-            <div class="work-card-title">Destruction</div>
-          </div>
-        </div>
-        <div class="video-card glass-panel" onclick="openArtModal(this)" data-title="Fallen City" data-desc="Cathedral of ash monuments." data-role="Environment Artist" data-software="Blender, Premiere Pro" data-media-type="video" data-media-src="assets/3D Dimension/Videos/Fallen City.mp4">
-          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/3D Dimension/Videos/Fallen City.mp4" type="video/mp4"></video>
-          <div class="video-card-info">
-            <div class="work-card-tag">Blender · Environment</div>
-            <div class="work-card-title">Fallen City</div>
-          </div>
-        </div>
-        <div class="video-card glass-panel" onclick="openArtModal(this)" data-title="Gemini — Animated" data-desc="Celestial twins crossing blades in motion." data-role="Lead Animator" data-software="Blender, Premiere Pro" data-media-type="video" data-media-src="assets/3D Dimension/Videos/Gemini.mp4">
-          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/3D Dimension/Videos/Gemini.mp4" type="video/mp4"></video>
-          <div class="video-card-info">
-            <div class="work-card-tag">Blender · Character</div>
-            <div class="work-card-title">Gemini — Animated</div>
-          </div>
-        </div>
-        <div class="video-card glass-panel" onclick="openArtModal(this)" data-title="The King — Animated" data-desc="Cinematic clash where steel meets silicon." data-role="Lead Animator" data-software="Blender, Premiere Pro" data-media-type="video" data-media-src="assets/3D Dimension/Videos/The King.mp4">
-          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/3D Dimension/Videos/The King.mp4" type="video/mp4"></video>
-          <div class="video-card-info">
-            <div class="work-card-tag">Blender · Cinematic</div>
-            <div class="work-card-title">The King — Animated</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            if (!targetSection || (currentSection && currentSection.id === targetId) || isTransitioning) return;
 
-<!-- ═══════════════════════════════════════
-     VFX PAGE
-═══════════════════════════════════════ -->
-<div id="page-vfx" class="page">
-  <div style="min-height:100vh;">
-    <div class="inner-hero">
-      <button class="back-btn" onclick="navigate('home')">← Return Home</button>
-      <p class="inner-eyebrow">// Chapter III — Visual Effects</p>
-      <h1 class="inner-title">Dancing <em>Embers</em></h1>
-      <p class="inner-sub">The invisible made visible. The ordinary made extraordinary. VFX is the language of sensation.</p>
-    </div>
-    <div class="work-section">
-      <div class="work-grid">
-        <div class="video-card glass-panel">
-          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/Skill VFX/Mage_EyeOfTheStorm.mp4" type="video/mp4"></video>
-          <div class="video-card-info">
-            <div class="work-card-tag">Unity VFX Graph · Shader</div>
-            <div class="work-card-title">Eye of the Storm</div>
-          </div>
-        </div>
-        <div class="video-card glass-panel">
-          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/Skill VFX/Mage_FlameTornado.mp4" type="video/mp4"></video>
-          <div class="video-card-info">
-            <div class="work-card-tag">Unity VFX Graph · Particles</div>
-            <div class="work-card-title">Flame Tornado</div>
-          </div>
-        </div>
-        <div class="video-card glass-panel">
-          <video muted loop playsinline preload="metadata" data-lazy><source src="assets/Skill VFX/Mage_FrostVortex.mp4" type="video/mp4"></video>
-          <div class="video-card-info">
-            <div class="work-card-tag">Unity VFX Graph · Ice FX</div>
-            <div class="work-card-title">Frost Vortex</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            isTransitioning = true;
 
-<!-- ═══════════════════════════════════════
-     WEB PAGE
-═══════════════════════════════════════ -->
-<div id="page-web" class="page">
-  <div style="min-height:100vh;">
-    <div class="inner-hero">
-      <button class="back-btn" onclick="navigate('home')">← Return Home</button>
-      <p class="inner-eyebrow">// Chapter IV — Web Development</p>
-      <h1 class="inner-title">Woven <em>Scripts</em></h1>
-      <p class="inner-sub">Clean code, purposeful design, and digital experiences woven into functional art.</p>
-    </div>
-    <div class="work-section">
-      <div class="work-grid">
-        <div class="work-card glass-panel glass-shimmer" onclick="openWebModal(this)"
-             data-title="Cat In A Box"
-             data-tags="HTML, CSS, JavaScript"
-             data-purpose="A fully functional café e-commerce website built to demonstrate front-end web development mastery."
-             data-desc="Cat In A Box features a glassmorphism UI with complete menu categorization, real-time cart, and order validation."
-             data-tech="Vanilla HTML, CSS Grid/Flexbox, and pure JS for optimal performance without heavy frameworks."
-             data-link="https://gradiel9901.github.io/Cat-in-a-Box/"
-             data-img="assets/Web Development/Cat In A Box.png">
-          <div class="work-card-media"><img src="assets/Web Development/Cat In A Box.png" alt="Cat In A Box" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">HTML · CSS · JavaScript</div>
-            <div class="work-card-title">Cat In A Box</div>
-            <div class="work-card-sub">Charming café web app with glassmorphism UI &amp; real-time shopping cart.</div>
-          </div>
-        </div>
-        <div class="work-card glass-panel glass-shimmer" onclick="openWebModal(this)"
-             data-title="Kinetix"
-             data-tags="ReactJS, MongoDB, Express.js, Node.js"
-             data-purpose="Full-stack fitness tracking web application built using the MERN stack."
-             data-desc="Monitors workout routines, tracks calorie intake, and presents progress analytics via real-time charts."
-             data-tech="React component architecture paired with MongoDB flexible document schemas."
-             data-link="https://gradiel9901.github.io/Kinetix/"
-             data-img="assets/Web Development/Kinetix.png">
-          <div class="work-card-media"><img src="assets/Web Development/Kinetix.png" alt="Kinetix" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">ReactJS · MongoDB</div>
-            <div class="work-card-title">Kinetix</div>
-            <div class="work-card-sub">Comprehensive workout analytics dashboard &amp; fitness tracker.</div>
-          </div>
-        </div>
-        <div class="work-card glass-panel glass-shimmer" onclick="openWebModal(this)"
-             data-title="Locus"
-             data-tags="PHP, MySQL, HTML, CSS, JavaScript"
-             data-purpose="Server-side web app demonstrating LAMP stack development with interactive maps."
-             data-desc="Connects users with venue bookings, real-time filtering, and authentication management."
-             data-tech="PHP server-side rendering combined with relational MySQL database integrity."
-             data-link="https://gradiel9901.github.io/Locus/#"
-             data-img="assets/Web Development/Locus.png">
-          <div class="work-card-media"><img src="assets/Web Development/Locus.png" alt="Locus" loading="lazy"></div>
-          <div class="work-card-body">
-            <div class="work-card-tag">PHP · MySQL · HTML</div>
-            <div class="work-card-title">Locus</div>
-            <div class="work-card-sub">Location-based platform with venue booking &amp; interactive mapping.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.toggle('active', link.getAttribute('data-target') === targetId);
+            });
 
-<!-- ═══════════════════════════════════════
-     BGM WIDGET & QUICK NAV
-═══════════════════════════════════════ -->
-<button id="bgm-btn" class="glass-panel" aria-label="Toggle ambient music" title="Toggle ambient music">
-  <svg class="bgm-icon" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2" width="20" height="20">
-    <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
-  </svg>
-  <div class="bgm-bars">
-    <div class="bgm-bar"></div><div class="bgm-bar"></div><div class="bgm-bar"></div><div class="bgm-bar"></div>
-  </div>
-</button>
+            if (currentSection) {
+                currentSection.classList.remove('in-view');
 
-<div id="bgm-volume-wrap" class="glass-panel">
-  <input type="range" id="bgm-volume" min="0" max="1" step="0.01" value="0.6" aria-label="Volume">
-</div>
+                setTimeout(() => {
+                    currentSection.classList.remove('active-display');
+                    targetSection.classList.add('active-display');
+                    void targetSection.offsetWidth;
+                    targetSection.classList.add('in-view');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
 
-<div id="quick-nav">
-  <button id="quick-nav-trigger" class="glass-panel">Quick Jump ▾</button>
-  <div class="quick-nav-links">
-    <button class="qnl glass-panel" onclick="navigate('games')">Games</button>
-    <button class="qnl glass-panel" onclick="navigate('3d')">3D Art</button>
-    <button class="qnl glass-panel" onclick="navigate('vfx')">VFX</button>
-    <button class="qnl glass-panel" onclick="navigate('web')">Web</button>
-  </div>
-</div>
+                    isTransitioning = false;
+                }, 400);
+            } else {
+                targetSection.classList.add('active-display');
+                setTimeout(() => targetSection.classList.add('in-view'), 10);
+                isTransitioning = false;
+            }
 
-<!-- ═══════════════════════════════════════
-     MODALS
-═══════════════════════════════════════ -->
-<div id="game-modal" onclick="if(event.target === this) closeGameModal()">
-  <div class="game-modal-content glass-panel">
-    <button class="game-modal-close" onclick="closeGameModal()">×</button>
-    <div class="game-modal-video">
-      <video id="modal-vid" autoplay loop muted playsinline preload="none">
-        <source id="modal-video-source" src="" type="video/mp4">
-      </video>
-    </div>
-    <div class="game-modal-body">
-      <h2 id="modal-title" class="game-modal-title"></h2>
-      <div id="modal-award" class="game-modal-award">
-        <span id="modal-award-text"></span>
-      </div>
-      <div class="game-modal-info-grid">
-        <div class="info-col">
-          <p class="info-col-label">Roles &amp; Production</p>
-          <div id="modal-roles" class="info-col-list"></div>
-        </div>
-        <div class="info-col">
-          <p class="info-col-label">Software &amp; Stack</p>
-          <div id="modal-software" class="info-col-list"></div>
-        </div>
-      </div>
-      <p id="modal-desc" class="game-modal-desc"></p>
-      <p class="modal-gallery-label">// Screenshots</p>
-      <div id="modal-gallery" class="modal-gallery"></div>
-      <a id="modal-itch" href="#" target="_blank" class="btn-glass" style="margin-top:24px;">Visit Itch.io Page</a>
-    </div>
-  </div>
-</div>
-
-<div id="art-modal" onclick="if(event.target === this) closeArtModal()">
-  <div class="game-modal-content glass-panel">
-    <button class="game-modal-close" onclick="closeArtModal()">×</button>
-    <div class="game-modal-video" id="art-modal-media"></div>
-    <div class="game-modal-body">
-      <h2 id="art-modal-title" class="game-modal-title"></h2>
-      <div class="game-modal-info-grid">
-        <div class="info-col">
-          <p class="info-col-label">Roles &amp; Production</p>
-          <div id="art-modal-roles" class="info-col-list"></div>
-        </div>
-        <div class="info-col">
-          <p class="info-col-label">Software</p>
-          <div id="art-modal-software" class="info-col-list"></div>
-        </div>
-      </div>
-      <p id="art-modal-desc" class="game-modal-desc"></p>
-    </div>
-  </div>
-</div>
-
-<div id="web-modal" onclick="if(event.target === this) closeWebModal()">
-  <div class="game-modal-content glass-panel">
-    <button class="game-modal-close" onclick="closeWebModal()">×</button>
-    <div class="game-modal-video" id="web-modal-media"></div>
-    <div class="game-modal-body">
-      <h2 id="web-modal-title" class="game-modal-title"></h2>
-      <div id="web-modal-tags" class="game-modal-tags"></div>
-      <div class="game-modal-info-grid">
-        <div class="info-col" style="grid-column:1/-1">
-          <p class="info-col-label">// Purpose</p>
-          <div id="web-modal-purpose" class="info-col-list"></div>
-        </div>
-      </div>
-      <p id="web-modal-desc" class="game-modal-desc"></p>
-      <div style="margin-bottom:28px">
-        <p class="info-col-label">// Tech Rationale</p>
-        <p id="web-modal-tech" style="font-size:0.9rem; line-height:1.7; color:var(--text-muted);"></p>
-      </div>
-      <a id="web-modal-link" href="#" target="_blank" class="btn-glass">Visit Live Site</a>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
-     JAVASCRIPT (ALL-IN-ONE)
-═══════════════════════════════════════ -->
-<script>
-/* ─── CURSOR ENGINE ─── */
-const glassCursor = document.getElementById('glass-cursor');
-const glassRing = document.getElementById('glass-ring');
-let mx=0, my=0, rx=0, ry=0;
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  glassCursor.style.left = mx + 'px';
-  glassCursor.style.top = my + 'px';
-});
-(function ringLoop(){
-  rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14;
-  glassRing.style.left = rx + 'px'; glassRing.style.top = ry + 'px';
-  requestAnimationFrame(ringLoop);
-})();
-
-document.querySelectorAll('a, button, .work-card, .video-card, .skill-card').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    glassRing.style.width = '54px'; glassRing.style.height = '54px';
-    glassRing.style.background = 'rgba(0,122,255,0.15)';
-  });
-  el.addEventListener('mouseleave', () => {
-    glassRing.style.width = '38px'; glassRing.style.height = '38px';
-    glassRing.style.background = 'rgba(255,255,255,0.15)';
-  });
-});
-
-/* ─── MOBILE MENU ─── */
-function toggleMobileMenu() {
-  const burger = document.querySelector('.burger');
-  const menu = document.getElementById('mobile-menu');
-  burger.classList.toggle('open');
-  menu.classList.toggle('open');
-}
-
-/* ─── PAGE NAVIGATION SYSTEM ─── */
-let currentPage = 'home';
-let pageAnimating = false;
-
-function navigate(id) {
-  if (id === currentPage || pageAnimating) return;
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('data-page') === id);
-  });
-
-  pageAnimating = true;
-  const prev = document.getElementById('page-' + currentPage);
-  const next = document.getElementById('page-' + id);
-
-  if (prev) {
-    prev.style.opacity = '0';
-    prev.style.transform = 'scale(0.96)';
-  }
-
-  setTimeout(() => {
-    if (prev) {
-      prev.classList.remove('active');
-      prev.style.transform = 'none';
-    }
-    if (next) {
-      next.scrollTop = 0;
-      next.classList.add('active');
-      next.style.opacity = '0';
-      next.style.transform = 'scale(1.04)';
-      requestAnimationFrame(() => {
-        next.style.transition = 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-        next.style.opacity = '1';
-        next.style.transform = 'scale(1)';
-      });
-      
-      const gvp = document.querySelector('.galaxy-viewport');
-      if (gvp) {
-        if (id === 'home') {
-          gvp.classList.remove('inner-mode');
-          document.querySelector('#page-home .hero').appendChild(gvp);
-        } else {
-          gvp.classList.add('inner-mode');
-          next.querySelector('.inner-hero').appendChild(gvp);
+            document.getElementById('navLinks').classList.remove('mobile-open');
         }
-        resizeGalaxy();
-      }
-    }
-    currentPage = id;
-    pageAnimating = false;
-    lazyLoadVideos();
-  }, 300);
-}
 
-function scrollToStory() {
-  const home = document.getElementById('page-home');
-  const anchor = document.getElementById('story-anchor');
-  if (anchor && home) home.scrollTo({ top: anchor.offsetTop - 80, behavior: 'smooth' });
-}
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const target = link.getAttribute('data-target');
+                navigateTo(target);
+            });
+        });
 
-/* ─── GALAXY MAP (ORB NAVIGATION SYSTEM) ─── */
-const gCanvas = document.getElementById('galaxy-canvas');
-const gCtx = gCanvas.getContext('2d');
-const gTooltip = document.getElementById('galaxy-tooltip');
-const gttName = document.getElementById('gtt-name');
-const gttDesc = document.getElementById('gtt-desc');
-const gViewport = document.querySelector('.galaxy-viewport');
-let gMx = 0, gMy = 0, gHovered = -1;
+        document.getElementById('mobileToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('mobile-open');
+        });
 
-const planets = [
-  { name: 'Games', desc: 'Worlds Inscribed', page: 'games', orbit: 0.38, speed: 0.08, angle: 1.25, color: '#00c6ff', glow: 'rgba(0,198,255,0.4)', size: 18, rune: '❖' },
-  { name: '3D Art', desc: 'Carved Dimensions', page: '3d', orbit: 0.54, speed: 0.08, angle: 2.51, color: '#7f00ff', glow: 'rgba(127,0,255,0.4)', size: 16, rune: '◈' },
-  { name: 'VFX', desc: 'Dancing Embers', page: 'vfx', orbit: 0.70, speed: 0.08, angle: 3.76, color: '#ff0844', glow: 'rgba(255,8,68,0.4)', size: 14, rune: '🗲' },
-  { name: 'Web', desc: 'Woven Scripts', page: 'web', orbit: 0.86, speed: 0.08, angle: 5.02, color: '#007aff', glow: 'rgba(0,122,255,0.4)', size: 13, rune: '✦' },
-  { name: 'Theme', desc: 'Toggle Dark/Light', page: 'theme', orbit: 0.22, speed: 0.08, angle: 0.0, color: '#a1a1a6', glow: 'rgba(161,161,166,0.4)', size: 12, rune: '☾' }
-];
+        /* --- HELPER FOR VIDEO AUTOPLAY + HOVER TO STATIC THUMBNAIL --- */
+        function buildCardPreviewHTML(item) {
+            const firstVid = item.media ? item.media.find(m => m.type === 'video') : null;
+            const firstImg = item.media ? item.media.find(m => m.type === 'image') : null;
 
-function resizeGalaxy() {
-  if (!gCanvas) return;
-  const r = gCanvas.getBoundingClientRect();
-  gCanvas.width = r.width * devicePixelRatio;
-  gCanvas.height = r.height * devicePixelRatio;
-  gCtx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-}
-resizeGalaxy();
-window.addEventListener('resize', resizeGalaxy);
+            if (firstVid) {
+                const thumbSrc = firstImg ? firstImg.url : '';
+                return `
+                    <div class="card-preview has-video">
+                        <video class="preview-video" src="${firstVid.url}" autoplay loop muted playsinline></video>
+                        ${thumbSrc ? `<img class="preview-thumb" src="${thumbSrc}" alt="${item.title}" />` : ''}
+                    </div>
+                `;
+            } else if (firstImg) {
+                return `
+                    <div class="card-preview">
+                        <img src="${firstImg.url}" alt="${item.title}" />
+                    </div>
+                `;
+            } else {
+                return `
+                    <div class="card-preview">
+                        <div class="card-preview-placeholder">
+                            <svg class="svg-icon"><use href="#${item.icon || 'icon-3d-cube'}"/></svg>
+                            <span style="font-weight:700;">${item.title}</span>
+                        </div>
+                    </div>
+                `;
+            }
+        }
 
-if (gViewport) {
-  gViewport.addEventListener('mousemove', e => {
-    const r = gViewport.getBoundingClientRect();
-    gMx = e.clientX - r.left; gMy = e.clientY - r.top;
-  });
-  gViewport.addEventListener('click', () => {
-    if (gHovered >= 0) {
-      if (planets[gHovered].page === 'theme') {
-        document.documentElement.classList.toggle('dark-mode');
-        return;
-      }
-      navigate(planets[gHovered].page);
-    }
-  });
-  gViewport.addEventListener('mouseleave', () => gHovered = -1);
-}
+        function setupVideoHoverEvents(card) {
+            const vid = card.querySelector('video.preview-video');
+            if (!vid) return;
 
-function drawGalaxy(time) {
-  const W = gCanvas.width / devicePixelRatio;
-  const H = gCanvas.height / devicePixelRatio;
-  const cx = W / 2, cy = H / 2;
-  gCtx.clearRect(0, 0, W, H);
+            card.addEventListener('mouseenter', () => {
+                vid.pause();
+            });
 
-  planets.forEach((p, idx) => {
-    p.angle += p.speed * 0.016;
-    if (p.page === currentPage) return;
-    const r = Math.min(W, H) * 0.44 * p.orbit;
-    const x = cx + Math.cos(p.angle) * r;
-    const y = cy + Math.sin(p.angle) * r * 0.6;
-    
-    // Draw Orbit Line
-    gCtx.beginPath();
-    gCtx.ellipse(cx, cy, r, r * 0.6, 0, 0, Math.PI * 2);
-    gCtx.strokeStyle = 'rgba(255,255,255,0.15)';
-    gCtx.stroke();
+            card.addEventListener('mouseleave', () => {
+                vid.play().catch(() => {});
+            });
+        }
 
-    // Draw Planet
-    gCtx.beginPath();
-    gCtx.arc(x, y, p.size, 0, Math.PI * 2);
-    gCtx.fillStyle = p.color;
-    gCtx.shadowColor = p.glow;
-    gCtx.shadowBlur = 15;
-    gCtx.fill();
-    gCtx.shadowBlur = 0;
+        /* --- 3. DYNAMIC CARD RENDERERS --- */
+        function renderGames(filter = 'all') {
+            const container = document.getElementById('gamesGrid');
+            container.innerHTML = '';
+            
+            const filtered = filter === 'all' ? gamesData : gamesData.filter(g => g.category === filter || g.tags.some(t => t.toLowerCase().includes(filter)));
 
-    // Hit test
-    const dx = gMx - x, dy = gMy - y;
-    if (Math.sqrt(dx*dx + dy*dy) < p.size * 2) {
-      gHovered = idx;
-      gTooltip.style.left = x + 'px';
-      gTooltip.style.top = y + 'px';
-      gttName.textContent = p.name;
-      gttDesc.textContent = p.desc;
-      gTooltip.classList.add('visible');
-    }
-  });
-  requestAnimationFrame(drawGalaxy);
-}
-requestAnimationFrame(drawGalaxy);
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card glass';
+                card.onclick = () => openModal(item);
 
-/* ─── LAZY VIDEO LOADING ─── */
-function lazyLoadVideos() {
-  const activePage = document.querySelector('.page.active');
-  if (!activePage) return;
-  activePage.querySelectorAll('video[data-lazy]').forEach(v => {
-    v.play().catch(() => {});
-  });
-}
-lazyLoadVideos();
+                card.innerHTML = `
+                    ${buildCardPreviewHTML(item)}
+                    <div class="card-body">
+                        <div class="card-tags">${item.tags.map(t => `<span class="neu-badge">${t}</span>`).join('')}</div>
+                        <h3 class="card-title">${item.title}</h3>
+                        <p class="card-text">${item.desc}</p>
+                        <div class="card-footer">
+                            <span style="font-size:0.85rem; color:var(--accent); font-weight:600;">View Game Specs</span>
+                            <button class="neu-icon-btn" style="width:32px; height:32px;"><svg class="svg-icon"><use href="#icon-arrow-right"/></svg></button>
+                        </div>
+                    </div>
+                `;
+                setupVideoHoverEvents(card);
+                container.appendChild(card);
+            });
+        }
 
-/* ─── MODAL CONTROLLERS ─── */
-function openGameModal(el) {
-  const modal = document.getElementById('game-modal');
-  const vid = document.getElementById('modal-vid');
-  const src = document.getElementById('modal-video-source');
-  const gallery = document.getElementById('modal-gallery');
-  const data = el.dataset;
+        function render3D(filter = 'all') {
+            const container = document.getElementById('modelingGrid');
+            container.innerHTML = '';
 
-  document.getElementById('modal-title').textContent = data.title;
-  document.getElementById('modal-desc').textContent = data.desc;
-  document.getElementById('modal-itch').href = data.link;
+            const filtered = filter === 'all' ? modelingData : modelingData.filter(m => m.category === filter);
 
-  document.getElementById('modal-roles').innerHTML = data.role.split(',').map(r => `<div>• ${r.trim()}</div>`).join('');
-  document.getElementById('modal-software').innerHTML = data.software.split(',').map(s => `<div>• ${s.trim()}</div>`).join('');
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card glass';
+                card.onclick = () => openModal(item);
 
-  const awardBox = document.getElementById('modal-award');
-  if (data.award && data.award !== "null") {
-    awardBox.style.display = 'flex';
-    document.getElementById('modal-award-text').textContent = data.award;
-  } else { awardBox.style.display = 'none'; }
+                card.innerHTML = `
+                    ${buildCardPreviewHTML(item)}
+                    <div class="card-body">
+                        <div class="card-tags">${item.tags.map(t => `<span class="neu-badge">${t}</span>`).join('')}</div>
+                        <h3 class="card-title">${item.title}</h3>
+                        <p class="card-text">${item.desc}</p>
+                        <div class="card-footer">
+                            <span style="font-size:0.85rem; color:var(--accent); font-weight:600;">View Mesh Details</span>
+                            <button class="neu-icon-btn" style="width:32px; height:32px;"><svg class="svg-icon"><use href="#icon-3d-cube"/></svg></button>
+                        </div>
+                    </div>
+                `;
+                setupVideoHoverEvents(card);
+                container.appendChild(card);
+            });
+        }
 
-  src.src = data.video; vid.load(); vid.play().catch(() => {});
-  gallery.innerHTML = "";
-  if (data.screenshots) {
-    const list = data.screenshots.split(',');
-    const basePath = `assets/Game Hub/PopUp Window/${data.title}/ScreenShots/`;
-    list.forEach(imgName => {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'gallery-img-wrapper';
-      const img = document.createElement('img');
-      img.src = basePath + imgName.trim();
-      wrapper.appendChild(img);
-      gallery.appendChild(wrapper);
-    });
-  }
-  modal.classList.add('visible');
-}
+        function renderVFX() {
+            const container = document.getElementById('vfxGrid');
+            container.innerHTML = '';
 
-function closeGameModal() {
-  document.getElementById('game-modal').classList.remove('visible');
-  document.getElementById('modal-vid').pause();
-}
+            vfxData.forEach((item) => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card glass';
+                card.onclick = () => openModal(item);
+                card.innerHTML = `
+                    ${buildCardPreviewHTML(item)}
+                    <div class="card-body">
+                        <div class="card-tags">${item.tags.map(t => `<span class="neu-badge">${t}</span>`).join('')}</div>
+                        <h3 class="card-title">${item.title}</h3>
+                        <p class="card-text">${item.desc}</p>
+                        <div class="card-footer">
+                            <span style="font-size:0.85rem; color:var(--accent); font-weight:600;">Inspect Shader</span>
+                            <button class="neu-icon-btn" style="width:32px; height:32px;"><svg class="svg-icon"><use href="#icon-code"/></svg></button>
+                        </div>
+                    </div>
+                `;
+                setupVideoHoverEvents(card);
+                container.appendChild(card);
+            });
+        }
 
-function openArtModal(el) {
-  const modal = document.getElementById('art-modal');
-  const mediaContainer = document.getElementById('art-modal-media');
-  const data = el.dataset;
+        function renderWeb() {
+            const container = document.getElementById('webGrid');
+            container.innerHTML = '';
 
-  document.getElementById('art-modal-title').textContent = data.title;
-  document.getElementById('art-modal-desc').textContent = data.desc;
-  document.getElementById('art-modal-roles').innerHTML = data.role.split(',').map(r => `<div>• ${r.trim()}</div>`).join('');
-  document.getElementById('art-modal-software').innerHTML = data.software.split(',').map(s => `<div>• ${s.trim()}</div>`).join('');
+            webData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card glass';
+                card.onclick = () => openModal(item);
 
-  mediaContainer.innerHTML = "";
-  if (data.mediaType === "video") {
-    const vid = document.createElement('video');
-    vid.autoplay = true; vid.loop = true; vid.muted = true; vid.playsInline = true;
-    const src = document.createElement('source');
-    src.src = data.mediaSrc; src.type = 'video/mp4';
-    vid.appendChild(src); mediaContainer.appendChild(vid); vid.play().catch(() => {});
-  } else {
-    const img = document.createElement('img');
-    img.src = data.mediaSrc; mediaContainer.appendChild(img);
-  }
-  modal.classList.add('visible');
-}
+                card.innerHTML = `
+                    ${buildCardPreviewHTML(item)}
+                    <div class="card-body">
+                        <div class="card-tags">${item.tags.map(t => `<span class="neu-badge">${t}</span>`).join('')}</div>
+                        <h3 class="card-title">${item.title}</h3>
+                        <p class="card-text">${item.desc}</p>
+                        <div class="card-footer">
+                            <span style="font-size:0.85rem; color:var(--accent); font-weight:600;">Launch Preview</span>
+                            <button class="neu-icon-btn" style="width:32px; height:32px;"><svg class="svg-icon"><use href="#icon-external"/></svg></button>
+                        </div>
+                    </div>
+                `;
+                setupVideoHoverEvents(card);
+                container.appendChild(card);
+            });
+        }
 
-function closeArtModal() { document.getElementById('art-modal').classList.remove('visible'); }
+        /* Filter Event Handlers */
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                renderGames(e.target.getAttribute('data-filter'));
+            });
+        });
 
-function openWebModal(el) {
-  const modal = document.getElementById('web-modal');
-  const mediaContainer = document.getElementById('web-modal-media');
-  const data = el.dataset;
+        document.querySelectorAll('.filter-btn-3d').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn-3d').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                render3D(e.target.getAttribute('data-filter'));
+            });
+        });
 
-  document.getElementById('web-modal-title').textContent = data.title;
-  document.getElementById('web-modal-purpose').textContent = data.purpose;
-  document.getElementById('web-modal-desc').textContent = data.desc;
-  document.getElementById('web-modal-tech').textContent = data.tech;
-  document.getElementById('web-modal-link').href = data.link;
+        /* --- 4. CUSTOM NEUMORPHIC VIDEO PLAYER CONTROLLER --- */
+        function createCustomVideoPlayer(url) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'custom-video-wrapper paused';
 
-  document.getElementById('web-modal-tags').innerHTML = data.tags.split(',').map(t => `<span>${t.trim()}</span>`).join('');
-  mediaContainer.innerHTML = '';
-  if (data.img) {
-    const img = document.createElement('img');
-    img.src = data.img; mediaContainer.appendChild(img);
-  }
-  modal.classList.add('visible');
-}
+            wrapper.innerHTML = `
+                <video src="${url}" loop muted playsinline preload="metadata"></video>
+                <div class="v-overlay-play">
+                    <svg class="svg-icon"><use href="#icon-play"/></svg>
+                </div>
+                <div class="video-controls-bar">
+                    <button class="v-btn btn-play" title="Play / Pause">
+                        <svg class="svg-icon"><use href="#icon-play"/></svg>
+                    </button>
+                    <span class="v-time">0:00 / 0:00</span>
+                    <div class="v-progress-container">
+                        <input type="range" class="v-progress-bar" value="0" min="0" max="100" step="0.1">
+                    </div>
+                    <button class="v-btn btn-mute" title="Mute / Unmute">
+                        <svg class="svg-icon"><use href="#icon-volume-mute"/></svg>
+                    </button>
+                    <button class="v-btn btn-fs" title="Fullscreen">
+                        <svg class="svg-icon"><use href="#icon-fullscreen"/></svg>
+                    </button>
+                </div>
+            `;
 
-function closeWebModal() { document.getElementById('web-modal').classList.remove('visible'); }
+            const video = wrapper.querySelector('video');
+            const btnPlay = wrapper.querySelector('.btn-play');
+            const btnMute = wrapper.querySelector('.btn-mute');
+            const btnFs = wrapper.querySelector('.btn-fs');
+            const progress = wrapper.querySelector('.v-progress-bar');
+            const timeDisplay = wrapper.querySelector('.v-time');
 
-window.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeGameModal(); closeArtModal(); closeWebModal(); }
-});
+            function formatTime(seconds) {
+                if (isNaN(seconds)) return "0:00";
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
 
-/* ─── BGM AUDIO ENGINE ─── */
-class PixelDreamBGM {
-  constructor() { this.audioCtx = null; this.playing = false; }
-  init() {
-    if (this.audioCtx) return;
-    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    this.master = this.audioCtx.createGain();
-    this.master.gain.value = 0.5;
-    this.master.connect(this.audioCtx.destination);
-  }
-  toggle() {
-    this.init();
-    if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
-    this.playing = !this.playing;
-    return this.playing;
-  }
-  setVolume(v) { if (this.master) this.master.gain.value = v; }
-}
+            function togglePlay() {
+                if (video.paused) {
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                }
+            }
 
-const bgm = new PixelDreamBGM();
-const bgmBtn = document.getElementById('bgm-btn');
-const bgmVolumeWrap = document.getElementById('bgm-volume-wrap');
+            video.addEventListener('play', () => {
+                wrapper.classList.remove('paused');
+                btnPlay.innerHTML = '<svg class="svg-icon"><use href="#icon-pause"/></svg>';
+            });
 
-bgmBtn.addEventListener('click', () => {
-  const isPlaying = bgm.toggle();
-  bgmBtn.classList.toggle('playing', isPlaying);
-  bgmVolumeWrap.classList.toggle('visible', isPlaying);
-});
+            video.addEventListener('pause', () => {
+                wrapper.classList.add('paused');
+                btnPlay.innerHTML = '<svg class="svg-icon"><use href="#icon-play"/></svg>';
+            });
 
-document.getElementById('bgm-volume').addEventListener('input', e => {
-  bgm.setVolume(parseFloat(e.target.value));
-});
-</script>
+            wrapper.addEventListener('click', (e) => {
+                if (!e.target.closest('.video-controls-bar')) {
+                    togglePlay();
+                }
+            });
+
+            btnPlay.addEventListener('click', (e) => {
+                e.stopPropagation();
+                togglePlay();
+            });
+
+            btnMute.addEventListener('click', (e) => {
+                e.stopPropagation();
+                video.muted = !video.muted;
+                btnMute.innerHTML = video.muted 
+                    ? '<svg class="svg-icon"><use href="#icon-volume-mute"/></svg>' 
+                    : '<svg class="svg-icon"><use href="#icon-volume"/></svg>';
+            });
+
+            btnFs.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (!document.fullscreenElement) {
+                    if (wrapper.requestFullscreen) wrapper.requestFullscreen();
+                    else if (video.requestFullscreen) video.requestFullscreen();
+                } else {
+                    if (document.exitFullscreen) document.exitFullscreen();
+                }
+            });
+
+            video.addEventListener('timeupdate', () => {
+                if (!video.duration) return;
+                const pct = (video.currentTime / video.duration) * 100;
+                progress.value = pct;
+                timeDisplay.innerText = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+            });
+
+            progress.addEventListener('input', (e) => {
+                e.stopPropagation();
+                if (!video.duration) return;
+                const seekTo = (progress.value / 100) * video.duration;
+                video.currentTime = seekTo;
+            });
+
+            let hideTimeout;
+            wrapper.addEventListener('mousemove', () => {
+                wrapper.classList.add('show-controls');
+                clearTimeout(hideTimeout);
+                hideTimeout = setTimeout(() => {
+                    if (!video.paused) wrapper.classList.remove('show-controls');
+                }, 2500);
+            });
+
+            return wrapper;
+        }
+
+        /* --- 5. MODAL SLIDESHOW CAROUSEL ENGINE --- */
+        const modal = document.getElementById('projectModal');
+        const modalClose = document.getElementById('modalClose');
+        const slidesTrack = document.getElementById('slidesTrack');
+        const dotsContainer = document.getElementById('slideshowDots');
+        const btnPrev = document.getElementById('slidePrev');
+        const btnNext = document.getElementById('slideNext');
+
+        let currentSlideIndex = 0;
+        let totalSlides = 0;
+
+        function updateSlide(index) {
+            if (totalSlides === 0) return;
+
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+
+            currentSlideIndex = index;
+
+            const slideElements = slidesTrack.querySelectorAll('.slide-item');
+            slideElements.forEach((el, idx) => {
+                const isActive = idx === currentSlideIndex;
+                el.classList.toggle('active', isActive);
+
+                const vid = el.querySelector('video');
+                if (vid) {
+                    if (isActive) vid.play().catch(() => {});
+                    else vid.pause();
+                }
+            });
+
+            const dots = dotsContainer.querySelectorAll('.dot-indicator');
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentSlideIndex);
+            });
+        }
+
+        function openModal(item) {
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalDescription').innerText = item.detail || item.desc;
+            document.getElementById('modalTags').innerHTML = item.tags.map(t => `<span class="neu-badge">${t}</span>`).join('');
+
+            slidesTrack.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            const mediaList = (item.media && item.media.length > 0) 
+                ? item.media 
+                : [{ type: 'svg', icon: item.icon || 'icon-3d-cube' }];
+
+            totalSlides = mediaList.length;
+            currentSlideIndex = 0;
+
+            mediaList.forEach((m, idx) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = `slide-item ${idx === 0 ? 'active' : ''}`;
+
+                if (m.type === 'video') {
+                    const customPlayer = createCustomVideoPlayer(m.url);
+                    slideDiv.appendChild(customPlayer);
+                } else if (m.type === 'image' || m.type === 'gif') {
+                    slideDiv.innerHTML = `<img src="${m.url}" alt="${item.title}" class="slide-media" />`;
+                } else {
+                    slideDiv.innerHTML = `
+                        <div class="modal-header-fallback">
+                            <svg class="svg-icon"><use href="#${m.icon || item.icon || 'icon-3d-cube'}"/></svg>
+                        </div>`;
+                }
+                slidesTrack.appendChild(slideDiv);
+
+                const dot = document.createElement('div');
+                dot.className = `dot-indicator ${idx === 0 ? 'active' : ''}`;
+                dot.onclick = () => updateSlide(idx);
+                dotsContainer.appendChild(dot);
+            });
+
+            if (totalSlides <= 1) {
+                btnPrev.style.display = 'none';
+                btnNext.style.display = 'none';
+                dotsContainer.style.display = 'none';
+            } else {
+                btnPrev.style.display = 'flex';
+                btnNext.style.display = 'flex';
+                dotsContainer.style.display = 'flex';
+            }
+
+            modal.classList.add('active');
+
+            // Autoplay initial slide video if present
+            setTimeout(() => updateSlide(0), 100);
+        }
+
+        btnPrev.addEventListener('click', () => updateSlide(currentSlideIndex - 1));
+        btnNext.addEventListener('click', () => updateSlide(currentSlideIndex + 1));
+
+        window.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+            if (e.key === 'ArrowLeft') updateSlide(currentSlideIndex - 1);
+            if (e.key === 'ArrowRight') updateSlide(currentSlideIndex + 1);
+            if (e.key === 'Escape') closeModal();
+        });
+
+        function closeModal() {
+            modal.classList.remove('active');
+            slidesTrack.querySelectorAll('video').forEach(v => v.pause());
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+        /* --- 6. THEME SWITCHER --- */
+        const themeBtn = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            themeBtn.innerHTML = newTheme === 'light' 
+                ? '<svg class="svg-icon"><use href="#icon-sun"/></svg>' 
+                : '<svg class="svg-icon"><use href="#icon-moon"/></svg>';
+        });
+
+        /* --- 7. SUBTLE AMBIENT BACKGROUND CANVAS --- */
+        function initBgCanvas() {
+            const canvas = document.getElementById('bgCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const bgParticles = Array.from({ length: 25 }, () => ({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                radius: Math.random() * 2.5 + 1,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                alpha: Math.random() * 0.4 + 0.2
+            }));
+
+            function animateBg() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+
+                bgParticles.forEach((p, index) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0) p.x = canvas.width;
+                    if (p.x > canvas.width) p.x = 0;
+                    if (p.y < 0) p.y = canvas.height;
+                    if (p.y > canvas.height) p.y = 0;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = accentColor;
+                    ctx.globalAlpha = p.alpha;
+                    ctx.fill();
+
+                    for (let j = index + 1; j < bgParticles.length; j++) {
+                        const p2 = bgParticles[j];
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 140) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = accentColor;
+                            ctx.globalAlpha = (1 - dist / 140) * 0.2;
+                            ctx.lineWidth = 0.6;
+                            ctx.stroke();
+                        }
+                    }
+                });
+
+                ctx.globalAlpha = 1.0;
+                requestAnimationFrame(animateBg);
+            }
+            animateBg();
+        }
+
+        /* --- 8. FULLY INTERACTIVE HERO CANVAS & 3D TILT --- */
+        function initHeroCanvas() {
+            const container = document.getElementById('heroContainer');
+            const canvas = document.getElementById('heroCanvas');
+            const ctx = canvas.getContext('2d');
+
+            let mode = 'repel';
+
+            const btnRepel = document.getElementById('modeRepel');
+            const btnAttract = document.getElementById('modeAttract');
+
+            btnRepel.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mode = 'repel';
+                btnRepel.classList.add('active');
+                btnAttract.classList.remove('active');
+            });
+
+            btnAttract.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mode = 'attract';
+                btnAttract.classList.add('active');
+                btnRepel.classList.remove('active');
+            });
+
+            function resize() {
+                canvas.width = container.clientWidth;
+                canvas.height = container.clientHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const numNodes = 45;
+            const nodes = Array.from({ length: numNodes }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 3.5 + 2,
+                vx: (Math.random() - 0.5) * 1.2,
+                vy: (Math.random() - 0.5) * 1.2,
+                pulse: Math.random() * Math.PI * 2,
+                isBurst: false
+            }));
+
+            const mouse = { x: null, y: null, active: false };
+
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+                mouse.active = true;
+
+                const cx = rect.width / 2;
+                const cy = rect.height / 2;
+                const rotX = -((mouse.y - cy) / cy) * 7;
+                const rotY = ((mouse.x - cx) / cx) * 7;
+                container.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+            });
+
+            container.addEventListener('mouseleave', () => {
+                mouse.active = false;
+                mouse.x = null;
+                mouse.y = null;
+                container.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            });
+
+            container.addEventListener('touchmove', (e) => {
+                if (e.touches.length > 0) {
+                    const rect = container.getBoundingClientRect();
+                    mouse.x = e.touches[0].clientX - rect.left;
+                    mouse.y = e.touches[0].clientY - rect.top;
+                    mouse.active = true;
+                }
+            }, { passive: true });
+
+            container.addEventListener('touchend', () => { mouse.active = false; });
+
+            container.addEventListener('click', (e) => {
+                const rect = container.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const clickY = e.clientY - rect.top;
+
+                for (let i = 0; i < 12; i++) {
+                    const angle = (Math.PI * 2 / 12) * i;
+                    const speed = Math.random() * 4 + 3;
+                    nodes.push({
+                        x: clickX,
+                        y: clickY,
+                        radius: Math.random() * 4 + 2,
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed,
+                        pulse: 0,
+                        life: 1.0,
+                        isBurst: true
+                    });
+                }
+            });
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+                const secondaryAccent = getComputedStyle(document.documentElement).getPropertyValue('--accent-secondary').trim();
+
+                for (let i = nodes.length - 1; i >= 0; i--) {
+                    const p = nodes[i];
+                    p.pulse += 0.03;
+
+                    if (p.isBurst) {
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.vx *= 0.94;
+                        p.vy *= 0.94;
+                        p.life -= 0.02;
+
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = secondaryAccent;
+                        ctx.globalAlpha = Math.max(0, p.life);
+                        ctx.fill();
+
+                        if (p.life <= 0) nodes.splice(i, 1);
+                        continue;
+                    }
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                    if (mouse.active && mouse.x !== null && mouse.y !== null) {
+                        const dx = mouse.x - p.x;
+                        const dy = mouse.y - p.y;
+                        const dist = Math.hypot(dx, dy);
+                        const maxRadius = 130;
+
+                        if (dist < maxRadius) {
+                            const force = (maxRadius - dist) / maxRadius;
+                            const angle = Math.atan2(dy, dx);
+
+                            if (mode === 'repel') {
+                                p.x -= Math.cos(angle) * force * 5;
+                                p.y -= Math.sin(angle) * force * 5;
+                            } else {
+                                p.x += Math.cos(angle) * force * 3;
+                                p.y += Math.sin(angle) * force * 3;
+                            }
+                        }
+
+                        if (dist < 140) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(mouse.x, mouse.y);
+                            ctx.strokeStyle = accentColor;
+                            ctx.globalAlpha = (1 - dist / 140) * 0.7;
+                            ctx.lineWidth = 1.2;
+                            ctx.stroke();
+                        }
+                    }
+
+                    const r = p.radius + Math.sin(p.pulse) * 0.8;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, Math.max(1, r), 0, Math.PI * 2);
+                    ctx.fillStyle = accentColor;
+                    ctx.globalAlpha = 0.85;
+                    ctx.fill();
+
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const p2 = nodes[j];
+                        if (p2.isBurst) continue;
+                        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = accentColor;
+                            ctx.globalAlpha = (1 - dist / 100) * 0.4;
+                            ctx.lineWidth = 0.6;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                ctx.globalAlpha = 1.0;
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        /* --- CUSTOM LIQUID GLASS TOAST NOTIFICATION --- */
+        function showToast(message, { title = 'Success', type = 'success', duration = 4000 } = {}) {
+            const container = document.getElementById('toastContainer');
+
+            const toast = document.createElement('div');
+            toast.className = `toast${type === 'error' ? ' toast-error' : ''}`;
+
+            const iconPath = type === 'error'
+                ? '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>'
+                : '<polyline points="20 6 9 17 4 12"></polyline>';
+
+            toast.innerHTML = `
+                <div class="toast-icon">
+                    <svg viewBox="0 0 24 24">${iconPath}</svg>
+                </div>
+                <div class="toast-body">
+                    <div class="toast-title">${title}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+                <button class="toast-close" aria-label="Dismiss">&times;</button>
+                <div class="toast-progress" style="animation-duration: ${duration}ms;"></div>
+            `;
+
+            container.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
+
+            let dismissTimer = setTimeout(() => dismiss(), duration);
+
+            function dismiss() {
+                clearTimeout(dismissTimer);
+                toast.classList.remove('show');
+                toast.classList.add('hide');
+                toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+            }
+
+            toast.querySelector('.toast-close').addEventListener('click', dismiss);
+        }
+
+        /* --- LIVE AVAILABILITY CLOCK ORB (Asia/Manila) --- */
+        function updateAvailabilityClock() {
+            const orb = document.getElementById('clockOrb');
+            const hoursEl = document.getElementById('clockHours');
+            const minutesEl = document.getElementById('clockMinutes');
+            const ampmEl = document.getElementById('clockAmPm');
+            const statusEl = document.getElementById('availabilityStatus');
+
+            const now = new Date();
+            const manilaStr = now.toLocaleString('en-US', {
+                timeZone: 'Asia/Manila',
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            const [hours24, minutes] = manilaStr.split(':').map(Number);
+
+            // Convert to 12-hour format
+            const h12 = hours24 % 12 || 12;
+            const ampm = hours24 >= 12 ? 'PM' : 'AM';
+
+            if (hoursEl) hoursEl.textContent = String(h12).padStart(2, '0');
+            if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+            if (ampmEl) ampmEl.textContent = ampm;
+
+            const isAwake = hours24 >= 8 && hours24 < 21;
+
+            if (orb) {
+                orb.classList.toggle('awake', isAwake);
+                orb.classList.toggle('asleep', !isAwake);
+            }
+
+            if (statusEl) {
+                statusEl.innerHTML = isAwake
+                    ? '<span class="status-dot"></span>I\'m awake, feel free to message me!'
+                    : '<span class="status-dot"></span>I\'m asleep, feel free to message me — I\'ll respond as soon as I can.';
+            }
+        }
+
+        /* --- FORMSPREE CONTACT FORM HANDLER --- */
+        function initContactForm() {
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const btn = document.getElementById('contactSubmitBtn');
+                const btnText = document.getElementById('contactBtnText');
+                const originalText = btnText.textContent;
+
+                // Disable & show loading state
+                btn.disabled = true;
+                btn.style.opacity = '0.6';
+                btnText.textContent = 'Sending...';
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        showToast('Thanks for reaching out — I\'ll get back to you soon.', { title: 'Message Sent!', type: 'success' });
+                        form.reset();
+                    } else {
+                        const data = await response.json();
+                        const errorMsg = (data.errors && data.errors.map(err => err.message).join(', ')) || 'Something went wrong. Please try again.';
+                        showToast(errorMsg, { title: 'Send Failed', type: 'error' });
+                    }
+                } catch (err) {
+                    showToast('Network error — please check your connection and try again.', { title: 'Send Failed', type: 'error' });
+                } finally {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    btnText.textContent = originalText;
+                }
+            });
+        }
+
+        /* INITIALIZATION */
+        window.addEventListener('DOMContentLoaded', () => {
+            initBgCanvas();
+            initHeroCanvas();
+            renderGames();
+            render3D();
+            renderVFX();
+            renderWeb();
+            updateAvailabilityClock();
+            setInterval(updateAvailabilityClock, 1000);
+            initContactForm();
+        });
+    </script>
 </body>
 </html>
